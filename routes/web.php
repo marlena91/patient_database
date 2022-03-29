@@ -14,5 +14,4 @@ use App\Http\Controllers\SpaController;
 |
 */
 
-// Route::resource('/', SpaController::class);
-Route::get('/{any}', [SpaController::class, 'index'])->where('any', '.*');
+Route::resource('/', SpaController::class);
