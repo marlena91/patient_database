@@ -9,18 +9,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Vue SPA Demo</title>
-
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 <body>
 
     <div id="app">
 
-        <app></app>
+        <router-view></router-view>
 
     </div>
 
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    
 
 </body>
 

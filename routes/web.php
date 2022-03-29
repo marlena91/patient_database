@@ -13,7 +13,6 @@ use App\Http\Controllers\SpaController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource('/', SpaController::class);
 // Route::get('/{any}', 'SpaController@index')->where('any', '.*');
-Route::get('/', function () {
-    return view('welcome');
-});
