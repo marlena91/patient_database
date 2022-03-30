@@ -16,4 +16,7 @@ use App\Http\Controllers\PatientsController;
 */
 
 
-Route::resource('/', PatientsController::class);
+// Route::resource('/', PatientsController::class);
+Route::resource('/', PatientsController::class, [
+    'except' => ['edit', 'show', 'store']
+]);

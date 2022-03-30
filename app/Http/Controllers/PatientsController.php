@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use Facade\FlareClient\Http\Response;
+use Laravel\Ui\Presets\React;
+use LDAP\Result;
 
 class PatientsController extends Controller
 {
@@ -14,6 +17,7 @@ class PatientsController extends Controller
      */
     public function index()
     {
+        // return response(Patient::all()->jsonSerialize(), self::HTTP_OK);
         $patients = Patient::all();
         
         return view ('patients', [

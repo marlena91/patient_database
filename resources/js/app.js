@@ -2,12 +2,14 @@ import './bootstrap';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import Index from './Index';
 import App from './vue/App';
 import Home from './vue/Home';
 import Hello from './vue/Hello';
-
+import PatientsComponent from './vue/PatientsComponent';
 
 window.Vue = require('vue').default;
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -26,6 +28,11 @@ const routes = [
         name: 'hello',
         component: Hello,
     },
+    {
+        path: '/patients',
+        name: 'patients',
+        component: PatientsComponent,
+    },
 
 ];
 
@@ -36,5 +43,8 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    components: {
+        "index": Index
+    }
 });

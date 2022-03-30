@@ -2,21 +2,11 @@
 
     <div class="box">
 
-        <h1>Vue Router Demo App</h1>
-
-        <p>
-
-            <router-link :to="{ name: 'home' }">Home</router-link> |
-
-            <router-link :to="{ name: 'hello' }">Hello World</router-link>
-
-        </p>
-
-        <div class="container">
-
-            <router-view></router-view>
-
-        </div>
+        <patients-component 
+            v-for="patient in patients"
+            v-bind="patient"
+            :key="patient.id"
+        ></patients-component>
 
     </div>
 
@@ -24,7 +14,29 @@
 
 
 <script>
+function Patient({ id, name, lastname, pesel, birthday}) {
+    this.id = id;
+    this.name = name;
+    this.lastname = lastname;
+    this.pesel = pesel;
+    this.birthday = birthday;
+  }
+import PatientsComponent from './PatientsComponent.vue'
 
-    export default {}
-
+    export default {
+        data() {
+            return {
+                patients: []
+            }
+        },
+        methods: {
+            async read() {
+            const { data } = window.axios.get('/api/patients');
+            console.log(data)         
+            }
+        },
+        components: {
+            PatientsComponent
+        }
+    }
 </script>
