@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpaController;
+use App\Http\Controllers\PatientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,5 @@ use App\Http\Controllers\SpaController;
 |
 */
 
-Route::resource('/', SpaController::class);
+
+Route::resource('/', PatientsController::class);
