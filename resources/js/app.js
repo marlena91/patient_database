@@ -2,11 +2,11 @@ import './bootstrap';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Index from './Index';
+import Index from './vue/Index';
 import App from './vue/App';
-import Home from './vue/Home';
-import Hello from './vue/Hello';
-import PatientsComponent from './vue/PatientsComponent';
+import Home from './vue/src/Home';
+import Hello from './vue/src/Hello';
+import PatientsComponent from './vue/components/PatientsComponent';
 
 window.Vue = require('vue').default;
 

@@ -4,6 +4,10 @@
 </div>
 
 </template>
+
+
+
+
 <style scoped>
 .box {
     width: 1000px;
