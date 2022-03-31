@@ -15,11 +15,6 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        name: 'index',
-        component: Index,
-    },
-    {
-        path: '/patients',
         name: 'patients',
         component: Patients,
     },

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PatientsController;
+use App\Http\Controllers\PatientsController;
 use App\Models\Patient;
 
 
@@ -23,10 +23,8 @@ use App\Models\Patient;
 // Route::resource('/', PatientsController::class, [
 //     'except' => ['edit', 'show', 'store']
 // ]);
-Route::get('patients', function (Request $request) {
-    return Patient::all();
-});
 
-Route::get('patients/{id}', function (Request $request, $id) {
-    return Patient::find($id);
-});
+
+Route::get('patients', [PatientsController::class, 'index']);
+Route::get('patients/{id}', [PatientsController::class, 'show']);
+

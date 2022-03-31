@@ -10,13 +10,6 @@
 <body>
     <div id="app">
         <index></index>
-        
-        {{-- @foreach($patients as $patient)
-            <div class='box'>
-                {{ $patient->name}}
-            </div> 
-        @endforeach --}}
-
     </div>
 </body>
 </html>

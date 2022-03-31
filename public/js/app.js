@@ -5434,10 +5434,6 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 vue__WEBPACK_IMPORTED_MODULE_4__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var routes = [{
   path: '/',
-  name: 'index',
-  component: _vue_Index__WEBPACK_IMPORTED_MODULE_1__["default"]
-}, {
-  path: '/patients',
   name: 'patients',
   component: _vue_components_Patients__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {

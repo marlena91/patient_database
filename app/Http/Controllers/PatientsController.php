@@ -17,12 +17,8 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        // return response(Patient::all()->jsonSerialize(), self::HTTP_OK);
-        $patients = Patient::all();
-        
-        return view ('patients', [
-            'patients' => $patients
-        ]);
+    
+        return Patient::all();
     }
 
     /**
@@ -54,7 +50,7 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
-        //
+        return Patient::findOrFail($id);
     }
 
     /**
