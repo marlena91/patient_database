@@ -31,15 +31,9 @@ import PatientListItem from './PatientListItem.vue';
         created() {
         const request = axios
                 .get("/api/patients")
-                .then(response => (this.patients = response.data));
+                .then(response => (this.patients = response.data.data));
         },
         props: {},
-
-                // filters: {
-                //     properCase(string) {
-                //         return string.charAt(0).toUpperCase() + string.slice(1);
-                //     }
-                // }
     };
 </script>
 <style scoped>

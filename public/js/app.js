@@ -5339,15 +5339,10 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     var request = axios.get("/api/patients").then(function (response) {
-      return _this.patients = response.data;
+      return _this.patients = response.data.data;
     });
   },
-  props: {} // filters: {
-  //     properCase(string) {
-  //         return string.charAt(0).toUpperCase() + string.slice(1);
-  //     }
-  // }
-
+  props: {}
 });
 
 /***/ }),
@@ -5402,7 +5397,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/api/patients/".concat(this.$route.params.id)).then(function (response) {
-      return _this.patient = response.data;
+      return _this.patient = response.data.data;
     });
   }
 });

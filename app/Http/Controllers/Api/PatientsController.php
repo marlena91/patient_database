@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PatientIndexResource;
+use App\Http\Resources\PatientShowResource;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use Facade\FlareClient\Http\Response;
@@ -18,7 +21,9 @@ class PatientsController extends Controller
     public function index()
     {
     
-        return Patient::all();
+        return  PatientIndexResource::collection(
+            Patient::all()
+        );
     }
 
     /**
@@ -50,7 +55,7 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
-        return Patient::findOrFail($id);
+        return new PatientShowResource(Patient::findOrFail($id));
     }
 
     /**

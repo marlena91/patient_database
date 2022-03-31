@@ -38,7 +38,7 @@ export default {
     created() {
         axios
         .get(`/api/patients/${this.$route.params.id}`)
-        .then(response => (this.patient = response.data))
+        .then(response => (this.patient = response.data.data))
     },
 }
 </script>
