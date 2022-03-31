@@ -14,7 +14,7 @@ class DiseaseFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->regexify('[A-Za-z0-9]{20}'),
+            'name' => $this->faker->text($maxNbChars = 30),
         ];
     }
 }

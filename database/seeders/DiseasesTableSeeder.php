@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Disease;
 
-class DiseasesTablesSeeder extends Seeder
+class DiseasesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class DiseasesTablesSeeder extends Seeder
      */
     public function run()
     {
-        Disease::factory()->count(200)->create();
+        Disease::factory()->count(100)->create();
     }
 }
