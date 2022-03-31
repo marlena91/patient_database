@@ -1,37 +1,30 @@
 <template>
     <div>
-        <div>
-            <table class="table table-bordered">
-                <tr>
-                    <th>Name</th>
-                    <th>LastName</th>
-                    <th>Pesel</th>
-                    <th>Birthday</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                <tr v-for="patient in patients" :key="patient.id">
-                    <td>{{ patient.name }}</td>
-                    <td>{{ patient.lastname }}</td>
-                    <td>{{ patient.pesel }}</td>
-                    <td>{{ patient.birthday }}</td>
-                    <td>edit</td>
-                    <td>delete</td>
+        
+        <div class="column mb-4" v-for="row in rows" :key="row">
+            <div class="card w-50" v-for="patient in patients" :key="patient.id">
+                <patient-list-item v-bind="patient"></patient-list-item>
+            </div>
 
-                </tr>
-            </table>
         </div>
     </div>
 </template>
 <script>
+import PatientListItem from './PatientListItem.vue';
+
     export default {
-        components: {},
+        components: {
+            PatientListItem
+        },
         data() {
             return {
                 patients: []
             };
         },
         computed: {
+            rows() {
+                return this.patients.length;
+                }
         },
         methods: {
         },

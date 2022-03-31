@@ -4,9 +4,11 @@ import VueRouter from 'vue-router';
 
 import Index from './vue/Index';
 import App from './vue/App';
-import Home from './vue/src/Home';
-import Hello from './vue/src/Hello';
-import PatientsComponent from './vue/components/PatientsComponent';
+import SinglePatient from './vue/components/SinglePatient';
+import Patients from './vue/components/Patients';
+import PatientListItem from './vue/components/PatientListItem';
+
+
 
 window.Vue = require('vue').default;
 
@@ -19,19 +21,14 @@ const routes = [
         component: App,
     },
     {
-        path: '/home',
-        name: 'home',
-        component: Home,
-    },
-    {
-        path: '/hello',
-        name: 'hello',
-        component: Hello,
-    },
-    {
         path: '/patients',
         name: 'patients',
-        component: PatientsComponent,
+        component: Patients,
+    },
+    {
+        path: '/patients/:id',
+        name: 'patient',
+        component: SinglePatient,
     },
 
 ];

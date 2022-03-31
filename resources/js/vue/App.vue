@@ -1,37 +1,18 @@
 <template>
 
     <div class="box">
-
-        <!-- <patients-component 
-            v-for="patient in patients"
-            v-bind="patient"
-            :key="patient.id"
-        ></patients-component> -->
-
-    <patients-component></patients-component>
+        <patients-component></patients-component>
     </div>
 
 </template>
 
 
 <script>
-import PatientsComponent from './components/PatientsComponent.vue'
+import PatientsComponent from './components/Patients.vue'
 
     export default {
         data() {
             return {
-                firstPerson: {
-                    name: "Zbigniew", 
-                    lastName: "Karłowski", 
-                    pesel: 96041522254,
-                    birthday: 19960415
-                }, 
-                secondPerson: {
-                    name: "Luiza", 
-                    lastName: "Ryba", 
-                    pesel: 86060214958,
-                    birthday: 19860602
-                }
             }
         },
         methods: {
