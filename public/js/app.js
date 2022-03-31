@@ -5313,6 +5313,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     id: Number,
@@ -5406,6 +5411,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -28833,23 +28861,38 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card-body mb-4" }, [
-      _c("div", { staticClass: "card-title" }, [
-        _c("p", [_vm._v(_vm._s(_vm.name) + " " + _vm._s(_vm.lastname))]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-text" }, [
-        _c("p", [
-          _vm._v(
-            "Pesel: " +
-              _vm._s(_vm.pesel) +
-              " | Data urodzenia: " +
-              _vm._s(_vm.birthday) +
-              " \n                     "
+    _c("div", [
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c(
+            "router-link",
+            { attrs: { to: { name: "patient", params: { id: _vm.id } } } },
+            [
+              _c("div", { staticClass: "card-title" }, [
+                _c("p", [
+                  _vm._v(_vm._s(_vm.name) + " " + _vm._s(_vm.lastname)),
+                ]),
+              ]),
+            ]
           ),
-        ]),
-        _c("p", [_vm._v("edit delete")]),
-      ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-text" }, [
+            _c("p", [
+              _vm._v(
+                "Pesel: " +
+                  _vm._s(_vm.pesel) +
+                  " | Data urodzenia: " +
+                  _vm._s(_vm.birthday) +
+                  " \n                "
+              ),
+            ]),
+            _c("p", [_vm._v("edit delete")]),
+          ]),
+        ],
+        1
+      ),
     ]),
   ])
 }
@@ -28881,11 +28924,11 @@ var render = function () {
     _vm._l(_vm.rows, function (row) {
       return _c(
         "div",
-        { key: row, staticClass: "column mb-4" },
+        { key: row, staticClass: "d-flex flex-column mb-4" },
         _vm._l(_vm.patients, function (patient) {
           return _c(
             "div",
-            { key: patient.id, staticClass: "card w-50" },
+            { key: patient.id, staticClass: "card w-50 mt-3" },
             [
               _c(
                 "patient-list-item",
@@ -28924,9 +28967,52 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    test\n")])
+  return _c("div", { staticClass: "column" }, [
+    _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h2", [
+            _vm._v(
+              _vm._s(_vm.patient.name) + " " + _vm._s(_vm.patient.lastname)
+            ),
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("article", [
+            _c("p", [_vm._v("Pesel: " + _vm._s(_vm.patient.pesel))]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v("Data urodzenia: " + _vm._s(_vm.patient.birthday)),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-8 mt-3" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-title" }, [
+          _c("h3", [_vm._v("Dokumentacja medyczna i choroby pacjenta:")]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", [
+            _vm._v("\n                    Lorem ipsum\n                "),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

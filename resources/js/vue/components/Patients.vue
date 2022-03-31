@@ -1,8 +1,8 @@
 <template>
     <div>
         
-        <div class="column mb-4" v-for="row in rows" :key="row">
-            <div class="card w-50" v-for="patient in patients" :key="patient.id">
+        <div class="d-flex flex-column mb-4" v-for="row in rows" :key="row">
+            <div class="card w-50 mt-3" v-for="patient in patients" :key="patient.id">
                 <patient-list-item v-bind="patient"></patient-list-item>
             </div>
 
