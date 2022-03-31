@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\Api\PatientsController;
 use App\Models\Patient;
 
 

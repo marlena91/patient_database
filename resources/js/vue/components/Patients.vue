@@ -29,17 +29,7 @@ import PatientListItem from './PatientListItem.vue';
         methods: {
         },
         created() {
-            const p = new Promise((resolve, reject) => {
-                console.log(resolve);
-                console.log(reject);
-                setTimeout(() => resolve("hi"), 3000);
-            })
-            .then(result => "Again " + result)
-            .then(result => console.log(`Success ${result}`))
-            .catch(result =>console.log(`Error ${result}`));
-            console.log(p);
-
-            const request = axios
+        const request = axios
                 .get("/api/patients")
                 .then(response => (this.patients = response.data));
         },

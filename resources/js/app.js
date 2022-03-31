@@ -3,11 +3,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Index from './vue/Index';
-import App from './vue/App';
 import SinglePatient from './vue/components/SinglePatient';
-import Patients from './vue/components/Patients';
-import PatientListItem from './vue/components/PatientListItem';
 
+import Patients from './vue/components/Patients';
 
 
 window.Vue = require('vue').default;
@@ -18,7 +16,7 @@ const routes = [
     {
         path: '/',
         name: 'index',
-        component: App,
+        component: Index,
     },
     {
         path: '/patients',
