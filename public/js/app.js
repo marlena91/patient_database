@@ -5283,17 +5283,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5352,23 +5341,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// module.exports = {
-//     data: function () {
-//         return {
-//             greeting: "Hello"
-//         }
-//     }
-// }
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  data: function data() {
+    return {
+      patients: []
+    };
+  },
   computed: {},
   methods: {},
-  props: {
-    'name': String,
-    'lastName': String,
-    'pesel': Number,
-    'birthday': Number
+  created: function created() {
+    var _this = this;
+
+    var p = new Promise(function (resolve, reject) {
+      console.log(resolve);
+      console.log(reject);
+      setTimeout(function () {
+        return resolve("hi");
+      }, 3000);
+    }).then(function (result) {
+      return "Again " + result;
+    }).then(function (result) {
+      return console.log("Success ".concat(result));
+    })["catch"](function (result) {
+      return console.log("Error ".concat(result));
+    });
+    console.log(p);
+    var request = axios.get("/api/patients").then(function (response) {
+      return _this.patients = response.data;
+    });
   },
-  mounted: function mounted() {} // filters: {
+  props: {} // filters: {
   //     properCase(string) {
   //         return string.charAt(0).toUpperCase() + string.slice(1);
   //     }
@@ -10516,7 +10523,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nth[data-v-0bd376c6] {\n    width: 150px;\n    text-align: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-0bd376c6] {\n    width: 800px;\n    margin: 50px auto;\n}\nth[data-v-0bd376c6], td[data-v-0bd376c6] {\n    width: 150px;\n    height: 50px;\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28802,30 +28809,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "box" },
-    [
-      _c("patients-component", {
-        attrs: {
-          name: _vm.firstPerson.name,
-          "last-name": _vm.firstPerson.lastName,
-          pesel: _vm.firstPerson.pesel,
-          birthday: _vm.firstPerson.birthday,
-        },
-      }),
-      _vm._v(" "),
-      _c("patients-component", {
-        attrs: {
-          name: _vm.secondPerson.name,
-          "last-name": _vm.secondPerson.lastName,
-          pesel: _vm.secondPerson.pesel,
-          birthday: _vm.secondPerson.birthday,
-        },
-      }),
-    ],
-    1
-  )
+  return _c("div", { staticClass: "box" }, [_c("patients-component")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28924,19 +28908,30 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", [
-      _c("table", [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v(_vm._s(_vm.name))]),
+      _c(
+        "table",
+        { staticClass: "table table-bordered" },
+        [
+          _vm._m(0),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.lastName))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.pesel))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.birthday))]),
-        ]),
-      ]),
+          _vm._l(_vm.patients, function (patient) {
+            return _c("tr", { key: patient.id }, [
+              _c("td", [_vm._v(_vm._s(patient.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(patient.lastname))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(patient.pesel))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(patient.birthday))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("edit")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("delete")]),
+            ])
+          }),
+        ],
+        2
+      ),
     ]),
   ])
 }
@@ -28953,6 +28948,10 @@ var staticRenderFns = [
       _c("th", [_vm._v("Pesel")]),
       _vm._v(" "),
       _c("th", [_vm._v("Birthday")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Edit")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Delete")]),
     ])
   },
 ]
@@ -44225,7 +44224,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"/home/marlena/Projects/patient_database_3","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

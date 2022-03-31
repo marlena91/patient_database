@@ -8,18 +8,7 @@
             :key="patient.id"
         ></patients-component> -->
 
-    <patients-component 
-        :name = "firstPerson.name" 
-        :last-name="firstPerson.lastName" 
-        :pesel=firstPerson.pesel
-        :birthday="firstPerson.birthday"
-    ></patients-component>
-    <patients-component 
-        :name = secondPerson.name
-        :last-name= secondPerson.lastName
-        :pesel= secondPerson.pesel
-        :birthday= secondPerson.birthday
-    ></patients-component>
+    <patients-component></patients-component>
     </div>
 
 </template>

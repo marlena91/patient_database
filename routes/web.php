@@ -17,6 +17,9 @@ use App\Http\Controllers\PatientsController;
 
 
 // Route::resource('/', PatientsController::class);
-Route::resource('/', PatientsController::class, [
-    'except' => ['edit', 'show', 'store']
-]);
+// Route::resource('/', PatientsController::class, [
+//     'except' => ['edit', 'show', 'store']
+// ]);
+Route::get('/{any?}', function () {
+    return view('patients');
+})->where('any', '^(?!api\/)[\/\w\.-]*');
