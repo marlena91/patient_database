@@ -1,6 +1,6 @@
 <template>
-    <div class="column">
-        <div class="col-md-8">
+    <div class="column ">
+        <div class="col-md-8 ">
             <div class="card">
                 <div class="card-body">
                     <h2>{{ patient.name }} {{ patient.lastname }}</h2>
