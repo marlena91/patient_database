@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Disease;
-use App\Http\Resources\DiseaseIndexResource;
-use App\Http\Resources\DiseaseShowResource;
+use App\Models\MedicalNote;
+use App\Http\Resources\MedicalNoteIndexResource;
+use App\Http\Resources\MedicalNoteShowResource;
 
-
-class DiseasesController extends Controller
+class MedicalNotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class DiseasesController extends Controller
      */
     public function index()
     {
-        return  DiseaseIndexResource::collection(
-            Disease::all()
+        return  MedicalNoteIndexResource::collection(
+            MedicalNote::all()
         );
     }
 
@@ -52,7 +51,7 @@ class DiseasesController extends Controller
      */
     public function show($id)
     {
-        return new DiseaseShowResource(Disease::findOrFail($id));
+        return new MedicalNoteShowResource(MedicalNote::findOrFail($id));
     }
 
     /**

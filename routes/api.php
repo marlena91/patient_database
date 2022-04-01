@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PatientsController;
 use App\Http\Controllers\Api\DiseasesController;
+use App\Http\Controllers\Api\MedicalNotesController;
+
 use App\Models\Patient;
 
 
@@ -29,6 +31,6 @@ Route::resource('patients', PatientsController::class, [
     'only' => ['index', 'show']
 ]);
 
-Route::resource('diseases', DiseasesController::class, [
-    'only' => ['index', 'show']
-]);
+Route::resource('diseases', DiseasesController::class);
+
+Route::resource('medical-notes', MedicalNotesController::class);
