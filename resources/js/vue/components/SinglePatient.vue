@@ -12,6 +12,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-md-8 mt-3">
             <div class="card">
                 <div class="card-title">
@@ -23,6 +24,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="pt-3">
+            <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
+            <button class="btn btn-outline-dark btn-block mb-4">Usuń</button>
         </div>
     </div>
 </template>

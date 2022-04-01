@@ -2,14 +2,15 @@
     <div>
         <div>
             <div class="card-body">
-                <router-link :to="{ name: 'patient', params: { id } }">
+                <router-link class="text-decoration-none" :to="{ name: 'patient', params: { id } }">
                     <div class="card-title"> 
-                        <p>{{ name }} {{ lastname }}</p>
+                        <h3 class="text-decoration-none text-dark font-weight-bolder mt-3">{{ name }} {{ lastname }}</h3>
                     </div>
                 </router-link>
                 <div class="card-text">
-                    <p>Pesel: {{ pesel }} | Data urodzenia: {{ birthday }} 
-                    <p>edit delete</p>
+                    <p>Pesel: {{ pesel }} | Data urodzenia: {{ birthday }} </p>
+                    <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
+                    <button class="btn btn-outline-dark btn-block mb-4">Usuń</button>
                 </div>   
             </div>
         </div>

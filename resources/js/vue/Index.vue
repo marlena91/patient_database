@@ -2,9 +2,12 @@
     <div class="container">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="navbar-brand">
-                <h1> Etermed</h1>
-            </div>
+            <router-link class="nav-link" :to="{ name: 'patients' }">
+                <div class="navbar-brand">
+                    <h1> Etermed</h1>
+                </div>
+            </router-link>
+            
 
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav mr-auto">

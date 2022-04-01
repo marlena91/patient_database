@@ -5422,6 +5422,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     id: Number,
@@ -5561,6 +5562,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29150,7 +29156,15 @@ var render = function () {
       "nav",
       { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
       [
-        _vm._m(0),
+        _c(
+          "router-link",
+          { staticClass: "nav-link", attrs: { to: { name: "patients" } } },
+          [
+            _c("div", { staticClass: "navbar-brand" }, [
+              _c("h1", [_vm._v(" Etermed")]),
+            ]),
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "collapse navbar-collapse" }, [
           _c(
@@ -29178,7 +29192,8 @@ var render = function () {
             1
           ),
         ]),
-      ]
+      ],
+      1
     ),
     _vm._v(" "),
     _c(
@@ -29189,16 +29204,7 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-brand" }, [
-      _c("h1", [_vm._v(" Etermed")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -29455,12 +29461,20 @@ var render = function () {
         [
           _c(
             "router-link",
-            { attrs: { to: { name: "patient", params: { id: _vm.id } } } },
+            {
+              staticClass: "text-decoration-none",
+              attrs: { to: { name: "patient", params: { id: _vm.id } } },
+            },
             [
               _c("div", { staticClass: "card-title" }, [
-                _c("p", [
-                  _vm._v(_vm._s(_vm.name) + " " + _vm._s(_vm.lastname)),
-                ]),
+                _c(
+                  "h3",
+                  {
+                    staticClass:
+                      "text-decoration-none text-dark font-weight-bolder mt-3",
+                  },
+                  [_vm._v(_vm._s(_vm.name) + " " + _vm._s(_vm.lastname))]
+                ),
               ]),
             ]
           ),
@@ -29472,10 +29486,21 @@ var render = function () {
                   _vm._s(_vm.pesel) +
                   " | Data urodzenia: " +
                   _vm._s(_vm.birthday) +
-                  " \n                "
+                  " "
               ),
             ]),
-            _c("p", [_vm._v("edit delete")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-outline-dark btn-block mb-4" },
+              [_vm._v("Edytuj")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-outline-dark btn-block mb-4" },
+              [_vm._v("Usuń")]
+            ),
           ]),
         ],
         1
@@ -29733,6 +29758,8 @@ var render = function () {
     ]),
     _vm._v(" "),
     _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
   ])
 }
 var staticRenderFns = [
@@ -29751,6 +29778,20 @@ var staticRenderFns = [
             _vm._v("\n                    Lorem ipsum\n                "),
           ]),
         ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "pt-3" }, [
+      _c("button", { staticClass: "btn btn-outline-dark btn-block mb-4" }, [
+        _vm._v("Edytuj"),
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-outline-dark btn-block mb-4" }, [
+        _vm._v("Usuń"),
       ]),
     ])
   },
