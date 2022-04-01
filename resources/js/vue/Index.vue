@@ -9,6 +9,8 @@
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav mr-auto">
                     <router-link class="nav-link" :to="{ name: 'patients' }">Baza pacjentów</router-link>
+                    <router-link class="nav-link" :to="{ name: 'diseases' }">Baza chorób</router-link>
+
                 </div>
             </div>
         </nav>

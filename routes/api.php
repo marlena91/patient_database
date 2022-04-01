@@ -29,4 +29,6 @@ Route::resource('patients', PatientsController::class, [
     'only' => ['index', 'show']
 ]);
 
-Route::resource('diseases', DiseasesController::class);
+Route::resource('diseases', DiseasesController::class, [
+    'only' => ['index', 'show']
+]);

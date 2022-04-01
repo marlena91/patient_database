@@ -4,8 +4,8 @@ import VueRouter from 'vue-router';
 
 import Index from './vue/Index';
 import SinglePatient from './vue/components/SinglePatient';
-
 import Patients from './vue/components/Patients';
+import Diseases from './vue/components/Diseases';
 
 
 window.Vue = require('vue').default;
@@ -22,6 +22,11 @@ const routes = [
         path: '/patients/:id',
         name: 'patient',
         component: SinglePatient,
+    },
+    {
+        path: '/diseases',
+        name: 'diseases',
+        component: Diseases,
     },
 
 ];
