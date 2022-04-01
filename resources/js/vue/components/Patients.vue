@@ -3,6 +3,11 @@
         <div class="col-md-8">
             <search-engine></search-engine>
         </div>
+        <router-link :to="{ name: 'patient-create'}">
+            <div class="card-title"> 
+                <button class="btn btn-light btn-block mb-4">Dodaj pacjenta</button>
+            </div>
+        </router-link>
         <div v-if="!loading">
             <div class="d-flex flex-column mb-4" v-for="row in rows" :key="row">
                 <div class="card w-50 mt-3" v-for="patient in patients" :key="patient.id">

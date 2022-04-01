@@ -28,9 +28,17 @@ use App\Models\Patient;
 // Route::get('patients/{id}', [PatientsController::class, 'show']);
 
 Route::resource('patients', PatientsController::class, [
+    'only' => ['index', 'show', 'create']
+]);
+
+Route::resource('diseases', DiseasesController::class, [
     'only' => ['index', 'show']
 ]);
 
-Route::resource('diseases', DiseasesController::class);
+Route::resource('medical-notes', MedicalNotesController::class, [
+    'only' => ['index', 'show']
+]);
 
-Route::resource('medical-notes', MedicalNotesController::class);
+// Route::resource('diseases', DiseasesController::class);
+
+// Route::resource('medical-notes', MedicalNotesController::class);
