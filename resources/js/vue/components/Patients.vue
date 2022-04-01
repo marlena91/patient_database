@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="col-md-8">
-            <search-engine></search-engine>
+            <search></search>
         </div>
         <router-link :to="{ name: 'patient-create'}">
             <div class="card-title"> 
@@ -21,11 +21,11 @@
 </template>
 <script>
 import PatientListItem from './PatientListItem.vue';
-import SearchEngine from './Search.vue';
+import Search from './Search.vue';
 
     export default {
         components: {
-            SearchEngine,
+            Search,
             PatientListItem
         },
         data() {

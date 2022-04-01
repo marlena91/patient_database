@@ -5473,7 +5473,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    SearchEngine: _Search_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Search: _Search_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     PatientListItem: _PatientListItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
@@ -5562,6 +5562,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _MedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MedicalNote.vue */ "./resources/js/vue/components/MedicalNote.vue");
 //
 //
 //
@@ -5596,7 +5597,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    MedicalNote: _MedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       patient: []
@@ -28716,6 +28721,43 @@ component.options.__file = "resources/js/vue/components/Diseases.vue"
 
 /***/ }),
 
+/***/ "./resources/js/vue/components/MedicalNote.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/vue/components/MedicalNote.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _MedicalNote_vue_vue_type_template_id_5509ba9e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MedicalNote.vue?vue&type=template&id=5509ba9e& */ "./resources/js/vue/components/MedicalNote.vue?vue&type=template&id=5509ba9e&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _MedicalNote_vue_vue_type_template_id_5509ba9e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _MedicalNote_vue_vue_type_template_id_5509ba9e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/vue/components/MedicalNote.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/vue/components/PatientListItem.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/vue/components/PatientListItem.vue ***!
@@ -29063,6 +29105,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_4479d5d9___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_4479d5d9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Diseases.vue?vue&type=template&id=4479d5d9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases.vue?vue&type=template&id=4479d5d9&");
+
+
+/***/ }),
+
+/***/ "./resources/js/vue/components/MedicalNote.vue?vue&type=template&id=5509ba9e&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/vue/components/MedicalNote.vue?vue&type=template&id=5509ba9e& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNote_vue_vue_type_template_id_5509ba9e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNote_vue_vue_type_template_id_5509ba9e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNote_vue_vue_type_template_id_5509ba9e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MedicalNote.vue?vue&type=template&id=5509ba9e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/MedicalNote.vue?vue&type=template&id=5509ba9e&");
 
 
 /***/ }),
@@ -29437,6 +29496,31 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/MedicalNote.vue?vue&type=template&id=5509ba9e&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/MedicalNote.vue?vue&type=template&id=5509ba9e& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    test\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/PatientListItem.vue?vue&type=template&id=2966e304&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/PatientListItem.vue?vue&type=template&id=2966e304& ***!
@@ -29534,7 +29618,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "col-md-8" }, [_c("search-engine")], 1),
+      _c("div", { staticClass: "col-md-8" }, [_c("search")], 1),
       _vm._v(" "),
       _c("router-link", { attrs: { to: { name: "patient-create" } } }, [
         _c("div", { staticClass: "card-title" }, [
@@ -29757,7 +29841,15 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "col-md-8 mt-3" }, [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", [_c("medical-note")], 1),
+        ]),
+      ]),
+    ]),
     _vm._v(" "),
     _vm._m(1),
   ])
@@ -29767,18 +29859,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-8 mt-3" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-title" }, [
-          _c("h3", [_vm._v("Dokumentacja medyczna i choroby pacjenta:")]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", [
-            _vm._v("\n                    Lorem ipsum\n                "),
-          ]),
-        ]),
-      ]),
+    return _c("div", { staticClass: "card-title" }, [
+      _c("h3", [_vm._v("Dokumentacja medyczna i choroby pacjenta:")]),
     ])
   },
   function () {

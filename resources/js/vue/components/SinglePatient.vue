@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                     <div>
-                        Lorem ipsum
+                        <medical-note></medical-note>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,12 @@
 </template>
 
 <script>
+import MedicalNote from './MedicalNote.vue';
 
 export default {
+    components: {
+        MedicalNote
+    },
     data() {
         return{
           patient: []
