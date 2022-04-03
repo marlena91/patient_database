@@ -39,6 +39,3 @@ Route::resource('medical-notes', MedicalNotesController::class, [
     'only' => ['index', 'show']
 ]);
 
-// Route::resource('diseases', DiseasesController::class);
-
-// Route::resource('medical-notes', MedicalNotesController::class);
