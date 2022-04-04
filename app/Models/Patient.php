@@ -10,6 +10,8 @@ class Patient extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'lastname', 'pesel', 'birthday'];
+
     public function medicalNote()
     {
         return $this->hasMany(MedicalNote::class);

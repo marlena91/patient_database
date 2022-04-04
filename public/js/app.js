@@ -5288,6 +5288,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   data: function data() {
@@ -5612,6 +5613,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _MedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MedicalNote.vue */ "./resources/js/vue/components/MedicalNote.vue");
+//
+//
 //
 //
 //
@@ -29429,114 +29432,116 @@ var render = function () {
       [_vm._v("Dane pacjenta: ")]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "form-row mb-4" }, [
-      _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.name,
-              expression: "name",
+    _c("form", { attrs: { action: "/api/patients", method: "POST" } }, [
+      _c("div", { staticClass: "form-row mb-4" }, [
+        _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "text", name: "name", placeholder: "Imię..." },
+            domProps: { value: _vm.name },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              },
             },
-          ],
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", name: "name", placeholder: "Imię..." },
-          domProps: { value: _vm.name },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.name = $event.target.value
+          }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.lastname,
+                expression: "lastname",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: {
+              type: "text",
+              name: "lastname",
+              placeholder: "Nazwisko...",
             },
-          },
-        }),
+            domProps: { value: _vm.lastname },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.lastname = $event.target.value
+              },
+            },
+          }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.pesel,
+                expression: "pesel",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "text", name: "pesel", placeholder: "Pesel..." },
+            domProps: { value: _vm.pesel },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.pesel = $event.target.value
+              },
+            },
+          }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.birthday,
+                expression: "birthday",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: {
+              type: "text",
+              name: "birthday",
+              placeholder: "Data urodzenia...",
+            },
+            domProps: { value: _vm.birthday },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.birthday = $event.target.value
+              },
+            },
+          }),
+        ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.lastname,
-              expression: "lastname",
-            },
-          ],
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", name: "lastname", placeholder: "Nazwisko..." },
-          domProps: { value: _vm.lastname },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.lastname = $event.target.value
-            },
-          },
-        }),
+      _c("button", { staticClass: "btn btn-secondary btn-block mb-4" }, [
+        _vm._v("Utwórz"),
       ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.pesel,
-              expression: "pesel",
-            },
-          ],
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", name: "pesel", placeholder: "Pesel..." },
-          domProps: { value: _vm.pesel },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.pesel = $event.target.value
-            },
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.birthday,
-              expression: "birthday",
-            },
-          ],
-          staticClass: "form-control form-control-sm",
-          attrs: {
-            type: "text",
-            name: "birthday",
-            placeholder: "Data urodzenia...",
-          },
-          domProps: { value: _vm.birthday },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.birthday = $event.target.value
-            },
-          },
-        }),
-      ]),
-    ]),
-    _vm._v(" "),
-    _c("button", { staticClass: "btn btn-warning btn-block mb-4" }, [
-      _vm._v("Dodaj dokumentację"),
-    ]),
-    _vm._v(" "),
-    _c("button", { staticClass: "btn btn-secondary btn-block mb-4" }, [
-      _vm._v("Utwórz"),
     ]),
   ])
 }
@@ -29667,7 +29672,7 @@ var render = function () {
         )
       : _c("div", [_vm._v("Loading...")]),
     _vm._v(" "),
-    _c("button", { staticClass: "btn btn-secondary btn-block mb-4" }, [
+    _c("button", { staticClass: "btn btn-warning btn-block mb-4" }, [
       _vm._v("Dodaj dokumentację"),
     ]),
   ])
@@ -29996,12 +30001,14 @@ var render = function () {
             ]),
           ]),
         ]),
+        _vm._v(" "),
+        _vm._m(0),
       ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-8 mt-3" }, [
       _c("div", { staticClass: "card" }, [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c(
@@ -30012,8 +30019,6 @@ var render = function () {
         ]),
       ]),
     ]),
-    _vm._v(" "),
-    _vm._m(1),
   ])
 }
 var staticRenderFns = [
@@ -30021,22 +30026,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-title" }, [
-      _c("h3", [_vm._v("Dokumentacja medyczna i choroby pacjenta:")]),
+    return _c("div", { staticClass: "pt-3" }, [
+      _c("button", { staticClass: "btn btn-outline-dark btn-block m-4" }, [
+        _vm._v("Edytuj"),
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-outline-dark btn-block m-4" }, [
+        _vm._v("Usuń"),
+      ]),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pt-3" }, [
-      _c("button", { staticClass: "btn btn-outline-dark btn-block mb-4" }, [
-        _vm._v("Edytuj"),
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-outline-dark btn-block mb-4" }, [
-        _vm._v("Usuń"),
-      ]),
+    return _c("div", { staticClass: "card-title" }, [
+      _c("h3", [_vm._v("Dokumentacja medyczna i choroby pacjenta:")]),
     ])
   },
 ]

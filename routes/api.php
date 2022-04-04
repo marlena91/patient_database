@@ -27,9 +27,7 @@ use App\Models\Patient;
 // Route::get('patients', [PatientsController::class, 'index']);
 // Route::get('patients/{id}', [PatientsController::class, 'show']);
 
-Route::resource('patients', PatientsController::class, [
-    'only' => ['index', 'show', 'create']
-]);
+Route::resource('patients', PatientsController::class);
 
 Route::resource('diseases', DiseasesController::class, [
     'only' => ['index', 'show']

@@ -44,7 +44,22 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'pesel' => 'required|unique:patients',
+            'birthday' => 'required|date'
+        ]);
+
+        $patient = Patient::create([
+            'name' => $request->input('name'),
+            'lastname' => $request->input('lastname'),
+            'pesel' => $request->input('pesel'),
+            'birthday' => $request->input('birthday'),
+        ]);
+
+        return redirect('/');
+
     }
 
     /**

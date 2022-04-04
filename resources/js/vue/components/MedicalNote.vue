@@ -9,7 +9,7 @@
             </div>
         </div> 
         <div v-else>Loading...</div>
-        <button class="btn btn-secondary btn-block mb-4">Dodaj dokumentację</button>
+        <button class="btn btn-warning btn-block mb-4">Dodaj dokumentację</button>
     </div>
 </template>
 <script>
