@@ -16,7 +16,7 @@
                     <input type="text" v-model="patient.birthday" class="form-control form-control-sm" placeholder="Data urodzenia...">
                 </div>
             </div>
-            <button type="submit" class="btn btn-secondary btn-block mb-4">Utwórz</button>
+            <button type="submit" class="btn btn-secondary btn-block mb-4">Zapisz</button>
         </form>       
 
     </div>

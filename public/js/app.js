@@ -5790,6 +5790,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -30768,7 +30770,7 @@ var render = function () {
             staticClass: "btn btn-secondary btn-block mb-4",
             attrs: { type: "submit" },
           },
-          [_vm._v("Utwórz")]
+          [_vm._v("Zapisz")]
         ),
       ]
     ),
@@ -31168,24 +31170,39 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "pt-3" }, [
-          _c("button", { staticClass: "btn btn-outline-dark btn-block m-4" }, [
-            _vm._v("Edytuj"),
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-dark btn-block m-4",
-              on: {
-                click: function ($event) {
-                  return _vm.deletePatient(_vm.patient.id)
+        _c(
+          "div",
+          { staticClass: "pt-3" },
+          [
+            _c(
+              "router-link",
+              {
+                attrs: { to: { name: "patient-edit", params: _vm.patient.id } },
+              },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-outline-dark btn-block m-4" },
+                  [_vm._v("Edytuj")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark btn-block m-4",
+                on: {
+                  click: function ($event) {
+                    return _vm.deletePatient(_vm.patient.id)
+                  },
                 },
               },
-            },
-            [_vm._v("Usuń")]
-          ),
-        ]),
+              [_vm._v("Usuń")]
+            ),
+          ],
+          1
+        ),
       ]),
     ]),
     _vm._v(" "),

@@ -11,7 +11,9 @@
                     </article>
                 </div>
                 <div class="pt-3">
-                    <button class="btn btn-outline-dark btn-block m-4">Edytuj</button>
+                     <router-link :to="{ name: 'patient-edit', params: patient.id}">
+                        <button class="btn btn-outline-dark btn-block m-4">Edytuj</button>
+                    </router-link>
                     <button @click="deletePatient(patient.id)" class="btn btn-outline-dark btn-block m-4">Usuń</button>
                 </div>
             </div>
