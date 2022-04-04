@@ -9,7 +9,10 @@
                 </router-link>
                 <div class="card-text">
                     <p>Pesel: {{ pesel }} | Data urodzenia: {{ birthday }} </p>
-                    <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
+                    <router-link :to="{ name: 'patient-edit', params: { id }}">
+                        <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
+                    </router-link>
+                    
                     <button @click="deletePatient(id)" class="btn btn-outline-dark btn-block mb-4">Usuń</button>
                 </div>   
             </div>

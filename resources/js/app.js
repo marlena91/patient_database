@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import Index from './vue/Index';
 import SinglePatient from './vue/components/SinglePatient';
 import CreatePatient from './vue/components/CreatePatient';
+import EditPatient from './vue/components/EditPatient';
 import Patients from './vue/components/Patients';
 import Diseases from './vue/components/Diseases';
 
@@ -23,6 +24,11 @@ const routes = [
         path: '/patients/:id',
         name: 'patient',
         component: SinglePatient,
+    },
+    {
+        path: '/patients/:id/edit',
+        name: 'patient-edit',
+        component: EditPatient,
     },
     {
         path: '/patients/create',

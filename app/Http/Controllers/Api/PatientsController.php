@@ -81,7 +81,8 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+
     }
 
     /**
@@ -91,9 +92,14 @@ class PatientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient)
     {
-        //
+        
+        $patient->fill($request->post())->save();
+        return response()->json([
+            'message'=>'Patient Updated Successfully!!',
+            'patient'=>$patient
+        ]);
     }
 
     /**
