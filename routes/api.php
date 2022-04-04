@@ -1,12 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PatientsController;
 use App\Http\Controllers\Api\DiseasesController;
 use App\Http\Controllers\Api\MedicalNotesController;
-use App\Http\Controllers\SearchController;
-use App\Models\Patient;
+use App\Http\Controllers\Api\PatientsController;
+use App\Http\Controllers\Api\SearchController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -37,4 +35,4 @@ Route::resource('medical-notes', MedicalNotesController::class, [
     'only' => ['index', 'show']
 ]);
 
-Route::get('patients/search', SearchController::class)->name('patients.search');
+Route::get('search', SearchController::class)->name('search');

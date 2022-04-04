@@ -28,7 +28,7 @@ export default {
         return {
             name: null,
             lastname: null,
-            pesel: null, 
+            pesel: null,
             birthday: null
         };
     },
@@ -39,7 +39,7 @@ export default {
         async search() {
         try {
             await axios.get(
-            `/api/patients/search?name=${this.name}&lastname=${this.lastname}&pesel=${this.pasel}&birthday=${this.birthday}`
+            `/api/search?name=${this.name}&lastname=${this.lastname}&pesel=${this.pasel}&birthday=${this.birthday}`
             );
         } catch (err) {
             this.errors = err.response.data.errors;

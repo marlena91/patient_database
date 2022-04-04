@@ -4,16 +4,14 @@
             <search></search>
         </div>
         <router-link :to="{ name: 'patient-create'}">
-            <div class="card-title"> 
+            <div class="card-title">
                 <button class="btn btn-light btn-block mb-4">Dodaj pacjenta</button>
             </div>
         </router-link>
         <div v-if="!loading">
-            <div class="d-flex flex-column mb-4" v-for="row in rows" :key="row">
                 <div class="card w-50 mt-3" v-for="patient in patients" :key="patient.id">
                     <patient-list-item v-bind="patient"></patient-list-item>
                 </div>
-            </div>
         </div>
         <div v-else>Loading...</div>
 
@@ -37,12 +35,9 @@ import Search from './Search.vue';
          mounted() {
     },
         computed: {
-            rows() {
-                return this.patients.length;
-                },
         },
         methods: {
-           
+
         },
         created() {
             this.loading = true;
@@ -51,7 +46,7 @@ import Search from './Search.vue';
                 this.patients = response.data.data;
                 this.loading = false;
             });
-        
+
         },
         props: {},
     };

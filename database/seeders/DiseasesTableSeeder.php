@@ -14,6 +14,6 @@ class DiseasesTableSeeder extends Seeder
      */
     public function run()
     {
-        Disease::factory()->count(100)->create();
+        Disease::factory()->count(10)->create();
     }
 }

@@ -14,6 +14,6 @@ class MedicalNotesTableSeeder extends Seeder
      */
     public function run()
     {
-        MedicalNote::factory()->count(50)->create();
+        MedicalNote::factory()->count(10)->create();
     }
 }
