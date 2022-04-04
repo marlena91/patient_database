@@ -5372,8 +5372,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5385,11 +5383,7 @@ __webpack_require__.r(__webpack_exports__);
       loading: false
     };
   },
-  computed: {
-    rows: function rows() {
-      return this.diseases.length;
-    }
-  },
+  computed: {},
   methods: {},
   created: function created() {
     var _this = this;
@@ -30632,24 +30626,17 @@ var render = function () {
     !_vm.loading
       ? _c(
           "div",
-          _vm._l(_vm.rows, function (row) {
+          _vm._l(_vm.diseases, function (disease) {
             return _c(
               "div",
-              { key: row, staticClass: "d-flex flex-column mb-4" },
-              _vm._l(_vm.diseases, function (disease) {
-                return _c(
-                  "div",
-                  { key: disease.id, staticClass: "card w-50 mt-3" },
-                  [
-                    _c(
-                      "disease-list-item",
-                      _vm._b({}, "disease-list-item", disease, false)
-                    ),
-                  ],
-                  1
-                )
-              }),
-              0
+              { key: disease.id, staticClass: "card w-50 mt-3" },
+              [
+                _c(
+                  "disease-list-item",
+                  _vm._b({}, "disease-list-item", disease, false)
+                ),
+              ],
+              1
             )
           }),
           0

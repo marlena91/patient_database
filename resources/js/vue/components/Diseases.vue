@@ -1,10 +1,8 @@
 <template>
     <div>
         <div v-if="!loading">
-            <div class="d-flex flex-column mb-4" v-for="row in rows" :key="row">
-                <div class="card w-50 mt-3" v-for="disease in diseases" :key="disease.id">
-                    <disease-list-item v-bind="disease"></disease-list-item>
-                </div>
+            <div class="card w-50 mt-3" v-for="disease in diseases" :key="disease.id">
+                <disease-list-item v-bind="disease"></disease-list-item>
             </div>
         </div>
         <div v-else>Loading...</div>
@@ -23,9 +21,6 @@ export default {
         };
     },
     computed: {
-        rows() {
-                return this.diseases.length;
-                }
     },
     methods: {
     },
