@@ -37,17 +37,18 @@ import Search from './Search.vue';
         computed: {
             rows() {
                 return this.patients.length;
-                }
+                },
         },
         methods: {
         },
         created() {
             this.loading = true;
-            const request = axios
+            const request_patients = axios
                 .get("/api/patients").then(response => {
                 this.patients = response.data.data;
                 this.loading = false;
             });
+        
         },
         props: {},
     };

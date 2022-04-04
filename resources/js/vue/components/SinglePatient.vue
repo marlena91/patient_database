@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                     <div>
-                        <medical-note></medical-note>
+                        <medical-note v-bind:patient_id="patient.id"></medical-note>
                     </div>
                 </div>
             </div>

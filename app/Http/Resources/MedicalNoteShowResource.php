@@ -18,7 +18,7 @@ class MedicalNoteShowResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'patient_id' => $this->patient_id
+            'patients_id' => $this->patients_id
         ];
     }
 }

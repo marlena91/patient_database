@@ -14,7 +14,7 @@ class MedicalNoteFactory extends Factory
         return [
             'title' => $this->faker->text(80),
             'description' => $this->faker->text(1000),
-            'patient_id' => Patient::inRandomOrder()->first()->id,
+            'patients_id' => Patient::inRandomOrder()->first()->id,
         ];
     }
 }
