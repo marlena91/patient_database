@@ -12,7 +12,7 @@
                 </div>
                 <div class="pt-3">
                     <button class="btn btn-outline-dark btn-block m-4">Edytuj</button>
-                    <button class="btn btn-outline-dark btn-block m-4">Usuń</button>
+                    <button @click="deletePatient(patient.id)" class="btn btn-outline-dark btn-block m-4">Usuń</button>
                 </div>
             </div>
                     
@@ -46,10 +46,21 @@ export default {
           patient: []
         }
     },
+    mounted() {    },
     created() {
         axios
         .get(`/api/patients/${this.$route.params.id}`)
         .then(response => (this.patient = response.data.data))
     },
+    methods: {
+        deletePatient(id) {
+            axios.delete(`/api/patients/${id}`)
+            .then(response=>{
+                    console.log(response)
+                }).catch(error=>{
+                    console.log(error)
+                })
+        }
+    }
 }
 </script>

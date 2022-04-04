@@ -34,12 +34,15 @@ import Search from './Search.vue';
                 loading: false,
             };
         },
+         mounted() {
+    },
         computed: {
             rows() {
                 return this.patients.length;
                 },
         },
         methods: {
+           
         },
         created() {
             this.loading = true;

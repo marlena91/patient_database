@@ -10,7 +10,7 @@
                 <div class="card-text">
                     <p>Pesel: {{ pesel }} | Data urodzenia: {{ birthday }} </p>
                     <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
-                    <button class="btn btn-outline-dark btn-block mb-4">Usuń</button>
+                    <button @click="deletePatient(id)" class="btn btn-outline-dark btn-block mb-4">Usuń</button>
                 </div>   
             </div>
         </div>
@@ -20,6 +20,21 @@
 <script>
 
 export default{
-    props: { id: Number, name: String, lastname: String, pesel: Number, birthday: String }
+    props: { id: Number, name: String, lastname: String, pesel: Number, birthday: String },
+    data() {
+        return {
+            
+        }
+    },
+    methods: {
+        deletePatient(id) {
+            axios.delete(`/api/patients/${id}`)
+            .then(response=>{
+                    console.log(response.data.data)
+                }).catch(error=>{
+                    console.log(error)
+                });
+        }
+    }
 }
 </script>

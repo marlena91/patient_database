@@ -5480,6 +5480,18 @@ __webpack_require__.r(__webpack_exports__);
     lastname: String,
     pesel: Number,
     birthday: String
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {
+    deletePatient: function deletePatient(id) {
+      axios["delete"]("/api/patients/".concat(id)).then(function (response) {
+        console.log(response.data.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -5532,6 +5544,7 @@ __webpack_require__.r(__webpack_exports__);
       loading: false
     };
   },
+  mounted: function mounted() {},
   computed: {
     rows: function rows() {
       return this.patients.length;
@@ -5659,12 +5672,22 @@ __webpack_require__.r(__webpack_exports__);
       patient: []
     };
   },
+  mounted: function mounted() {},
   created: function created() {
     var _this = this;
 
     axios.get("/api/patients/".concat(this.$route.params.id)).then(function (response) {
       return _this.patient = response.data.data;
     });
+  },
+  methods: {
+    deletePatient: function deletePatient(id) {
+      axios["delete"]("/api/patients/".concat(id)).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -29745,7 +29768,14 @@ var render = function () {
             _vm._v(" "),
             _c(
               "button",
-              { staticClass: "btn btn-outline-dark btn-block mb-4" },
+              {
+                staticClass: "btn btn-outline-dark btn-block mb-4",
+                on: {
+                  click: function ($event) {
+                    return _vm.deletePatient(_vm.id)
+                  },
+                },
+              },
               [_vm._v("Usuń")]
             ),
           ]),
@@ -30002,13 +30032,30 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "pt-3" }, [
+          _c("button", { staticClass: "btn btn-outline-dark btn-block m-4" }, [
+            _vm._v("Edytuj"),
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-dark btn-block m-4",
+              on: {
+                click: function ($event) {
+                  return _vm.deletePatient(_vm.patient.id)
+                },
+              },
+            },
+            [_vm._v("Usuń")]
+          ),
+        ]),
       ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-8 mt-3" }, [
       _c("div", { staticClass: "card" }, [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c(
@@ -30022,20 +30069,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pt-3" }, [
-      _c("button", { staticClass: "btn btn-outline-dark btn-block m-4" }, [
-        _vm._v("Edytuj"),
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-outline-dark btn-block m-4" }, [
-        _vm._v("Usuń"),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
