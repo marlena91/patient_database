@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PatientsController;
 use App\Http\Controllers\Api\DiseasesController;
 use App\Http\Controllers\Api\MedicalNotesController;
-
+use App\Http\Controllers\SearchController;
 use App\Models\Patient;
 
 
@@ -37,3 +37,4 @@ Route::resource('medical-notes', MedicalNotesController::class, [
     'only' => ['index', 'show']
 ]);
 
+Route::get('patients/search', SearchController::class)->name('patients.search');
