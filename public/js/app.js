@@ -5882,15 +5882,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
-                _context.next = 8;
+                _context.next = 9;
                 break;
 
               case 5:
                 _context.prev = 5;
                 _context.t0 = _context["catch"](0);
                 _this.errors = _context.t0.response.data.errors;
+                console.log(_this.errors);
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -31367,123 +31368,135 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("div", [
-        _c(
-          "h5",
-          {
-            staticClass:
-              "text-uppercase text-secondary font-weight-bolder mt-3",
-          },
-          [_vm._v("Wyszukiwarka:")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-row mb-4" }, [
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.name,
-                  expression: "name",
+      _c(
+        "div",
+        [
+          _c(
+            "h5",
+            {
+              staticClass:
+                "text-uppercase text-secondary font-weight-bolder mt-3",
+            },
+            [_vm._v("Wyszukiwarka:")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row mb-4" }, [
+            _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name",
+                  },
+                ],
+                staticClass: "form-control form-control-sm",
+                attrs: { type: "text", placeholder: "Imię..." },
+                domProps: { value: _vm.name },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  },
                 },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Imię..." },
-              domProps: { value: _vm.name },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.name = $event.target.value
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.lastname,
+                    expression: "lastname",
+                  },
+                ],
+                staticClass: "form-control form-control-sm",
+                attrs: { type: "text", placeholder: "Nazwisko..." },
+                domProps: { value: _vm.lastname },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.lastname = $event.target.value
+                  },
                 },
-              },
-            }),
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.pesel,
+                    expression: "pesel",
+                  },
+                ],
+                staticClass: "form-control form-control-sm",
+                attrs: { type: "text", placeholder: "Pesel..." },
+                domProps: { value: _vm.pesel },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.pesel = $event.target.value
+                  },
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.birthday,
+                    expression: "birthday",
+                  },
+                ],
+                staticClass: "form-control form-control-sm",
+                attrs: { type: "text", placeholder: "Data urodzenia..." },
+                domProps: { value: _vm.birthday },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.birthday = $event.target.value
+                  },
+                },
+              }),
+            ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lastname,
-                  expression: "lastname",
-                },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Nazwisko..." },
-              domProps: { value: _vm.lastname },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.lastname = $event.target.value
-                },
-              },
-            }),
-          ]),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary btn-block mb-4",
+              on: { click: _vm.search },
+            },
+            [_vm._v("Szukaj")]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.pesel,
-                  expression: "pesel",
-                },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Pesel..." },
-              domProps: { value: _vm.pesel },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.pesel = $event.target.value
-                },
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.birthday,
-                  expression: "birthday",
-                },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Data urodzenia..." },
-              domProps: { value: _vm.birthday },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.birthday = $event.target.value
-                },
-              },
-            }),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary btn-block mb-4",
-            on: { click: _vm.search },
-          },
-          [_vm._v("Szukaj")]
-        ),
-      ]),
+          _vm._l(_vm.errors, function (error) {
+            return _c(
+              "div",
+              { key: error, staticClass: "card border-danger w-50 mb-3" },
+              [_vm._v("\n            " + _vm._s(error) + "\n        ")]
+            )
+          }),
+        ],
+        2
+      ),
       _vm._v(" "),
       _vm._l(_vm.searchingResults, function (result) {
         return _c(

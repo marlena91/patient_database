@@ -17,23 +17,23 @@
                     </div>
                 </div>
             <button @click="search" class="btn btn-secondary btn-block mb-4">Szukaj</button>
+            <div class="card border-danger w-50 mb-3" v-for="error in errors" :key="error">
+                {{ error }}
+            </div>
         </div>
-        
+
         <div class="card w-50 mt-3 bg-info" v-for="result in searchingResults" :key="result.id">
             <div class="card-body">
-            <div class="card-title"> 
-                <h3 class="text-decoration-none text-dark font-weight-bolder mt-3">{{ result.name }} {{ result.lastname }}</h3>
+                <div class="card-title">
+                    <h3 class="text-decoration-none text-dark font-weight-bolder mt-3">{{ result.name }} {{ result.lastname }}</h3>
+                </div>
+                <div class="card-text">
+                    <p>Pesel: {{ result.pesel }} | Data urodzenia: {{ result.birthday }} </p>
+                    <button @click="deletePatient(id)" class="btn btn-outline-dark btn-block mb-4">Usuń</button>
+                </div>
             </div>
-            <div class="card-text">
-                <p>Pesel: {{ result.pesel }} | Data urodzenia: {{ result.birthday }} </p>
-                <button @click="deletePatient(id)" class="btn btn-outline-dark btn-block mb-4">Usuń</button>
-            </div>   
         </div>
     </div>
-    </div>
-
-   
-
 </template>
 <script>
 
@@ -64,6 +64,7 @@ export default {
             });
         } catch (err) {
             this.errors = err.response.data.errors;
+            console.log(this.errors)
             }
         }
     },
