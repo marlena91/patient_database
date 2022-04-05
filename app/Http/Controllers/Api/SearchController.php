@@ -13,7 +13,7 @@ class SearchController extends Controller
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return PatientIndexResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
 
     public function __invoke(Request $request)
@@ -24,22 +24,22 @@ class SearchController extends Controller
             'pesel' => 'numeric|nullable',
             'birthday' => 'date|nullable'
         ]);
-        
+
         $dataName = $request->input('name');
         $dataLastname = $request->input('lastname');
         $dataPesel = $request->input('pesel');
         $dataBirthday = $request->input('birthday');
 
         return $patients = PatientIndexResource::collection(Patient::when($dataName, function ($query, $dataName) {
-            $query->where('name','like','%'.$dataName.'%', 'AND');
+            $query->where('name','like','%'.$dataName.'%');
         })->when($dataLastname, function ($query, $dataLastname) {
-            $query->orWhere('lastname','like','%'.$dataLastname.'%', 'AND');
+            $query->orWhere('lastname','like','%'.$dataLastname.'%');
         })->when($dataPesel, function ($query, $dataPesel) {
-            $query->orWhere('pesel','like','%'.$dataPesel.'%', 'AND');
+            $query->orWhere('pesel','like','%'.$dataPesel.'%');
         })->when($dataBirthday, function ($query, $dataBirthday) {
-            $query->orWhere('birthday','like','%'.$dataBirthday.'%', 'AND');
+            $query->orWhere('birthday','like','%'.$dataBirthday.'%');
         })
         ->get());
-    
+
     }
 }

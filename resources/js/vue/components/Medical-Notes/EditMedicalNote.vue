@@ -11,11 +11,13 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-warining btn-block mb-4">Zapisz</button>
-        </form>       
+        </form>
 
     </div>
 </template>
 <script>
+
+    import medicalNote from "./MedicalNote";
 
     export default {
         components: {},
@@ -35,20 +37,19 @@
         methods: {
             async showMedicalNote(){
                 await axios.get(`/api/medical-notes/${this.$route.params.id}`).then(response=>{
-                    this.medicalNote = response.data.data 
+                    this.medicalNote = response.data.data
                 }).catch(error=>{
                     console.log(error)
                 })
             },
             async update(){
-                await axios.put(`/api/medical-notes/${this.$route.params.id}`,this.medicalNote).then(response=>{
-                    this.$router.push({name:"patients", params: { id: medicalNote.patients_id }})
+                await axios.put(`/api/medical-notes/${this.$route.params.id}`,this.medicalNote)
+                    .then(response=>{this.$router.push({name:"patient", params: { id: response.data.medicalNote.patients_id }})
                 }).catch(error=>{
                     console.log(error)
                 })
-                
             },
-            
+
         },
         created() {},
         props: [],

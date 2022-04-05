@@ -16,11 +16,11 @@ class PatientsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-    
+
         return  PatientIndexResource::collection(
             Patient::all()
         );
@@ -40,7 +40,7 @@ class PatientsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -65,7 +65,7 @@ class PatientsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return PatientShowResource
      */
     public function show($id)
     {
@@ -80,7 +80,7 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-        
+
 
     }
 
@@ -89,11 +89,11 @@ class PatientsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, Patient $patient)
     {
-        
+
         $patient->fill($request->post())->save();
         return response()->json([
             'message'=>'Patient Updated Successfully!!',
@@ -105,7 +105,7 @@ class PatientsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Patient $patient)
     {

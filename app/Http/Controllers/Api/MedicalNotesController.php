@@ -79,7 +79,7 @@ class MedicalNotesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, MedicalNote $medicalNote)
     {
@@ -87,7 +87,7 @@ class MedicalNotesController extends Controller
         return response()->json([
             'message'=>'Medical Note Updated Successfully!!',
             'medicalNote'=>$medicalNote
-        ]);    
+        ]);
     }
 
     /**
