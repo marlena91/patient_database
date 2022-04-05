@@ -57,7 +57,6 @@ class PatientsController extends Controller
             'pesel' => $request->input('pesel'),
             'birthday' => $request->input('birthday'),
         ]);
-
         return redirect('/');
 
     }

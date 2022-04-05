@@ -40,7 +40,16 @@ class MedicalNotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        $medicalNote = MedicalNote::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description')
+        ]);
+        return redirect('/');
     }
 
     /**
@@ -72,9 +81,13 @@ class MedicalNotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, MedicalNote $medicalNote)
     {
-        //
+        $medicalNote->fill($request->post())->save();
+        return response()->json([
+            'message'=>'Medical Note Updated Successfully!!',
+            'medicalNote'=>$medicalNote
+        ]);    
     }
 
     /**

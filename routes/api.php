@@ -25,14 +25,16 @@ use Illuminate\Support\Facades\Route;
 // Route::get('patients', [PatientsController::class, 'index']);
 // Route::get('patients/{id}', [PatientsController::class, 'show']);
 
-Route::resource('patients', PatientsController::class);
+Route::resource('patients', PatientsController::class, [
+    'except' => ['create', 'edit']
+]);
 
 Route::resource('diseases', DiseasesController::class, [
-    'only' => ['index', 'show']
+    'except' => ['create', 'edit']
 ]);
 
 Route::resource('medical-notes', MedicalNotesController::class, [
-    'only' => ['index', 'show']
+    'except' => ['create', 'edit']
 ]);
 
 Route::get('search', SearchController::class)->name('search');

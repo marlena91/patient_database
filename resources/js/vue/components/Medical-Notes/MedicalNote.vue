@@ -4,6 +4,10 @@
             <div v-for="medicalNote in medicalNotes" :key="medicalNote.id"> 
                 <div class="medicalNote" v-if="medicalNote.patients_id === patient_id">
                     <h5>{{ medicalNote.title }}</h5>
+                    {{medicalNote.id}}
+                     <router-link :to="{ name: 'medical-note-edit', params: {id: medicalNote.id}}">
+                        <span>Edytuj</span>
+                    </router-link>
                     <p>{{ medicalNote.description }}</p>
                 </div>
             </div>
@@ -29,6 +33,7 @@ export default {
         
     },
     created() {
+        
         this.loading = true;
             const request_medical_notes = axios
                 .get("/api/medical-notes").then(response => {

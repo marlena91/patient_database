@@ -9,6 +9,8 @@ class MedicalNote extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'description'];
+
     public function patient()
     {
         return $this->belongsTo(Patient::class);

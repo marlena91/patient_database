@@ -3,11 +3,12 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Index from './vue/Index';
-import SinglePatient from './vue/components/SinglePatient';
-import CreatePatient from './vue/components/CreatePatient';
-import EditPatient from './vue/components/EditPatient';
-import Patients from './vue/components/Patients';
-import Diseases from './vue/components/Diseases';
+import SinglePatient from './vue/components/Patients/SinglePatient';
+import CreatePatient from './vue/components/Patients/CreatePatient';
+import EditPatient from './vue/components/Patients/EditPatient';
+import Patients from './vue/components/Patients/Patients';
+import Diseases from './vue/components/Diseases/Diseases';
+import EditMedicalNote from './vue/components/Medical-Notes/EditMedicalNote';
 
 
 window.Vue = require('vue').default;
@@ -39,6 +40,11 @@ const routes = [
         path: '/diseases',
         name: 'diseases',
         component: Diseases,
+    },
+    {
+        path: '/medical-notes/:id/edit',
+        name: 'medical-note-edit',
+        component: EditMedicalNote,
     },
 
 ];

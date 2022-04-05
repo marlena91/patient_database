@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import MedicalNote from './MedicalNote.vue';
+import MedicalNote from '../Medical-Notes/MedicalNote.vue';
 
 export default {
     components: {
