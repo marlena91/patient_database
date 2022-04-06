@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SpaController;
 use App\Http\Controllers\Api\PatientsController;
 
 /*
@@ -15,11 +15,8 @@ use App\Http\Controllers\Api\PatientsController;
 |
 */
 
+Auth::routes();
 
-// Route::resource('/', PatientsController::class);
-// Route::resource('/', PatientsController::class, [
-//     'except' => ['edit', 'show', 'store']
-// ]);
 Route::get('/{any?}', function () {
     return view('patients');
 })->where('any', '^(?!api\/)[\/\w\.-]*');
