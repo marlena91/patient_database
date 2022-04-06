@@ -41,7 +41,7 @@
             },
             async update(){
                 await axios.put(`/api/medical-notes/${this.$route.params.id}`,this.medicalNote).then(response=>{
-                    this.$router.push({name:"patients", params: { id: medicalNote.patients_id }})
+                    this.$router.push({name:"patient", params: { id: this.medicalNote.patients_id }})
                 }).catch(error=>{
                     console.log(error)
                 })

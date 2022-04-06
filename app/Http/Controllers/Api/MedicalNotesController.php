@@ -97,8 +97,11 @@ class MedicalNotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MedicalNote $medicalNote)
     {
-        //
+        $medicalNote->delete();
+        return response()->json([
+            'message'=>'Category Deleted Successfully!!'
+        ]);
     }
 }

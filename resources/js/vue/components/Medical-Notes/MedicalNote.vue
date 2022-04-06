@@ -5,9 +5,11 @@
                 <div class="medicalNote" v-if="medicalNote.patients_id === patient_id">
                     <h5>{{ medicalNote.title }}</h5>
                      <router-link :to="{ name: 'medical-note-edit', params: {id: medicalNote.id}}">
-                        <span>Edytuj</span>
+                        <button class="btn btn-outline-dark btn-block m-1 btn-sm">Edytuj</button>
                     </router-link>
+                    <button @click="deleteMedicalNote(medicalNote.id)" class="btn btn-outline-dark btn-block m-1 btn-sm">Usuń</button>
                     <p>{{ medicalNote.description }}</p>
+                    
                 </div>
             </div>
         </div> 
@@ -35,7 +37,14 @@ export default {
     computed: {
     },
     methods: {
-        
+        deleteMedicalNote(id) {
+            axios.delete(`/api/medical-notes/${id}`)
+            .then(response=>{
+                    console.log(response)
+                }).catch(error=>{
+                    console.log(error)
+                })
+        }
     },
     created() {
         

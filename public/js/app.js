@@ -5521,9 +5521,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 2;
                 return axios.put("/api/medical-notes/".concat(_this2.$route.params.id), _this2.medicalNote).then(function (response) {
                   _this2.$router.push({
-                    name: "patients",
+                    name: "patient",
                     params: {
-                      id: medicalNote.patients_id
+                      id: _this2.medicalNote.patients_id
                     }
                   });
                 })["catch"](function (error) {
@@ -5577,6 +5577,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5590,7 +5592,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    deleteMedicalNote: function deleteMedicalNote(id) {
+      axios["delete"]("/api/medical-notes/".concat(id)).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
   created: function created() {
     var _this = this;
 
@@ -31170,7 +31180,30 @@ var render = function () {
                             },
                           },
                         },
-                        [_c("span", [_vm._v("Edytuj")])]
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-outline-dark btn-block m-1 btn-sm",
+                            },
+                            [_vm._v("Edytuj")]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-outline-dark btn-block m-1 btn-sm",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteMedicalNote(medicalNote.id)
+                            },
+                          },
+                        },
+                        [_vm._v("Usuń")]
                       ),
                       _vm._v(" "),
                       _c("p", [_vm._v(_vm._s(medicalNote.description))]),
