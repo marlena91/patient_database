@@ -9,7 +9,7 @@ class MedicalNote extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'patients_id'];
 
     public function patient()
     {

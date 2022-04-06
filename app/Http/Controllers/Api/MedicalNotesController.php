@@ -42,14 +42,15 @@ class MedicalNotesController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'patients_id' => 'required'
         ]);
 
         $medicalNote = MedicalNote::create([
             'title' => $request->input('title'),
-            'description' => $request->input('description')
+            'description' => $request->input('description'),
+            'patients_id' => $request->input('patients_id')
         ]);
-        return redirect('/');
     }
 
     /**
