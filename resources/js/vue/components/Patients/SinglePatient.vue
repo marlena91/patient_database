@@ -28,8 +28,11 @@
 
                     <h5>Rozpoznane choroby:</h5>
                     <div v-for="disease in patient.diseases" :key="disease.id"> 
-                        <li>{{disease.name}}</li>
+                        <li>{{disease.name}} 
+                            <button @click="deleteDisease(disease.id, patient.id)" class="delbtn btn btn-danger btn-block m-1 btn-sm">Usuń</button>
+                        </li>
                     </div>
+                        <button @click="addDisease()" class="delbtn btn btn-info btn-block m-1 btn-sm">Nowa choroba</button>
                     <hr>
                     <div class="card-text">
                         <medical-note v-bind:patient_id="patient.id"></medical-note>
@@ -67,7 +70,19 @@ export default {
                 }).catch(error=>{
                     console.log(error)
                 })
+        },
+        deleteDisease(disease_id, patient_id){
+            axios.delete(`/api/diseasespatients/${disease_id}/${patient_id}`)
+            .then(response=>{
+                    console.log(response)
+                }).catch(error=>{
+                    console.log(error)
+                })
+            }        
         }
-    }
 }
+
 </script>
+<style scoped>
+
+</style>

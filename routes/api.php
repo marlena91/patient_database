@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DiseasesController;
+use App\Http\Controllers\Api\DiseasesPatientsController;
 use App\Http\Controllers\Api\MedicalNotesController;
 use App\Http\Controllers\Api\PatientsController;
 use App\Http\Controllers\Api\SearchController;
@@ -22,8 +23,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::get('patients', [PatientsController::class, 'index']);
-// Route::get('patients/{id}', [PatientsController::class, 'show']);
 
 Route::resource('patients', PatientsController::class, [
     'except' => ['create', 'edit']
@@ -38,3 +37,7 @@ Route::resource('medical-notes', MedicalNotesController::class, [
 ]);
 
 Route::get('search', SearchController::class)->name('search');
+
+
+Route::post('/diseasespatients/{diseaseId}/{patientID}', [DiseasesPatientsController::class, 'store'])->name('disease-patient.create');
+Route::delete('/diseasespatients/{diseaseId}/{patientID}', [DiseasesPatientsController::class, 'destroy'])->name('disease-patient.destroy');
