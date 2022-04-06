@@ -5266,6 +5266,81 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  data: function data() {
+    return {
+      disease: {
+        name: ""
+      }
+    };
+  },
+  computed: {},
+  methods: {
+    create: function create() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.post("/api/diseases", _this.disease).then(function (response) {
+                  _this.$router.push({
+                    name: "diseases"
+                  });
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  created: function created() {},
+  props: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js& ***!
@@ -5310,6 +5385,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _DiseaseListItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DiseaseListItem.vue */ "./resources/js/vue/components/Diseases/DiseaseListItem.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6151,8 +6231,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _vue_Index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vue/Index */ "./resources/js/vue/Index.vue");
 /* harmony import */ var _vue_components_Patients_SinglePatient__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vue/components/Patients/SinglePatient */ "./resources/js/vue/components/Patients/SinglePatient.vue");
 /* harmony import */ var _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./vue/components/Patients/CreatePatient */ "./resources/js/vue/components/Patients/CreatePatient.vue");
@@ -6160,6 +6240,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_components_Patients_Patients__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./vue/components/Patients/Patients */ "./resources/js/vue/components/Patients/Patients.vue");
 /* harmony import */ var _vue_components_Diseases_Diseases__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vue/components/Diseases/Diseases */ "./resources/js/vue/components/Diseases/Diseases.vue");
 /* harmony import */ var _vue_components_Medical_Notes_EditMedicalNote__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./vue/components/Medical-Notes/EditMedicalNote */ "./resources/js/vue/components/Medical-Notes/EditMedicalNote.vue");
+/* harmony import */ var _vue_components_Diseases_CreateDisease__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./vue/components/Diseases/CreateDisease */ "./resources/js/vue/components/Diseases/CreateDisease.vue");
+
 
 
 
@@ -6171,7 +6253,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_8__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_9__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]);
 var routes = [{
   path: '/',
   name: 'patients',
@@ -6196,12 +6278,16 @@ var routes = [{
   path: '/medical-notes/:id/edit',
   name: 'medical-note-edit',
   component: _vue_components_Medical_Notes_EditMedicalNote__WEBPACK_IMPORTED_MODULE_7__["default"]
+}, {
+  path: '/diseases/create',
+  name: 'disease-create',
+  component: _vue_components_Diseases_CreateDisease__WEBPACK_IMPORTED_MODULE_8__["default"]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
   routes: routes,
   mode: 'history'
 });
-var app = new vue__WEBPACK_IMPORTED_MODULE_8__["default"]({
+var app = new vue__WEBPACK_IMPORTED_MODULE_9__["default"]({
   el: '#app',
   router: router,
   components: {
@@ -29957,6 +30043,45 @@ component.options.__file = "resources/js/vue/Index.vue"
 
 /***/ }),
 
+/***/ "./resources/js/vue/components/Diseases/CreateDisease.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/vue/components/Diseases/CreateDisease.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateDisease.vue?vue&type=template&id=2134f88a& */ "./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=template&id=2134f88a&");
+/* harmony import */ var _CreateDisease_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateDisease.vue?vue&type=script&lang=js& */ "./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateDisease_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/vue/components/Diseases/CreateDisease.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/vue/components/Diseases/DiseaseListItem.vue":
 /*!******************************************************************!*\
   !*** ./resources/js/vue/components/Diseases/DiseaseListItem.vue ***!
@@ -30390,6 +30515,22 @@ component.options.__file = "resources/js/vue/components/Patients/SinglePatient.v
 
 /***/ }),
 
+/***/ "./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDisease_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateDisease.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDisease_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************!*\
   !*** ./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js& ***!
@@ -30605,6 +30746,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_75a9d44a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_75a9d44a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=template&id=75a9d44a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/Index.vue?vue&type=template&id=75a9d44a&");
+
+
+/***/ }),
+
+/***/ "./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=template&id=2134f88a&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=template&id=2134f88a& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateDisease.vue?vue&type=template&id=2134f88a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=template&id=2134f88a&");
 
 
 /***/ }),
@@ -30872,6 +31030,85 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=template&id=2134f88a&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=template&id=2134f88a& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "h5",
+      { staticClass: "text-uppercase text-secondary font-weight-bolder mt-3" },
+      [_vm._v("Nowa choroba: ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.create.apply(null, arguments)
+          },
+        },
+      },
+      [
+        _c("div", { staticClass: "form-row mb-4" }, [
+          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.disease.name,
+                  expression: "disease.name",
+                },
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { type: "text", placeholder: "Nazwa..." },
+              domProps: { value: _vm.disease.name },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.disease, "name", $event.target.value)
+                },
+              },
+            }),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-secondary btn-block mb-4",
+            attrs: { type: "submit" },
+          },
+          [_vm._v("Utwórz")]
+        ),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317&":
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317& ***!
@@ -30921,27 +31158,39 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    !_vm.loading
-      ? _c(
-          "div",
-          _vm._l(_vm.diseases, function (disease) {
-            return _c(
-              "div",
-              { key: disease.id, staticClass: "card w-50 mt-3" },
-              [
-                _c(
-                  "disease-list-item",
-                  _vm._b({}, "disease-list-item", disease, false)
-                ),
-              ],
-              1
-            )
-          }),
-          0
-        )
-      : _c("div", [_vm._v("Loading...")]),
-  ])
+  return _c(
+    "div",
+    [
+      _c("router-link", { attrs: { to: { name: "disease-create" } } }, [
+        _c("div", { staticClass: "card-title" }, [
+          _c("button", { staticClass: "btn btn-light btn-block mb-4" }, [
+            _vm._v("Dodaj chorobę"),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      !_vm.loading
+        ? _c(
+            "div",
+            _vm._l(_vm.diseases, function (disease) {
+              return _c(
+                "div",
+                { key: disease.id, staticClass: "card w-50 mt-3" },
+                [
+                  _c(
+                    "disease-list-item",
+                    _vm._b({}, "disease-list-item", disease, false)
+                  ),
+                ],
+                1
+              )
+            }),
+            0
+          )
+        : _c("div", [_vm._v("Loading...")]),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

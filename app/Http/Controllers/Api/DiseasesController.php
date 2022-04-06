@@ -41,7 +41,13 @@ class DiseasesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $patient = Disease::create([
+            'name' => $request->input('name')
+        ]);
     }
 
     /**

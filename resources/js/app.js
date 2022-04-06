@@ -9,6 +9,7 @@ import EditPatient from './vue/components/Patients/EditPatient';
 import Patients from './vue/components/Patients/Patients';
 import Diseases from './vue/components/Diseases/Diseases';
 import EditMedicalNote from './vue/components/Medical-Notes/EditMedicalNote';
+import CreateDisease from './vue/components/Diseases/CreateDisease';
 
 
 window.Vue = require('vue').default;
@@ -45,6 +46,11 @@ const routes = [
         path: '/medical-notes/:id/edit',
         name: 'medical-note-edit',
         component: EditMedicalNote,
+    },
+    {
+        path: '/diseases/create',
+        name: 'disease-create',
+        component: CreateDisease,
     },
 
 ];
