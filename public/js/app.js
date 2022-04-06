@@ -6096,6 +6096,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -31998,31 +32002,40 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "col-md-8 mt-3" }, [
       _c("div", { staticClass: "card" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("p"),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "div",
-            [_c("medical-note", { attrs: { patient_id: _vm.patient.id } })],
-            1
-          ),
-        ]),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c("h3", { staticClass: "card-title" }, [
+              _vm._v("Dokumentacja medyczna i choroby pacjenta:"),
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("h5", [_vm._v("Rozpoznane choroby:")]),
+            _vm._v(" "),
+            _vm._l(_vm.patient.diseases, function (disease) {
+              return _c("div", { key: disease.id }, [
+                _c("li", [_vm._v(_vm._s(disease.name))]),
+              ])
+            }),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-text" },
+              [_c("medical-note", { attrs: { patient_id: _vm.patient.id } })],
+              1
+            ),
+          ],
+          2
+        ),
       ]),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-title" }, [
-      _c("h3", [_vm._v("Dokumentacja medyczna i choroby pacjenta:")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

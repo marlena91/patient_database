@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Patient;
+
 
 class PatientShowResource extends JsonResource
 {
@@ -21,7 +23,8 @@ class PatientShowResource extends JsonResource
             'name' => $this->name, 
             'lastname' => $this->lastname, 
             'birthday' => $this->birthday, 
-            
+            'diseases' => Patient::findOrFail($this->id)->diseases,
+
         ];
     }
 }

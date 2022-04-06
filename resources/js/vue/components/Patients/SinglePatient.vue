@@ -22,12 +22,16 @@
 
         <div class="col-md-8 mt-3">
             <div class="card">
-                <div class="card-title">
-                    <h3>Dokumentacja medyczna i choroby pacjenta:</h3>
-                </div>
-                <p></p>
                 <div class="card-body">
-                    <div>
+                    <h3 class="card-title">Dokumentacja medyczna i choroby pacjenta:</h3>
+                    <hr>
+
+                    <h5>Rozpoznane choroby:</h5>
+                    <div v-for="disease in patient.diseases" :key="disease.id"> 
+                        <li>{{disease.name}}</li>
+                    </div>
+                    <hr>
+                    <div class="card-text">
                         <medical-note v-bind:patient_id="patient.id"></medical-note>
                     </div>
                 </div>
