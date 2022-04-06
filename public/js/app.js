@@ -6095,6 +6095,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -31998,6 +31999,8 @@ var render = function () {
     _c("div", { staticClass: "col-md-8 mt-3" }, [
       _c("div", { staticClass: "card" }, [
         _vm._m(0),
+        _vm._v(" "),
+        _c("p"),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c(

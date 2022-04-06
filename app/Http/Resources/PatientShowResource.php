@@ -14,12 +14,14 @@ class PatientShowResource extends JsonResource
      */
     public function toArray($request)
     {
+        
         return [
             'id' => $this->id,
             'pesel' => $this->pesel, 
             'name' => $this->name, 
             'lastname' => $this->lastname, 
             'birthday' => $this->birthday, 
+            
         ];
     }
 }

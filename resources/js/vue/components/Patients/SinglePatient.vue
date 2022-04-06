@@ -25,6 +25,7 @@
                 <div class="card-title">
                     <h3>Dokumentacja medyczna i choroby pacjenta:</h3>
                 </div>
+                <p></p>
                 <div class="card-body">
                     <div>
                         <medical-note v-bind:patient_id="patient.id"></medical-note>
