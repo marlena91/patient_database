@@ -10,6 +10,7 @@ import Patients from './vue/components/Patients/Patients';
 import Diseases from './vue/components/Diseases/Diseases';
 import EditMedicalNote from './vue/components/Medical-Notes/EditMedicalNote';
 import CreateDisease from './vue/components/Diseases/CreateDisease';
+import AddDiseaseToPatient from "./vue/components/Patient-Disease/AddDiseaseToPatient";
 
 
 window.Vue = require('vue').default;
@@ -51,6 +52,16 @@ const routes = [
         path: '/diseases/create',
         name: 'disease-create',
         component: CreateDisease,
+    },
+    {
+        path: '/diseasespatients',
+        name: 'disease-patient.show',
+        component: AddDiseaseToPatient,
+    },
+    {
+        path: '/diseasespatients/:id_disease/:id_patient/',
+        name: 'disease-patient.create',
+        component: AddDiseaseToPatient,
     },
 
 ];

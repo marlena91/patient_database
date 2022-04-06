@@ -14,7 +14,7 @@ class DiseasesPatientsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store($diseaseId, $patientId)
     {
@@ -24,7 +24,7 @@ class DiseasesPatientsController extends Controller
         } else{
             $patient = Patient::find($patientId);
             $patient->diseases()->attach($diseaseId);
-        } 
+        }
     }
 
 
@@ -39,7 +39,8 @@ class DiseasesPatientsController extends Controller
         $patient = Patient::find($patientId);
         $patient->diseases()->detach($diseaseId);
         return response()->json([
-            'message'=>'Category Deleted Successfully!!'
+            'message'=>'Patient Updated Successfully!!',
+            'patient'=>$patient
         ]);
     }
 }

@@ -17,7 +17,7 @@
                     <button @click="deletePatient(patient.id)" class="btn btn-outline-dark btn-block m-4">Usuń</button>
                 </div>
             </div>
-                    
+
         </div>
 
         <div class="col-md-8 mt-3">
@@ -27,12 +27,14 @@
                     <hr>
 
                     <h5>Rozpoznane choroby:</h5>
-                    <div v-for="disease in patient.diseases" :key="disease.id"> 
-                        <li>{{disease.name}} 
+                    <div v-for="disease in patient.diseases" :key="disease.id">
+                        <li>{{disease.name}}
                             <button @click="deleteDisease(disease.id, patient.id)" class="delbtn btn btn-danger btn-block m-1 btn-sm">Usuń</button>
                         </li>
                     </div>
-                        <button @click="addDisease()" class="delbtn btn btn-info btn-block m-1 btn-sm">Nowa choroba</button>
+                        <button @click="addDiseaseToPatient()" class="btn btn-info btn-block m-1 btn-sm">
+                            Nowa choroba
+                        </button>
                     <hr>
                     <div class="card-text">
                         <medical-note v-bind:patient_id="patient.id"></medical-note>
@@ -78,7 +80,11 @@ export default {
                 }).catch(error=>{
                     console.log(error)
                 })
-            }        
+        },
+        addDiseaseToPatient(){
+            this.$router.push({name:"disease-patient.show", params: { patient_id: this.patient.id }})
+
+        }
         }
 }
 
