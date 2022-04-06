@@ -13,25 +13,29 @@ class DiseasesPatientsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store($diseaseId, $patientId)
     {
-        $diseasepatient = DiseasePatient::where('disease_id',$diseaseId)->where('patient_id', $patientId)->count();
-        if($diseasepatient){
-            return redirect('/patients/'.$patientId);
-        } else{
+        $diseasepatient = DiseasePatient::where('disease_id', $diseaseId)->where('patient_id', $patientId)->count();
+        if ($diseasepatient) {
+            return redirect('/patients/' . $patientId);
+        } else {
             $patient = Patient::find($patientId);
             $patient->diseases()->attach($diseaseId);
+            return response()->json([
+                'message' => 'Patient Updated Successfully!!',
+            ]);
         }
+
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($diseaseId, $patientId)
@@ -39,8 +43,7 @@ class DiseasesPatientsController extends Controller
         $patient = Patient::find($patientId);
         $patient->diseases()->detach($diseaseId);
         return response()->json([
-            'message'=>'Patient Updated Successfully!!',
-            'patient'=>$patient
+            'message' => 'Disease Deleted Successfully!!',
         ]);
     }
 }

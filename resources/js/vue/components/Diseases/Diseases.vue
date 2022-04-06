@@ -15,6 +15,7 @@
 </template>
 <script>
 import DiseaseListItem from './DiseaseListItem.vue';
+
 export default {
     components: {
         DiseaseListItem,
@@ -25,17 +26,15 @@ export default {
             loading: false,
         };
     },
-    computed: {
-    },
-    methods: {
-    },
+    computed: {},
+    methods: {},
     created() {
         this.loading = true;
         const request = axios
             .get("/api/diseases").then(response => {
-            this.diseases = response.data.data;
-            this.loading = false;
-        });
+                this.diseases = response.data.data;
+                this.loading = false;
+            });
     },
     props: {},
 };
