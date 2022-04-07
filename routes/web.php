@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PatientsController;
@@ -17,10 +19,13 @@ use App\Http\Controllers\Api\PatientsController;
 
 Auth::routes();
 
+Route::middleware('auth')->get('/user', function (Request $request) {
+    return $request->user();
+}); 
+
 Route::get('/{any?}', function () {
     return view('patients');
 })->where('any', '^(?!api\/)[\/\w\.-]*');
 
-Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

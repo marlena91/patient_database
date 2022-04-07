@@ -13,6 +13,9 @@ import Diseases from './vue/components/Diseases/Diseases';
 import EditMedicalNote from './vue/components/Medical-Notes/EditMedicalNote';
 import CreateDisease from './vue/components/Diseases/CreateDisease';
 import AddDiseaseToPatient from "./vue/components/Patient-Disease/AddDiseaseToPatient";
+import Login from "./vue/components/Auth/Login";
+
+import axios from 'axios';
 
 
 window.Vue = require('vue').default;
@@ -65,6 +68,11 @@ const routes = [
         name: 'disease-patient.create',
         component: AddDiseaseToPatient,
     },
+    {
+        path: '/auth/login',
+        name: 'login',
+        component: Login,
+    },
 
 ];
 
@@ -78,5 +86,8 @@ const app = new Vue({
     router,
     components: {
         "index": Index
+    }, 
+    async beforeCreate() {
+       
     }
 });

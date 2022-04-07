@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <div class="col-md-8">
             <search></search>
         </div>
