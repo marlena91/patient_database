@@ -13,7 +13,7 @@ class MedicalNoteFactory extends Factory
     {
         return [
             'title' => $this->faker->text(80),
-            'description' => $this->faker->text(1000),
+            'description' => $this->faker->sentences(6,true),
             'patients_id' => Patient::inRandomOrder()->first()->id,
         ];
     }

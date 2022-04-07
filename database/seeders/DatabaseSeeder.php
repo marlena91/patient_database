@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Disease;
 use Illuminate\Database\Seeder;
 use App\Models\MedicalNote;
 
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             PatientsTableSeeder::class,
             MedicalNotesTableSeeder::class,
             DiseasesTableSeeder::class,
+            DiseasePatientTableSeeder::class,
         ]);
 
     }
