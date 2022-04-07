@@ -21,7 +21,7 @@ class SearchController extends Controller
         $data = $request->validate([
             'name' => 'string|nullable',
             'lastname' => 'string|nullable',
-            'pesel' => 'numeric|nullable',
+            'pesel' => 'string|nullable',
             'birthday' => 'date|nullable'
         ]);
 
