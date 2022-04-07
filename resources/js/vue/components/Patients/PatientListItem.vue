@@ -3,7 +3,7 @@
         <div>
             <div class="card-body">
                 <router-link class="text-decoration-none" :to="{ name: 'patient', params: { id } }">
-                    <div class="card-title"> 
+                    <div class="card-title">
                         <h3 class="text-decoration-none text-dark font-weight-bolder mt-3">{{ name }} {{ lastname }}</h3>
                     </div>
                 </router-link>
@@ -12,21 +12,21 @@
                     <router-link :to="{ name: 'patient-edit', params: { id }}">
                         <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
                     </router-link>
-                    
+
                     <button @click="deletePatient(id)" class="btn btn-outline-dark btn-block mb-4">Usuń</button>
-                </div>   
+                </div>
             </div>
         </div>
-        
+
     </div>
 </template>
 <script>
 
 export default{
-    props: { id: Number, name: String, lastname: String, pesel: Number, birthday: String },
+    props: { id: Number, name: String, lastname: String, pesel: String, birthday: String },
     data() {
         return {
-            
+
         }
     },
     methods: {
