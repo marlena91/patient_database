@@ -16,10 +16,11 @@
                         <input type="text" v-model="birthday" class="form-control form-control-sm" placeholder="Data urodzenia...">
                     </div>
                 </div>
-            <button @click="search" class="btn btn-secondary btn-block mb-4">Szukaj</button>
-            <div class="card border-danger w-50 mb-3" v-for="error in errors" :key="error">
+                <div class="card border-danger w-50 mb-3" v-for="error in errors" :key="error">
                 {{ error }}
             </div>
+            <button @click="search" class="btn btn-secondary btn-block mb-4">Szukaj</button>
+            
         </div>
 
         <div class="card w-50 mt-3 bg-info" v-for="result in searchingResults" :key="result.id">
@@ -52,21 +53,24 @@ export default {
         };
     },
     computed: {
+        hasErrors() {
 
+        }
     },
     methods: {
         async search() {
-        try {
-            await axios.get(
-            `/api/search?name=${this.name}&lastname=${this.lastname}&pesel=${this.pesel}&birthday=${this.birthday}`
-            ).then(response => {
-                this.searchingResults = response.data.data;
-            });
-        } catch (err) {
-            this.errors = err.response.data.errors;
-            console.log(this.errors)
+            this.errors = null;
+            try {
+                await axios.get(
+                `/api/search?name=${this.name}&lastname=${this.lastname}&pesel=${this.pesel}&birthday=${this.birthday}`
+                ).then(response => {
+                    this.searchingResults = response.data.data;
+                });
+            } catch (err) {
+                this.errors = err.response.data.errors;
+                console.log(this.errors)
+                }
             }
-        }
     },
     created() {
 

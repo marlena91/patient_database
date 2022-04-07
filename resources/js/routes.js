@@ -6,6 +6,7 @@ import Patients from './vue/components/Patients/Patients';
 import Diseases from './vue/components/Diseases/Diseases';
 import EditMedicalNote from './vue/components/Medical-Notes/EditMedicalNote';
 import CreateDisease from './vue/components/Diseases/CreateDisease';
+import EditDisease from './vue/components/Diseases/EditDisease';
 import AddDiseaseToPatient from "./vue/components/Patient-Disease/AddDiseaseToPatient";
 import Login from "./vue/components/Auth/Login";
 
@@ -39,6 +40,11 @@ const routes = [
         path: '/medical-notes/:id/edit',
         name: 'medical-note-edit',
         component: EditMedicalNote,
+    },
+    {
+        path: '/diseases/:id/edit',
+        name: 'disease-edit',
+        component: EditDisease,
     },
     {
         path: '/diseases/create',

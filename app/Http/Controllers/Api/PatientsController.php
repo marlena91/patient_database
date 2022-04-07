@@ -58,6 +58,11 @@ class PatientsController extends Controller
             'birthday' => $request->input('birthday'),
         ]);
 
+        return response()->json([
+            'message' => 'Patient Created Successfully!!',
+            'patient' => $patient
+        ]);
+
     }
 
     /**
@@ -112,7 +117,7 @@ class PatientsController extends Controller
     {
         $patient->delete();
         return response()->json([
-            'message' => 'Category Deleted Successfully!!'
+            'message' => 'Patient Deleted Successfully!!'
         ]);
     }
 }

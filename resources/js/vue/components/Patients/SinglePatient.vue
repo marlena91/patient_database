@@ -71,7 +71,8 @@ export default {
                     console.log(response)
                 }).catch(error=>{
                     console.log(error)
-                })
+                });
+            this.$router.push({name: "patients"})
         },
         deleteDisease(disease_id, patient_id){
             axios.delete(`/api/diseasespatients/${disease_id}/${patient_id}`)

@@ -79,9 +79,13 @@ class DiseasesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Disease $disease)
     {
-        //
+        $disease->fill($request->post())->save();
+        return response()->json([
+            'message' => 'Patient Updated Successfully!!',
+            'patient' => $disease
+        ]);
     }
 
     /**
@@ -90,8 +94,11 @@ class DiseasesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Disease $disease)
     {
-        //
+        $disease->delete();
+        return response()->json([
+            'message' => 'Disease Deleted Successfully!!'
+        ]);
     }
 }
