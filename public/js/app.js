@@ -6452,20 +6452,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _vue_Index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vue/Index */ "./resources/js/vue/Index.vue");
-/* harmony import */ var _vue_components_Patients_SinglePatient__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./vue/components/Patients/SinglePatient */ "./resources/js/vue/components/Patients/SinglePatient.vue");
-/* harmony import */ var _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vue/components/Patients/CreatePatient */ "./resources/js/vue/components/Patients/CreatePatient.vue");
-/* harmony import */ var _vue_components_Patients_EditPatient__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./vue/components/Patients/EditPatient */ "./resources/js/vue/components/Patients/EditPatient.vue");
-/* harmony import */ var _vue_components_Patients_Patients__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vue/components/Patients/Patients */ "./resources/js/vue/components/Patients/Patients.vue");
-/* harmony import */ var _vue_components_Diseases_Diseases__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./vue/components/Diseases/Diseases */ "./resources/js/vue/components/Diseases/Diseases.vue");
-/* harmony import */ var _vue_components_Medical_Notes_EditMedicalNote__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./vue/components/Medical-Notes/EditMedicalNote */ "./resources/js/vue/components/Medical-Notes/EditMedicalNote.vue");
-/* harmony import */ var _vue_components_Diseases_CreateDisease__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./vue/components/Diseases/CreateDisease */ "./resources/js/vue/components/Diseases/CreateDisease.vue");
-/* harmony import */ var _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vue/components/Patient-Disease/AddDiseaseToPatient */ "./resources/js/vue/components/Patient-Disease/AddDiseaseToPatient.vue");
-/* harmony import */ var _vue_components_Auth_Login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./vue/components/Auth/Login */ "./resources/js/vue/components/Auth/Login.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -6478,64 +6470,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
-
-
-
-
-
-
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_13__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_14__["default"]);
-var routes = [{
-  path: '/',
-  name: 'patients',
-  component: _vue_components_Patients_Patients__WEBPACK_IMPORTED_MODULE_6__["default"]
-}, {
-  path: '/patients/:id',
-  name: 'patient',
-  component: _vue_components_Patients_SinglePatient__WEBPACK_IMPORTED_MODULE_3__["default"]
-}, {
-  path: '/patients/:id/edit',
-  name: 'patient-edit',
-  component: _vue_components_Patients_EditPatient__WEBPACK_IMPORTED_MODULE_5__["default"]
-}, {
-  path: '/patients/create',
-  name: 'patient-create',
-  component: _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_4__["default"]
-}, {
-  path: '/diseases',
-  name: 'diseases',
-  component: _vue_components_Diseases_Diseases__WEBPACK_IMPORTED_MODULE_7__["default"]
-}, {
-  path: '/medical-notes/:id/edit',
-  name: 'medical-note-edit',
-  component: _vue_components_Medical_Notes_EditMedicalNote__WEBPACK_IMPORTED_MODULE_8__["default"]
-}, {
-  path: '/diseases/create',
-  name: 'disease-create',
-  component: _vue_components_Diseases_CreateDisease__WEBPACK_IMPORTED_MODULE_9__["default"]
-}, {
-  path: '/diseasespatients',
-  name: 'disease-patient.show',
-  component: _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_10__["default"]
-}, {
-  path: '/diseasespatients/:id_disease/:id_patient/',
-  name: 'disease-patient.create',
-  component: _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_10__["default"]
-}, {
-  path: '/auth/login',
-  name: 'login',
-  component: _vue_components_Auth_Login__WEBPACK_IMPORTED_MODULE_11__["default"]
-}];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_14__["default"]({
-  routes: routes,
-  mode: 'history'
-});
-var app = new vue__WEBPACK_IMPORTED_MODULE_13__["default"]({
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
   el: '#app',
-  router: router,
+  router: _routes__WEBPACK_IMPORTED_MODULE_3__["default"],
   components: {
     "index": _vue_Index__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
@@ -6590,6 +6529,86 @@ window.axios.defaults.withCredentials = true;
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/routes.js":
+/*!********************************!*\
+  !*** ./resources/js/routes.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _vue_components_Patients_SinglePatient__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vue/components/Patients/SinglePatient */ "./resources/js/vue/components/Patients/SinglePatient.vue");
+/* harmony import */ var _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vue/components/Patients/CreatePatient */ "./resources/js/vue/components/Patients/CreatePatient.vue");
+/* harmony import */ var _vue_components_Patients_EditPatient__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vue/components/Patients/EditPatient */ "./resources/js/vue/components/Patients/EditPatient.vue");
+/* harmony import */ var _vue_components_Patients_Patients__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./vue/components/Patients/Patients */ "./resources/js/vue/components/Patients/Patients.vue");
+/* harmony import */ var _vue_components_Diseases_Diseases__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vue/components/Diseases/Diseases */ "./resources/js/vue/components/Diseases/Diseases.vue");
+/* harmony import */ var _vue_components_Medical_Notes_EditMedicalNote__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./vue/components/Medical-Notes/EditMedicalNote */ "./resources/js/vue/components/Medical-Notes/EditMedicalNote.vue");
+/* harmony import */ var _vue_components_Diseases_CreateDisease__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vue/components/Diseases/CreateDisease */ "./resources/js/vue/components/Diseases/CreateDisease.vue");
+/* harmony import */ var _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./vue/components/Patient-Disease/AddDiseaseToPatient */ "./resources/js/vue/components/Patient-Disease/AddDiseaseToPatient.vue");
+/* harmony import */ var _vue_components_Auth_Login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./vue/components/Auth/Login */ "./resources/js/vue/components/Auth/Login.vue");
+
+
+
+
+
+
+
+
+
+
+var routes = [{
+  path: '/',
+  name: 'patients',
+  component: _vue_components_Patients_Patients__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, {
+  path: '/patients/:id',
+  name: 'patient',
+  component: _vue_components_Patients_SinglePatient__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: '/patients/:id/edit',
+  name: 'patient-edit',
+  component: _vue_components_Patients_EditPatient__WEBPACK_IMPORTED_MODULE_2__["default"]
+}, {
+  path: '/patients/create',
+  name: 'patient-create',
+  component: _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_1__["default"]
+}, {
+  path: '/diseases',
+  name: 'diseases',
+  component: _vue_components_Diseases_Diseases__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  path: '/medical-notes/:id/edit',
+  name: 'medical-note-edit',
+  component: _vue_components_Medical_Notes_EditMedicalNote__WEBPACK_IMPORTED_MODULE_5__["default"]
+}, {
+  path: '/diseases/create',
+  name: 'disease-create',
+  component: _vue_components_Diseases_CreateDisease__WEBPACK_IMPORTED_MODULE_6__["default"]
+}, {
+  path: '/diseasespatients',
+  name: 'disease-patient.show',
+  component: _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_7__["default"]
+}, {
+  path: '/diseasespatients/:id_disease/:id_patient/',
+  name: 'disease-patient.create',
+  component: _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_7__["default"]
+}, {
+  path: '/auth/login',
+  name: 'login',
+  component: _vue_components_Auth_Login__WEBPACK_IMPORTED_MODULE_8__["default"]
+}];
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
+  routes: routes,
+  mode: 'history'
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
 /***/ }),
 

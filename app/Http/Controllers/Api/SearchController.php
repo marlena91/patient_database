@@ -30,7 +30,7 @@ class SearchController extends Controller
         $dataPesel = $request->input('pesel');
         $dataBirthday = $request->input('birthday');
 
-        return $patients = PatientIndexResource::collection(Patient::when($dataName, function ($query, $dataName) {
+        return PatientIndexResource::collection(Patient::when($dataName, function ($query, $dataName) {
             $query->where('name','like','%'.$dataName.'%');
         })->when($dataLastname, function ($query, $dataLastname) {
             $query->orWhere('lastname','like','%'.$dataLastname.'%');
