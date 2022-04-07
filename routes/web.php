@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/{any?}', function () {
     return view('patients');
 })->where('any', '^(?!api\/)[\/\w\.-]*');
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
