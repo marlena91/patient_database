@@ -41,7 +41,9 @@ export default {
             axios.delete(`/api/diseases/${id}}`)
             .then(response=>{
                     console.log(response);
-                    this.$router.go();
+                    // this.$router.go();
+                    this.diseases = this.diseases.filter((item) => item.id !== id)
+
                 }).catch(error=>{
                     console.log(error)
                 })

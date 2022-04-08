@@ -27,7 +27,8 @@
                     <hr>
 
                     <h5>Rozpoznane choroby:</h5>
-                    <div v-for="disease in patient.diseases" :key="disease.id">
+                    <!-- <div class="m-3"> Brak</div> -->
+                    <div  v-for="disease in patient.diseases" :key="disease.id">
                         <li>{{disease.name}}
                             <button @click="deleteDisease(disease.id, patient.id)" class="delbtn btn btn-danger btn-block m-1 btn-sm">Usuń</button>
                         </li>
@@ -58,6 +59,11 @@ export default {
           patient: []
         }
     },
+    computed: {
+    //     patientDiseases(){
+    //         return this.patient.diseases;
+    // }
+    },
     mounted() {    },
     created() {
         axios
@@ -69,7 +75,6 @@ export default {
             axios.delete(`/api/patients/${id}`)
             .then(response=>{
                     console.log(response);
-                    this.$router.go();
                 }).catch(error=>{
                     console.log(error)
                 });
@@ -78,8 +83,9 @@ export default {
         deleteDisease(disease_id, patient_id){
             axios.delete(`/api/diseasespatients/${disease_id}/${patient_id}`)
             .then(response=>{
-                    console.log(response);
-                    this.$router.go();
+
+                    this.patient.diseases = this.patient.diseases.filter((item) => {console.log(item.id); return item.id !== disease_id});
+                    // this.$router.go();
                 }).catch(error=>{
                     console.log(error)
                 })

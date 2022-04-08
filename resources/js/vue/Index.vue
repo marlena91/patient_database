@@ -7,14 +7,18 @@
                     <h1> Etermed</h1>
                 </div>
             </router-link>
-            
-
             <div class="collapse navbar-collapse">
-                <div class="navbar-nav mr-auto">
-                    <router-link class="nav-link" :to="{ name: 'patients' }">Baza pacjentów</router-link>
-                    <router-link class="nav-link" :to="{ name: 'diseases' }">Baza chorób</router-link>
-
-                </div>
+                <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="{ name: 'patients' }">Baza pacjentów</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="{ name: 'diseases' }">Baza chorób</router-link>
+                        </li>
+                        <li class="nav-item ">
+                        <router-link class="nav-link" :to="{ name: 'login' }">Logowanie</router-link>
+                         </li>
+                </ul>
             </div>
         </nav>
         <div class="container mt-4 mb-4 pr-4 pl-4">

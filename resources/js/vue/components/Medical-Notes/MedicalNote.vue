@@ -41,7 +41,7 @@ export default {
             axios.delete(`/api/medical-notes/${id}`)
             .then(response=>{
                     console.log(response);
-                    this.$router.go();
+                    this.medicalNotes = this.medicalNotes.filter((item) => item.id !== id);
                 }).catch(error=>{
                     console.log(error)
                 })

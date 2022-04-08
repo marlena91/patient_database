@@ -36,7 +36,7 @@ export default {
                 lastname: "",
                 pesel: "",
                 birthday: ""
-            }
+            },
         }
     },
     mounted() {

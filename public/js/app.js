@@ -5533,9 +5533,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios["delete"]("/api/diseases/".concat(id, "}")).then(function (response) {
-        console.log(response);
+        console.log(response); // this.$router.go();
 
-        _this.$router.go();
+        _this.diseases = _this.diseases.filter(function (item) {
+          return item.id !== id;
+        });
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5905,8 +5907,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios["delete"]("/api/medical-notes/".concat(id)).then(function (response) {
         console.log(response);
-
-        _this.$router.go();
+        _this.medicalNotes = _this.medicalNotes.filter(function (item) {
+          return item.id !== id;
+        });
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6290,9 +6293,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios["delete"]("/api/patients/".concat(id)).then(function (response) {
-        console.log(response.data.data);
+        console.log(response.data.data); // this.$router.go();
 
-        _this.$router.go();
+        _this.$emit('id', id);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6335,6 +6338,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6346,7 +6350,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       patients: [],
       loading: false,
-      searchingArr: []
+      searchingArr: [],
+      info: false
     };
   },
   mounted: function mounted() {},
@@ -6354,9 +6359,18 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     onSearchingResultsChanged: function onSearchingResultsChanged(searchingResults) {
       this.patients = searchingResults;
+
+      if (this.patients.length === 0) {
+        this.info = true;
+      }
     },
     reset: function reset() {
       this.$router.go();
+    },
+    patientDelete: function patientDelete(id) {
+      this.patients = this.patients.filter(function (item) {
+        return item.id !== id;
+      });
     }
   },
   created: function created() {
@@ -6433,6 +6447,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -6442,6 +6457,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       patient: []
     };
+  },
+  computed: {//     patientDiseases(){
+    //         return this.patient.diseases;
+    // }
   },
   mounted: function mounted() {},
   created: function created() {
@@ -6453,12 +6472,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deletePatient: function deletePatient(id) {
-      var _this2 = this;
-
       axios["delete"]("/api/patients/".concat(id)).then(function (response) {
         console.log(response);
-
-        _this2.$router.go();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6467,12 +6482,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteDisease: function deleteDisease(disease_id, patient_id) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios["delete"]("/api/diseasespatients/".concat(disease_id, "/").concat(patient_id)).then(function (response) {
-        console.log(response);
-
-        _this3.$router.go();
+        _this2.patient.diseases = _this2.patient.diseases.filter(function (item) {
+          console.log(item.id);
+          return item.id !== disease_id;
+        }); // this.$router.go();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -30906,7 +30922,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Patients_vue_vue_type_template_id_0586031d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Patients.vue?vue&type=template&id=0586031d&scoped=true& */ "./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&scoped=true&");
+/* harmony import */ var _Patients_vue_vue_type_template_id_0586031d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Patients.vue?vue&type=template&id=0586031d& */ "./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&");
 /* harmony import */ var _Patients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Patients.vue?vue&type=script&lang=js& */ "./resources/js/vue/components/Patients/Patients.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -30918,11 +30934,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Patients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Patients_vue_vue_type_template_id_0586031d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Patients_vue_vue_type_template_id_0586031d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Patients_vue_vue_type_template_id_0586031d___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Patients_vue_vue_type_template_id_0586031d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "0586031d",
+  null,
   null
   
 )
@@ -31486,19 +31502,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&scoped=true&":
-/*!******************************************************************************************************!*\
-  !*** ./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&scoped=true& ***!
-  \******************************************************************************************************/
+/***/ "./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d& ***!
+  \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Patients_vue_vue_type_template_id_0586031d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Patients_vue_vue_type_template_id_0586031d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Patients_vue_vue_type_template_id_0586031d___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Patients_vue_vue_type_template_id_0586031d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Patients_vue_vue_type_template_id_0586031d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Patients.vue?vue&type=template&id=0586031d&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Patients_vue_vue_type_template_id_0586031d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Patients.vue?vue&type=template&id=0586031d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&");
 
 
 /***/ }),
@@ -31569,30 +31585,52 @@ var render = function () {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "collapse navbar-collapse" }, [
-          _c(
-            "div",
-            { staticClass: "navbar-nav mr-auto" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link",
-                  attrs: { to: { name: "patients" } },
-                },
-                [_vm._v("Baza pacjentów")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link",
-                  attrs: { to: { name: "diseases" } },
-                },
-                [_vm._v("Baza chorób")]
-              ),
-            ],
-            1
-          ),
+          _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { to: { name: "patients" } },
+                  },
+                  [_vm._v("Baza pacjentów")]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { to: { name: "diseases" } },
+                  },
+                  [_vm._v("Baza chorób")]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item " },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: { name: "login" } } },
+                  [_vm._v("Logowanie")]
+                ),
+              ],
+              1
+            ),
+          ]),
         ]),
       ],
       1
@@ -32816,10 +32854,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&scoped=true&":
-/*!*********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&scoped=true& ***!
-  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Patients/Patients.vue?vue&type=template&id=0586031d& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32849,8 +32887,12 @@ var render = function () {
               staticClass: "btn btn-secondary btn-block mb-4",
               on: { click: _vm.reset },
             },
-            [_vm._v("Anuluj filtrowanie")]
+            [_vm._v("Wyzeruj filtrowanie")]
           ),
+          _vm._v(" "),
+          _vm.info
+            ? _c("p", { staticClass: "text-info" }, [_vm._v("Brak dopasowań.")])
+            : _vm._e(),
         ],
         1
       ),
@@ -32873,7 +32915,12 @@ var render = function () {
                 [
                   _c(
                     "patient-list-item",
-                    _vm._b({}, "patient-list-item", patient, false)
+                    _vm._b(
+                      { on: { id: _vm.patientDelete } },
+                      "patient-list-item",
+                      patient,
+                      false
+                    )
                   ),
                 ],
                 1

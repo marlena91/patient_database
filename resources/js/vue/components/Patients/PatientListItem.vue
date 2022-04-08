@@ -34,7 +34,8 @@ export default{
             axios.delete(`/api/patients/${id}`)
             .then(response=>{
                     console.log(response.data.data);
-                    this.$router.go();
+                    // this.$router.go();
+                    this.$emit('id', id)
                 }).catch(error=>{
                     console.log(error)
                 });

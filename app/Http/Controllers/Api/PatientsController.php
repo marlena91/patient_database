@@ -99,7 +99,7 @@ class PatientsController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-
+   
         $patient->fill($request->post())->save();
         return response()->json([
             'message' => 'Patient Updated Successfully!!',

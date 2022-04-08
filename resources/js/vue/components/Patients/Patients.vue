@@ -1,8 +1,9 @@
 <template>
     <div >
         <div class="col-md-8">
-            <search v-on:searchingResults="onSearchingResultsChanged"></search>
-            <button @click="reset" class="btn btn-secondary btn-block mb-4">Anuluj filtrowanie</button>
+            <search @searchingResults="onSearchingResultsChanged"></search>
+            <button @click="reset" class="btn btn-secondary btn-block mb-4">Wyzeruj filtrowanie</button>
+            <p v-if="info" class="text-info">Brak dopasowań.</p>
         </div>
         <router-link :to="{ name: 'patient-create'}">
             <div class="card-title">
@@ -11,7 +12,7 @@
         </router-link>
         <div v-if="!loading">
                 <div class="card w-50 mt-3" v-for="patient in patients" :key="patient.id">
-                    <patient-list-item v-bind="patient"></patient-list-item>
+                    <patient-list-item v-bind="patient" @id="patientDelete"></patient-list-item>
                 </div>
         </div>
         <div v-else>Loading...</div>
@@ -31,7 +32,8 @@ import Search from '../SearchEngine/Search.vue';
             return {
                 patients: [],
                 loading: false,
-                searchingArr:[]
+                searchingArr:[],
+                info: false,
             };
         },
          mounted() {
@@ -41,10 +43,16 @@ import Search from '../SearchEngine/Search.vue';
         methods: {
             onSearchingResultsChanged(searchingResults){
                 this.patients = searchingResults;
-
+                if(this.patients.length === 0){
+                    this.info = true;
+                }
             },
             reset(){
                 this.$router.go();
+            },
+            patientDelete(id){
+                this.patients = this.patients.filter((item) => item.id !== id);
+
             }
         },
         created() {
@@ -59,6 +67,3 @@ import Search from '../SearchEngine/Search.vue';
         props: {},
     };
 </script>
-<style scoped>
-
-</style>
