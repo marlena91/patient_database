@@ -68,7 +68,8 @@ export default {
         deletePatient(id) {
             axios.delete(`/api/patients/${id}`)
             .then(response=>{
-                    console.log(response)
+                    console.log(response);
+                    this.$router.go();
                 }).catch(error=>{
                     console.log(error)
                 });
@@ -77,7 +78,8 @@ export default {
         deleteDisease(disease_id, patient_id){
             axios.delete(`/api/diseasespatients/${disease_id}/${patient_id}`)
             .then(response=>{
-                    console.log(response)
+                    console.log(response);
+                    this.$router.go();
                 }).catch(error=>{
                     console.log(error)
                 })

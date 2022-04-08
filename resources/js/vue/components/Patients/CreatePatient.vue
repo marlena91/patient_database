@@ -19,6 +19,9 @@
                     <input type="text" v-model="patient.birthday" class="form-control form-control-sm"
                            placeholder="Data urodzenia...">
                 </div>
+                <div class="card border-danger w-50 mb-3" v-for="error in errors" :key="error">
+                    {{ error }}
+                </div>
             </div>
             <button type="submit" class="btn btn-secondary btn-block mb-4">Utwórz</button>
         </form>
@@ -36,17 +39,21 @@ export default {
                 lastname: "",
                 pesel: "",
                 birthday: ""
-            }
+            },
+            errors: []
         };
     },
     computed: {},
     methods: {
         async create() {
+            try {
             await axios.post(`/api/patients`, this.patient).then(response => {
                 this.$router.push({name: "patients"})
-            }).catch(error => {
-                console.log(error)
-            })
+            });
+            } catch(err) {
+                this.errors = err.response.data.errors;
+                console.log(this.errors)
+            }
         }
     },
     created() {

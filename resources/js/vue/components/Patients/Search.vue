@@ -17,8 +17,8 @@
                     </div>
                 </div>
                 <div class="card border-danger w-50 mb-3" v-for="error in errors" :key="error">
-                {{ error }}
-            </div>
+                    {{ error }}
+                </div>
             <button @click="search" class="btn btn-secondary btn-block mb-4">Szukaj</button>
             
         </div>
@@ -53,9 +53,7 @@ export default {
         };
     },
     computed: {
-        hasErrors() {
 
-        }
     },
     methods: {
         async search() {

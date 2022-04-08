@@ -41,8 +41,8 @@ export default {
     methods: {
         async create() {
             await axios.post(`/api/medical-notes`, this.medicalNote).then(response => {
-
-                this.$router.push({name: "patients", params: {id: this.medicalNote.patients_id}})
+            this.$router.go();
+                // this.$router.push({name: "patient", params: {id: this.medicalNote.patients_id}})
             }).catch(error => {
                 console.log(error)
             })

@@ -40,7 +40,8 @@ export default {
         deleteDisease(id) {
             axios.delete(`/api/diseases/${id}}`)
             .then(response=>{
-                    console.log(response)
+                    console.log(response);
+                    this.$router.go();
                 }).catch(error=>{
                     console.log(error)
                 })

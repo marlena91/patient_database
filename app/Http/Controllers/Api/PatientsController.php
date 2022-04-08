@@ -47,7 +47,7 @@ class PatientsController extends Controller
         $request->validate([
             'name' => 'required',
             'lastname' => 'required',
-            'pesel' => 'required|unique:patients',
+            'pesel' => 'required|unique:patients|digits:11',
             'birthday' => 'required|date'
         ]);
 
