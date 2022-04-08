@@ -27,7 +27,7 @@ class PatientFactory extends Factory
     public function definition()
     {
         return [
-            'pesel' => $this->faker->numerify('##########'),
+            'pesel' => $this->faker->numerify('###########'),
             'name' => $this->faker->firstName($gender = null),
             'lastname' => $this->faker->lastName,
             'birthday' => $this->faker->dateTimeBetween($startDate = '-80 years', $endDate = 'now', $timezone = null),

@@ -1,7 +1,8 @@
 <template>
     <div >
         <div class="col-md-8">
-            <search></search>
+            <search v-on:searchingResults="onSearchingResultsChanged"></search>
+            <button @click="reset" class="btn btn-secondary btn-block mb-4">Anuluj filtrowanie</button>
         </div>
         <router-link :to="{ name: 'patient-create'}">
             <div class="card-title">
@@ -19,7 +20,7 @@
 </template>
 <script>
 import PatientListItem from './PatientListItem.vue';
-import Search from './Search.vue';
+import Search from '../SearchEngine/Search.vue';
 
     export default {
         components: {
@@ -30,6 +31,7 @@ import Search from './Search.vue';
             return {
                 patients: [],
                 loading: false,
+                searchingArr:[]
             };
         },
          mounted() {
@@ -37,7 +39,13 @@ import Search from './Search.vue';
         computed: {
         },
         methods: {
+            onSearchingResultsChanged(searchingResults){
+                this.patients = searchingResults;
 
+            },
+            reset(){
+                this.$router.go();
+            }
         },
         created() {
             this.loading = true;
