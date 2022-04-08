@@ -60,13 +60,5 @@ import Search from '../SearchEngine/Search.vue';
     };
 </script>
 <style scoped>
-table {
-    width: 800px;
-    margin: 50px auto;
-}
-th, td {
-    width: 150px;
-    height: 50px;
-    text-align: center;
-}
+
 </style>
