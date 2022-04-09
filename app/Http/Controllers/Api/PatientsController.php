@@ -99,7 +99,13 @@ class PatientsController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-   
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'pesel' => 'required|unique:patients|digits:11',
+            'birthday' => 'required|date'
+        ]);
+
         $patient->fill($request->post())->save();
         return response()->json([
             'message' => 'Patient Updated Successfully!!',

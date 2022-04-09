@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\DiseasesPatientsController;
 use App\Http\Controllers\Api\MedicalNotesController;
 use App\Http\Controllers\Api\PatientsController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\SortController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,22 +21,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-
 Route::resource('patients', PatientsController::class, [
     'except' => ['create', 'edit']
 ]);
-
 Route::resource('diseases', DiseasesController::class, [
     'except' => ['create', 'edit']
 ]);
-
 Route::resource('medical-notes', MedicalNotesController::class, [
     'except' => ['create', 'edit']
 ]);
 
-Route::get('search', SearchController::class)->name('search');
+Route::get('search', SearchController::class)
+    ->name('search');
 
-
-Route::post('/diseasespatients/{diseaseId}/{patientID}', [DiseasesPatientsController::class, 'store'])->name('disease-patient.create');
-Route::delete('/diseasespatients/{diseaseId}/{patientID}', [DiseasesPatientsController::class, 'destroy'])->name('disease-patient.destroy');
+Route::post('/diseases-patients/{diseaseId}/{patientID}', [DiseasesPatientsController::class, 'store'])
+    ->name('disease-patient.create');
+Route::delete('/diseases-patients/{diseaseId}/{patientID}', [DiseasesPatientsController::class, 'destroy'])
+    ->name('disease-patient.destroy');

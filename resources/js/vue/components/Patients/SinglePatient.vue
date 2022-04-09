@@ -56,7 +56,8 @@ export default {
     },
     data() {
         return{
-          patient: []
+          patient: [],
+
         }
     },
     computed: {

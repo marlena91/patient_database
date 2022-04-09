@@ -20,6 +20,9 @@
                            placeholder="Data urodzenia...">
                 </div>
             </div>
+            <div class="card border-danger w-50 mb-3" v-for="error in errors" :key="error">
+                {{ error }}
+            </div>
             <button type="submit" class="btn btn-secondary btn-block mb-4">Zapisz</button>
         </form>
 
@@ -37,6 +40,7 @@ export default {
                 pesel: "",
                 birthday: ""
             },
+            errors: []
         }
     },
     mounted() {
@@ -52,11 +56,14 @@ export default {
             })
         },
         async update() {
-            await axios.put(`/api/patients/${this.$route.params.id}`, this.patient).then(response => {
-                this.$router.push({name: "patient"})
-            }).catch(error => {
-                console.log(error)
-            })
+            try {
+                await axios.put(`/api/patients/${this.$route.params.id}`, this.patient).then(response => {
+                    this.$router.push({name: "patient"})
+                })
+            } catch(err) {
+                this.errors = err.response.data.errors;
+                console.log(this.error)
+            }
         }
     },
     created() {

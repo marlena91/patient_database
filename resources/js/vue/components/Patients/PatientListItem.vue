@@ -4,7 +4,9 @@
             <div class="card-body">
                 <router-link class="text-decoration-none" :to="{ name: 'patient', params: { id } }">
                     <div class="card-title">
-                        <h3 class="text-decoration-none text-dark font-weight-bolder mt-3">{{ name }} {{ lastname }}</h3>
+                        <h3 class="text-decoration-none text-dark font-weight-bolder mt-3">
+                            {{ name }} {{ lastname}}
+                        </h3>
                     </div>
                 </router-link>
                 <div class="card-text">
@@ -22,23 +24,20 @@
 </template>
 <script>
 
-export default{
-    props: { id: Number, name: String, lastname: String, pesel: String, birthday: String },
+export default {
+    props: {id: Number, name: String, lastname: String, pesel: String, birthday: String},
     data() {
-        return {
-
-        }
+        return {}
     },
     methods: {
         deletePatient(id) {
             axios.delete(`/api/patients/${id}`)
-            .then(response=>{
+                .then(response => {
                     console.log(response.data.data);
-                    // this.$router.go();
                     this.$emit('id', id)
-                }).catch(error=>{
-                    console.log(error)
-                });
+                }).catch(error => {
+                console.log(error)
+            });
         }
     }
 }

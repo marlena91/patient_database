@@ -12,7 +12,7 @@ class SearchController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
 
@@ -31,15 +31,15 @@ class SearchController extends Controller
         $dataBirthday = $request->input('birthday');
 
         return PatientIndexResource::collection(Patient::when($dataName, function ($query, $dataName) {
-            $query->where('name','like','%'.$dataName.'%');
+            $query->where('name', 'like', '%' . $dataName . '%');
         })->when($dataLastname, function ($query, $dataLastname) {
-            $query->orWhere('lastname','like','%'.$dataLastname.'%');
+            $query->orWhere('lastname', 'like', '%' . $dataLastname . '%');
         })->when($dataPesel, function ($query, $dataPesel) {
-            $query->orWhere('pesel','like','%'.$dataPesel.'%');
+            $query->orWhere('pesel', 'like', '%' . $dataPesel . '%');
         })->when($dataBirthday, function ($query, $dataBirthday) {
-            $query->orWhere('birthday','like','%'.$dataBirthday.'%');
+            $query->orWhere('birthday', 'like', '%' . $dataBirthday . '%');
         })
-        ->get());
+            ->get());
 
     }
 }
