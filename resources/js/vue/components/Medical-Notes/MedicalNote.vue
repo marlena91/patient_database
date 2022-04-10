@@ -1,18 +1,15 @@
 <template>
     <div>
         <div v-if="!loading">
-            <div v-for="medicalNote in medicalNotes" :key="medicalNote.id"> 
-                <div class="medicalNote" v-if="medicalNote.patients_id === patient_id">
-                    <h5>{{ medicalNote.title }}</h5>
-                     <router-link :to="{ name: 'medical-note-edit', params: {id: medicalNote.id}}">
-                        <button class="btn btn-outline-dark btn-block m-1 btn-sm">Edytuj</button>
-                    </router-link>
-                    <button @click="deleteMedicalNote(medicalNote.id)" class="btn btn-outline-dark btn-block m-1 btn-sm">Usuń</button>
-                    <p>{{ medicalNote.description }}</p>
-                    
-                </div>
+            <div v-for="medicalNote in medicalNotes" :key="medicalNote.id">
+                <h5>{{ medicalNote.title }}</h5>
+                 <router-link :to="{ name: 'medical-note-edit', params: {id: medicalNote.id}}">
+                    <button class="btn btn-outline-dark btn-block m-1 btn-sm">Edytuj</button>
+                </router-link>
+                <button @click="deleteMedicalNote(medicalNote.id)" class="btn btn-outline-dark btn-block m-1 btn-sm">Usuń</button>
+                <p>{{ medicalNote.description }}</p>
             </div>
-        </div> 
+        </div>
         <div v-else>Loading...</div>
         <button class="btn btn-warning btn-block mb-4" @click="showCreateMedicalNote=true">Dodaj dokumentację</button>
         <div>
@@ -27,11 +24,12 @@ export default {
     components: {
         CreateMedicalNote
     },
+    props: ['patient_id'],
     data() {
         return{
             loading: false,
             medicalNotes: [],
-            showCreateMedicalNote: false
+            showCreateMedicalNote: false,
         }
     },
     computed: {
@@ -48,20 +46,14 @@ export default {
         }
     },
     created() {
-        
         this.loading = true;
-            const request_medical_notes = axios
-                .get("/api/medical-notes").then(response => {
-                this.medicalNotes = response.data.data;
-                this.loading = false;
-            });
-            
+        axios
+            .get(`/api/medical-note-patient/${this.$route.params.id}`)
+            .then(response => {(this.medicalNotes = response.data.data);
+                this.loading = false;});
     },
-    props: ['patient_id']  
 }
 </script>
 <style scoped>
-.medicalNote{
-    text-align: justify;   
-}
+
 </style>

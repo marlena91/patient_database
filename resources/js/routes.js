@@ -52,12 +52,12 @@ const routes = [
         component: CreateDisease,
     },
     {
-        path: '/diseasespatients',
+        path: '/diseases-patients',
         name: 'disease-patient.show',
         component: AddDiseaseToPatient,
     },
     {
-        path: '/diseasespatients/:id_disease/:id_patient/',
+        path: '/diseases-patients/:id_disease/:id_patient/',
         name: 'disease-patient.create',
         component: AddDiseaseToPatient,
     },

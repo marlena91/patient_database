@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         async diseasePatientCreate(disease_id, patient_id) {
-            await axios.post(`/api/diseasespatients/${disease_id}/${patient_id}`).then(response => {
+            await axios.post(`/api/diseases-patients/${disease_id}/${patient_id}`).then(response => {
                 this.$router.push({name: "patient", params: {id: patient_id}})
             }).catch(error => {
                 console.log(error)

@@ -6,12 +6,12 @@
             <hr>
             <select @click="sortData" v-model="sortSelect">
                 <option disabled value="">--Posortuj dane--</option>
-                <option value="nameAsc">A-Z imiona</option>
-                <option value="nameDesc">Z-A imiona</option>
-                <option value="lastnameAsc">A-Z nazwiska</option>
-                <option value="lastnameDesc">Z-A nazwiska</option>
-                <option value="birthdayAsc">Data urodzenia od najmlodszego</option>
-                <option value="birthdayDesc">Data urodzenia od najstarszego</option>
+                <option value="nameAsc">Imiona od A do Z</option>
+                <option value="nameDesc">Imiona od Z do A</option>
+                <option value="lastnameAsc">Nazwiska od A do Z</option>
+                <option value="lastnameDesc">Nazwiska od Z do A</option>
+                <option value="birthdayAsc">Data urodzenia rosnaco</option>
+                <option value="birthdayDesc">Data urodzenia malejaco</option>
             </select>
             <p v-if="info" class="text-info">Brak dopasowań.</p>
         </div>
@@ -27,7 +27,6 @@
             </div>
         </div>
         <div v-else>Loading...</div>
-
     </div>
 </template>
 <script>

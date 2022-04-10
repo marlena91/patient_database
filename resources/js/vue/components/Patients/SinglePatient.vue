@@ -38,7 +38,7 @@
                         </button>
                     <hr>
                     <div class="card-text">
-                        <medical-note v-bind:patient_id="patient.id"></medical-note>
+                        <medical-note v-bind:patient_id=patient.id></medical-note>
                     </div>
                 </div>
             </div>
@@ -56,20 +56,16 @@ export default {
     },
     data() {
         return{
-          patient: [],
-
+            patient: [],
         }
     },
-    computed: {
-    //     patientDiseases(){
-    //         return this.patient.diseases;
-    // }
-    },
+    computed: {    },
     mounted() {    },
     created() {
         axios
         .get(`/api/patients/${this.$route.params.id}`)
-        .then(response => (this.patient = response.data.data))
+        .then(response => (this.patient = response.data.data));
+
     },
     methods: {
         deletePatient(id) {
@@ -82,7 +78,7 @@ export default {
             this.$router.push({name: "patients"})
         },
         deleteDisease(disease_id, patient_id){
-            axios.delete(`/api/diseasespatients/${disease_id}/${patient_id}`)
+            axios.delete(`/api/diseases-patients/${disease_id}/${patient_id}`)
             .then(response=>{
 
                     this.patient.diseases = this.patient.diseases.filter((item) => {console.log(item.id); return item.id !== disease_id});
