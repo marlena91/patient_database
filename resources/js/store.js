@@ -14,6 +14,9 @@ export default {
         }
     },
     actions: {
+        loadStoredState(context){
+            context.commit("setLoggedIn", isLoggedIn());
+        },
         async loadUser({ commit, dispatch}) {
             if (isLoggedIn()) {
                 try {
