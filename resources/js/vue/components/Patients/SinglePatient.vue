@@ -49,6 +49,7 @@
 
 <script>
 import MedicalNote from '../Medical-Notes/MedicalNote.vue';
+import {mapState} from "vuex";
 
 export default {
     components: {
@@ -59,12 +60,20 @@ export default {
             patient: [],
         }
     },
-    computed: {    },
+    computed: {
+        ...mapState({
+            user: "user",
+        })
+    },
     mounted() {    },
     created() {
-        axios
-        .get(`/api/patients/${this.$route.params.id}`)
-        .then(response => (this.patient = response.data.data));
+        if(this.user.role === 'admin'){
+            axios
+                .get(`/api/patients/${this.$route.params.id}`)
+                .then(response => (this.patient = response.data.data));
+        } else {
+            this.$router.push({name: "patients"})
+        }
 
     },
     methods: {
@@ -82,7 +91,6 @@ export default {
             .then(response=>{
 
                     this.patient.diseases = this.patient.diseases.filter((item) => {console.log(item.id); return item.id !== disease_id});
-                    // this.$router.go();
                 }).catch(error=>{
                     console.log(error)
                 })

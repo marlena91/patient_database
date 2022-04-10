@@ -16,11 +16,13 @@
             <p v-if="info" class="text-info">Brak dopasowań.</p>
         </div>
         <hr>
-        <router-link :to="{ name: 'patient-create'}">
-            <div class="card-title">
-                <button class="btn btn-light btn-block mb-4">Dodaj pacjenta</button>
-            </div>
-        </router-link>
+        <div v-if='user.role==="admin"'>
+            <router-link :to="{ name: 'patient-create'}">
+                <div class="card-title">
+                    <button  class="btn btn-light btn-block mb-4">Dodaj pacjenta</button>
+                </div>
+            </router-link>
+        </div>
         <div v-if="!loading">
             <div class="card w-50 mt-3" v-for="patient in patients" :key="patient.id">
                 <patient-list-item v-bind="patient" @id="patientDelete"></patient-list-item>
@@ -32,6 +34,8 @@
 <script>
 import PatientListItem from './PatientListItem.vue';
 import Search from '../SearchEngine/Search.vue';
+import {mapState} from "vuex";
+
 
 export default {
     components: {
@@ -49,7 +53,11 @@ export default {
     },
     mounted() {
     },
-    computed: {},
+    computed: {
+        ...mapState({
+            user: "user",
+        })
+    },
     methods: {
         getData() {
             this.loading = true;

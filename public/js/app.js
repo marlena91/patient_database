@@ -6433,6 +6433,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _PatientListItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PatientListItem.vue */ "./resources/js/vue/components/Patients/PatientListItem.vue");
 /* harmony import */ var _SearchEngine_Search_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SearchEngine/Search.vue */ "./resources/js/vue/components/SearchEngine/Search.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -6464,6 +6471,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6481,7 +6491,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {},
-  computed: {},
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
+    user: "user"
+  })),
   methods: {
     getData: function getData() {
       var _this = this;
@@ -6567,6 +6579,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Medical_Notes_MedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Medical-Notes/MedicalNote.vue */ "./resources/js/vue/components/Medical-Notes/MedicalNote.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -6616,6 +6635,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -6626,14 +6646,22 @@ __webpack_require__.r(__webpack_exports__);
       patient: []
     };
   },
-  computed: {},
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+    user: "user"
+  })),
   mounted: function mounted() {},
   created: function created() {
     var _this = this;
 
-    axios.get("/api/patients/".concat(this.$route.params.id)).then(function (response) {
-      return _this.patient = response.data.data;
-    });
+    if (this.user.role === 'admin') {
+      axios.get("/api/patients/".concat(this.$route.params.id)).then(function (response) {
+        return _this.patient = response.data.data;
+      });
+    } else {
+      this.$router.push({
+        name: "patients"
+      });
+    }
   },
   methods: {
     deletePatient: function deletePatient(id) {
@@ -6653,7 +6681,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.patient.diseases = _this2.patient.diseases.filter(function (item) {
           console.log(item.id);
           return item.id !== disease_id;
-        }); // this.$router.go();
+        });
       })["catch"](function (error) {
         console.log(error);
       });
@@ -32795,131 +32823,135 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        { staticClass: "col-md-8" },
-        [
-          _c("search", {
-            on: { searchingResults: _vm.onSearchingResultsChanged },
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-secondary btn-block mb-4",
-              on: { click: _vm.reset },
-            },
-            [_vm._v("Wyzeruj filtrowanie")]
-          ),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.sortSelect,
-                  expression: "sortSelect",
-                },
-              ],
-              on: {
-                click: _vm.sortData,
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.sortSelect = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "col-md-8" },
+      [
+        _c("search", {
+          on: { searchingResults: _vm.onSearchingResultsChanged },
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-secondary btn-block mb-4",
+            on: { click: _vm.reset },
+          },
+          [_vm._v("Wyzeruj filtrowanie")]
+        ),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.sortSelect,
+                expression: "sortSelect",
+              },
+            ],
+            on: {
+              click: _vm.sortData,
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.sortSelect = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
               },
             },
-            [
-              _c("option", { attrs: { disabled: "", value: "" } }, [
-                _vm._v("--Posortuj dane--"),
+          },
+          [
+            _c("option", { attrs: { disabled: "", value: "" } }, [
+              _vm._v("--Posortuj dane--"),
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "nameAsc" } }, [
+              _vm._v("Imiona od A do Z"),
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "nameDesc" } }, [
+              _vm._v("Imiona od Z do A"),
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "lastnameAsc" } }, [
+              _vm._v("Nazwiska od A do Z"),
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "lastnameDesc" } }, [
+              _vm._v("Nazwiska od Z do A"),
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "birthdayAsc" } }, [
+              _vm._v("Data urodzenia rosnaco"),
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "birthdayDesc" } }, [
+              _vm._v("Data urodzenia malejaco"),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _vm.info
+          ? _c("p", { staticClass: "text-info" }, [_vm._v("Brak dopasowań.")])
+          : _vm._e(),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm.user.role === "admin"
+      ? _c(
+          "div",
+          [
+            _c("router-link", { attrs: { to: { name: "patient-create" } } }, [
+              _c("div", { staticClass: "card-title" }, [
+                _c("button", { staticClass: "btn btn-light btn-block mb-4" }, [
+                  _vm._v("Dodaj pacjenta"),
+                ]),
               ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "nameAsc" } }, [
-                _vm._v("Imiona od A do Z"),
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "nameDesc" } }, [
-                _vm._v("Imiona od Z do A"),
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "lastnameAsc" } }, [
-                _vm._v("Nazwiska od A do Z"),
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "lastnameDesc" } }, [
-                _vm._v("Nazwiska od Z do A"),
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "birthdayAsc" } }, [
-                _vm._v("Data urodzenia rosnaco"),
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "birthdayDesc" } }, [
-                _vm._v("Data urodzenia malejaco"),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _vm.info
-            ? _c("p", { staticClass: "text-info" }, [_vm._v("Brak dopasowań.")])
-            : _vm._e(),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "patient-create" } } }, [
-        _c("div", { staticClass: "card-title" }, [
-          _c("button", { staticClass: "btn btn-light btn-block mb-4" }, [
-            _vm._v("Dodaj pacjenta"),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      !_vm.loading
-        ? _c(
-            "div",
-            _vm._l(_vm.patients, function (patient) {
-              return _c(
-                "div",
-                { key: patient.id, staticClass: "card w-50 mt-3" },
-                [
-                  _c(
+            ]),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.loading
+      ? _c(
+          "div",
+          _vm._l(_vm.patients, function (patient) {
+            return _c(
+              "div",
+              { key: patient.id, staticClass: "card w-50 mt-3" },
+              [
+                _c(
+                  "patient-list-item",
+                  _vm._b(
+                    { on: { id: _vm.patientDelete } },
                     "patient-list-item",
-                    _vm._b(
-                      { on: { id: _vm.patientDelete } },
-                      "patient-list-item",
-                      patient,
-                      false
-                    )
-                  ),
-                ],
-                1
-              )
-            }),
-            0
-          )
-        : _c("div", [_vm._v("Loading...")]),
-    ],
-    1
-  )
+                    patient,
+                    false
+                  )
+                ),
+              ],
+              1
+            )
+          }),
+          0
+        )
+      : _c("div", [_vm._v("Loading...")]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
