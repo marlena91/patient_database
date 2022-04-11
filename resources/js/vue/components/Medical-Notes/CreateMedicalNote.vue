@@ -17,6 +17,7 @@
     </div>
 </template>
 <script>
+import {mapState} from "vuex";
 
 export default {
     components: {},
@@ -30,6 +31,9 @@ export default {
     mounted() {
     },
     computed: {
+            ...mapState({
+                user: "user",
+            }),
         medicalNote() {
             return {
                 title: this.title,
@@ -50,6 +54,9 @@ export default {
         }
     },
     created() {
+        if(this.user.role!=='admin' && this.user.role!=='doctor'){
+            this.$router.push({name: "login"})
+        }
     },
 
 };

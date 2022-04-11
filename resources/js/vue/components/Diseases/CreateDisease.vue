@@ -13,6 +13,8 @@
     </div>
 </template>
 <script>
+import {mapState} from "vuex";
+
 export default {
     components: {},
     data() {
@@ -22,7 +24,11 @@ export default {
             }
         };
     },
-    computed: {},
+    computed: {
+        ...mapState({
+            user: "user",
+        })
+    },
     methods: {
         async create() {
             await axios.post(`/api/diseases`, this.disease).then(response => {
@@ -33,6 +39,9 @@ export default {
         }
     },
     created() {
+        if(this.user.role!=='admin' && this.user.role!=='doctor'){
+            this.$router.push({name: "login"})
+        }
     },
     props: {},
 };

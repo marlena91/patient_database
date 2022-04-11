@@ -15,6 +15,8 @@
 
 <script>
 import DiseaseListItem from '../Diseases/DiseaseListItem';
+import {mapState} from "vuex";
+
 
 export default {
     name: "AddDiseaseToPatient",
@@ -28,14 +30,24 @@ export default {
             test: this.$route.params.patient_id,
         }
     },
+    computed: {
+            ...mapState({
+                user: "user",
+            })
+    },
     mounted() {
     },
     created() {
-        this.loading = true;
-        axios.get("/api/diseases").then(response => {
+        if(this.user.role!=='admin' && this.user.role!=='doctor'){
+            this.$router.push({name: "login"})
+        } else {
+            this.loading = true;
+            axios.get("/api/diseases").then(response => {
             this.diseases = response.data.data;
             this.loading = false;
         });
+        }
+       
     },
     methods: {
         async diseasePatientCreate(disease_id, patient_id) {

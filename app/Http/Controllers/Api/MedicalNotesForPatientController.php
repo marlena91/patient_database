@@ -17,6 +17,6 @@ class MedicalNotesForPatientController extends Controller
      */
     public function __invoke($request)
     {
-        return MedicalNoteIndexResource::collection(MedicalNote::where('patients_id', 6)->get());
+        return MedicalNoteIndexResource::collection(MedicalNote::where('patients_id', $request)->get());
     }
 }

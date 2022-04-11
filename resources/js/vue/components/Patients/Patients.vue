@@ -16,7 +16,7 @@
             <p v-if="info" class="text-info">Brak dopasowań.</p>
         </div>
         <hr>
-        <div v-if='user.role==="admin"'>
+        <div v-if='user.role==="admin" || user.role==="doctor"'>
             <router-link :to="{ name: 'patient-create'}">
                 <div class="card-title">
                     <button  class="btn btn-light btn-block mb-4">Dodaj pacjenta</button>

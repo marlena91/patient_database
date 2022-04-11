@@ -11,10 +11,14 @@
                     </article>
                 </div>
                 <div class="pt-3">
-                     <router-link :to="{ name: 'patient-edit', params: patient.id}">
-                        <button class="btn btn-outline-dark btn-block m-4">Edytuj</button>
-                    </router-link>
-                    <button @click="deletePatient(patient.id)" class="btn btn-outline-dark btn-block m-4">Usuń</button>
+                    <div v-if='(user.role==="admin") || (user.role==="doctor")'>
+                        <router-link :to="{ name: 'patient-edit', params: patient.id}">
+                            <button class="btn btn-outline-dark btn-block m-4">Edytuj</button>
+                        </router-link>
+                    </div>
+                    <div v-if='user.role==="admin"'>
+                        <button @click="deletePatient(patient.id)" class="btn btn-outline-dark btn-block m-4">Usuń</button>
+                    </div>
                 </div>
             </div>
 
@@ -27,18 +31,21 @@
                     <hr>
 
                     <h5>Rozpoznane choroby:</h5>
-                    <!-- <div class="m-3"> Brak</div> -->
-                    <div  v-for="disease in patient.diseases" :key="disease.id">
+                    <div v-for="disease in patient.diseases" :key="disease.id">
                         <li>{{disease.name}}
-                            <button @click="deleteDisease(disease.id, patient.id)" class="delbtn btn btn-danger btn-block m-1 btn-sm">Usuń</button>
+                            <div v-if='(user.role==="admin")'>
+                                <button @click="deleteDisease(disease.id, patient.id)" class="delbtn btn btn-danger btn-block m-1 btn-sm">Usuń</button>
+                            </div>
                         </li>
                     </div>
+                    <div v-if='(user.role==="admin") || (user.role==="doctor")'>
                         <button @click="addDiseaseToPatient()" class="btn btn-info btn-block m-1 btn-sm">
                             Nowa choroba
                         </button>
+                    </div>
                     <hr>
                     <div class="card-text">
-                        <medical-note v-bind:patient_id=patient.id></medical-note>
+                        <medical-note v-bind:patient_id="patient.id"></medical-note>
                     </div>
                 </div>
             </div>
@@ -57,24 +64,19 @@ export default {
     },
     data() {
         return{
-            patient: [],
+          patient: []
         }
     },
-    computed: {
+   computed: {
         ...mapState({
             user: "user",
         })
     },
     mounted() {    },
     created() {
-        if(this.user.role === 'admin'){
-            axios
-                .get(`/api/patients/${this.$route.params.id}`)
-                .then(response => (this.patient = response.data.data));
-        } else {
-            this.$router.push({name: "patients"})
-        }
-
+        axios
+        .get(`/api/patients/${this.$route.params.id}`)
+        .then(response => (this.patient = response.data.data))
     },
     methods: {
         deletePatient(id) {
@@ -87,9 +89,8 @@ export default {
             this.$router.push({name: "patients"})
         },
         deleteDisease(disease_id, patient_id){
-            axios.delete(`/api/diseases-patients/${disease_id}/${patient_id}`)
+            axios.delete(`/api/diseasespatients/${disease_id}/${patient_id}`)
             .then(response=>{
-
                     this.patient.diseases = this.patient.diseases.filter((item) => {console.log(item.id); return item.id !== disease_id});
                 }).catch(error=>{
                     console.log(error)
@@ -97,9 +98,8 @@ export default {
         },
         addDiseaseToPatient(){
             this.$router.push({name:"disease-patient.show", params: { patient_id: this.patient.id }})
-
         }
-        }
+    }
 }
 
 </script>

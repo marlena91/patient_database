@@ -11,11 +11,16 @@
                 </router-link>
                 <div class="card-text">
                     <p>Pesel: {{ pesel }} | Data urodzenia: {{ birthday }} </p>
-                    <router-link :to="{ name: 'patient-edit', params: { id }}">
-                        <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
-                    </router-link>
-
+                    
+                    <div v-if='(user.role==="admin") || (user.role==="doctor")'>
+                        <router-link :to="{ name: 'patient-edit', params: { id }}">
+                            <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
+                        </router-link>
+                    </div>
+                    
+                    <div v-if='user.role==="admin"'>
                     <button @click="deletePatient(id)" class="btn btn-outline-dark btn-block mb-4">Usuń</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,11 +28,17 @@
     </div>
 </template>
 <script>
+import {mapState} from "vuex";
 
 export default {
     props: {id: Number, name: String, lastname: String, pesel: String, birthday: String},
     data() {
         return {}
+    },
+    computed: {
+        ...mapState({
+            user: "user",
+        })
     },
     methods: {
         deletePatient(id) {

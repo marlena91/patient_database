@@ -17,6 +17,7 @@
     </div>
 </template>
 <script>
+import {mapState} from "vuex";
 
 export default {
     components: {},
@@ -32,7 +33,11 @@ export default {
     mounted() {
         this.showMedicalNote();
     },
-    computed: {},
+    computed: {
+            ...mapState({
+                user: "user",
+            })
+    },
     methods: {
         async showMedicalNote() {
             await axios.get(`/api/medical-notes/${this.$route.params.id}`).then(response => {
@@ -52,6 +57,9 @@ export default {
 
     },
     created() {
+        if(this.user.role!=='admin' && this.user.role!=='doctor'){
+            this.$router.push({name: "login"})
+        }
     },
     props: [],
 };
