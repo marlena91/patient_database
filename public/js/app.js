@@ -5319,7 +5319,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5607,8 +5606,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _DiseaseListItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DiseaseListItem.vue */ "./resources/js/vue/components/Diseases/DiseaseListItem.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -5645,19 +5643,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+// import DiseaseListItem from './DiseaseListItem.vue';
+ // import Select2 from "../Select/Select2";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    DiseaseListItem: _DiseaseListItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  components: {// Select2,
+    // DiseaseListItem,
   },
   data: function data() {
     return {
       diseases: [],
-      loading: false
+      loading: false,
+      myValue: '',
+      myOptions: ['op1', 'op2', 'op3'],
+      optionSelected: null
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
     user: "user"
   })),
   methods: {
@@ -5671,6 +5679,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    myChangeEvent: function myChangeEvent(val) {
+      console.log(val);
+    },
+    mySelectEvent: function mySelectEvent(_ref) {
+      var id = _ref.id,
+          text = _ref.text;
+      console.log({
+        id: id,
+        text: text
       });
     }
   },
@@ -6546,7 +6565,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6599,6 +6617,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30647,7 +30671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Diseases_vue_vue_type_template_id_01a6593d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Diseases.vue?vue&type=template&id=01a6593d& */ "./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&");
+/* harmony import */ var _Diseases_vue_vue_type_template_id_01a6593d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Diseases.vue?vue&type=template&id=01a6593d&scoped=true& */ "./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&scoped=true&");
 /* harmony import */ var _Diseases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Diseases.vue?vue&type=script&lang=js& */ "./resources/js/vue/components/Diseases/Diseases.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -30659,11 +30683,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Diseases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Diseases_vue_vue_type_template_id_01a6593d___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Diseases_vue_vue_type_template_id_01a6593d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Diseases_vue_vue_type_template_id_01a6593d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Diseases_vue_vue_type_template_id_01a6593d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "01a6593d",
   null
   
 )
@@ -31428,19 +31452,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&scoped=true& ***!
+  \******************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_01a6593d___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_01a6593d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_01a6593d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_01a6593d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_01a6593d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Diseases.vue?vue&type=template&id=01a6593d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Diseases_vue_vue_type_template_id_01a6593d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Diseases.vue?vue&type=template&id=01a6593d&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&scoped=true&");
 
 
 /***/ }),
@@ -31648,7 +31672,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", [
     _c(
       "nav",
       { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
@@ -31656,7 +31680,7 @@ var render = function () {
         _c(
           "router-link",
           {
-            staticClass: "navbar-brand mr-auto",
+            staticClass: "navbar-brand pr-3",
             attrs: { to: { name: "patients" } },
           },
           [_c("h1", [_vm._v("Etermed")])]
@@ -31734,12 +31758,7 @@ var render = function () {
       1
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "container mt-4 mb-4 pr-4 pl-4" },
-      [_c("router-view")],
-      1
-    ),
+    _c("div", { staticClass: "container-md p-3 my-3" }, [_c("router-view")], 1),
   ])
 }
 var staticRenderFns = []
@@ -31977,10 +31996,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&":
-/*!*********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d& ***!
-  \*********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=template&id=01a6593d&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32010,78 +32029,7 @@ var render = function () {
         )
       : _vm._e(),
     _vm._v(" "),
-    !_vm.loading
-      ? _c(
-          "div",
-          _vm._l(_vm.diseases, function (disease) {
-            return _c(
-              "div",
-              { key: disease.id, staticClass: "card w-50 mt-3" },
-              [
-                _c(
-                  "div",
-                  [
-                    _c(
-                      "disease-list-item",
-                      _vm._b({}, "disease-list-item", disease, false)
-                    ),
-                    _vm._v(" "),
-                    _vm.user.role === "admin"
-                      ? _c("div", { attrs: { div: "" } }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-info btn-block m-1 btn-sm",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.deleteDisease(disease.id)
-                                },
-                              },
-                            },
-                            [_vm._v("Usuń")]
-                          ),
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.user.role === "admin" || _vm.user.role === "doctor"
-                      ? _c(
-                          "div",
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "text-decoration-none",
-                                attrs: {
-                                  to: {
-                                    name: "disease-edit",
-                                    params: { id: disease.id },
-                                  },
-                                },
-                              },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-info btn-block m-1 btn-sm",
-                                  },
-                                  [_vm._v("Edytuj")]
-                                ),
-                              ]
-                            ),
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-              ]
-            )
-          }),
-          0
-        )
-      : _c("div", [_vm._v("Loading...")]),
+    !_vm.loading ? _c("div") : _c("div", [_vm._v("Loading...")]),
   ])
 }
 var staticRenderFns = []
@@ -32897,50 +32845,50 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        [
-          _c(
-            "router-link",
-            {
-              staticClass: "text-decoration-none",
-              attrs: { to: { name: "patient", params: { id: _vm.id } } },
-            },
-            [
-              _c("div", { staticClass: "card-title" }, [
-                _c(
-                  "h3",
-                  {
-                    staticClass:
-                      "text-decoration-none text-dark font-weight-bolder mt-3",
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.name) +
-                        " " +
-                        _vm._s(_vm.lastname) +
-                        "\n                    "
-                    ),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-text" }, [
-            _c("p", [
-              _vm._v(
-                "Pesel: " +
-                  _vm._s(_vm.pesel) +
-                  " | Data urodzenia: " +
-                  _vm._s(_vm.birthday) +
-                  " "
+    _c(
+      "div",
+      { staticClass: "card-body" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "text-decoration-none",
+            attrs: { to: { name: "patient", params: { id: _vm.id } } },
+          },
+          [
+            _c("div", { staticClass: "card-title" }, [
+              _c(
+                "h3",
+                {
+                  staticClass:
+                    "text-decoration-none text-dark font-weight-bolder mt-3",
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.name) +
+                      " " +
+                      _vm._s(_vm.lastname) +
+                      "\n                    "
+                  ),
+                ]
               ),
             ]),
-            _vm._v(" "),
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-text" }, [
+          _c("p", [
+            _vm._v(
+              "Pesel: " +
+                _vm._s(_vm.pesel) +
+                " | Data urodzenia: " +
+                _vm._s(_vm.birthday) +
+                " "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
             _vm.user.role === "admin" || _vm.user.role === "doctor"
               ? _c(
                   "div",
@@ -32955,9 +32903,7 @@ var render = function () {
                       [
                         _c(
                           "button",
-                          {
-                            staticClass: "btn btn-outline-dark btn-block mb-4",
-                          },
+                          { staticClass: "btn btn-outline-dark mb-4 col-md-1" },
                           [_vm._v("Edytuj")]
                         ),
                       ]
@@ -32972,7 +32918,7 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-outline-dark btn-block mb-4",
+                      staticClass: "btn btn-outline-dark mb-4 col-md-1",
                       on: {
                         click: function ($event) {
                           return _vm.deletePatient(_vm.id)
@@ -32984,10 +32930,10 @@ var render = function () {
                 ])
               : _vm._e(),
           ]),
-        ],
-        1
-      ),
-    ]),
+        ]),
+      ],
+      1
+    ),
   ])
 }
 var staticRenderFns = []
@@ -33014,133 +32960,146 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "col-md-8" },
-      [
-        _c("search", {
-          on: { searchingResults: _vm.onSearchingResultsChanged },
-        }),
-        _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-4" }, [
         _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary btn-block mb-4",
-            on: { click: _vm.reset },
-          },
-          [_vm._v("Wyzeruj filtrowanie")]
-        ),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.sortSelect,
-                expression: "sortSelect",
-              },
-            ],
-            on: {
-              click: _vm.sortData,
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.sortSelect = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-            },
-          },
-          [
-            _c("option", { attrs: { disabled: "", value: "" } }, [
-              _vm._v("--Posortuj dane--"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "nameAsc" } }, [
-              _vm._v("Imiona od A do Z"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "nameDesc" } }, [
-              _vm._v("Imiona od Z do A"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "lastnameAsc" } }, [
-              _vm._v("Nazwiska od A do Z"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "lastnameDesc" } }, [
-              _vm._v("Nazwiska od Z do A"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "birthdayAsc" } }, [
-              _vm._v("Data urodzenia rosnaco"),
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "birthdayDesc" } }, [
-              _vm._v("Data urodzenia malejaco"),
-            ]),
-          ]
-        ),
-        _vm._v(" "),
-        _vm.info
-          ? _c("p", { staticClass: "text-info" }, [_vm._v("Brak dopasowań.")])
-          : _vm._e(),
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _vm.user.role === "admin" || _vm.user.role === "doctor"
-      ? _c(
           "div",
           [
-            _c("router-link", { attrs: { to: { name: "patient-create" } } }, [
-              _c("div", { staticClass: "card-title" }, [
-                _c("button", { staticClass: "btn btn-light btn-block mb-4" }, [
-                  _vm._v("Dodaj pacjenta"),
+            _c("search", {
+              on: { searchingResults: _vm.onSearchingResultsChanged },
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary col-md-10 btn-block mb-4",
+                on: { click: _vm.reset },
+              },
+              [_vm._v("Wyzeruj filtrowanie")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.sortSelect,
+                    expression: "sortSelect",
+                  },
+                ],
+                staticClass: "col-md-10 text-center",
+                on: {
+                  click: _vm.sortData,
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.sortSelect = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                },
+              },
+              [
+                _c("option", { attrs: { disabled: "", value: "" } }, [
+                  _vm._v("--Posortuj dane--"),
                 ]),
-              ]),
-            ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "nameAsc" } }, [
+                  _vm._v("Imiona od A do Z"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "nameDesc" } }, [
+                  _vm._v("Imiona od Z do A"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "lastnameAsc" } }, [
+                  _vm._v("Nazwiska od A do Z"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "lastnameDesc" } }, [
+                  _vm._v("Nazwiska od Z do A"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "birthdayAsc" } }, [
+                  _vm._v("Data urodzenia rosnaco"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "birthdayDesc" } }, [
+                  _vm._v("Data urodzenia malejaco"),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _vm.info
+              ? _c("p", { staticClass: "text-info" }, [
+                  _vm._v("Brak dopasowań."),
+                ])
+              : _vm._e(),
           ],
           1
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    !_vm.loading
-      ? _c(
-          "div",
-          _vm._l(_vm.patients, function (patient) {
-            return _c(
+        ),
+        _vm._v(" "),
+        _vm.user.role === "admin" || _vm.user.role === "doctor"
+          ? _c(
               "div",
-              { key: patient.id, staticClass: "card w-50 mt-3" },
               [
                 _c(
-                  "patient-list-item",
-                  _vm._b(
-                    { on: { id: _vm.patientDelete } },
-                    "patient-list-item",
-                    patient,
-                    false
-                  )
+                  "router-link",
+                  { attrs: { to: { name: "patient-create" } } },
+                  [
+                    _c("div", { staticClass: "card-title" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-light btn-block mb-4 mt-4 col-md-10",
+                        },
+                        [_vm._v("Dodaj pacjenta")]
+                      ),
+                    ]),
+                  ]
                 ),
               ],
               1
             )
-          }),
-          0
-        )
-      : _c("div", [_vm._v("Loading...")]),
+          : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
+        !_vm.loading
+          ? _c(
+              "div",
+              _vm._l(_vm.patients, function (patient) {
+                return _c(
+                  "div",
+                  { key: patient.id, staticClass: "card mt-3" },
+                  [
+                    _c(
+                      "patient-list-item",
+                      _vm._b(
+                        { on: { id: _vm.patientDelete } },
+                        "patient-list-item",
+                        patient,
+                        false
+                      )
+                    ),
+                  ],
+                  1
+                )
+              }),
+              0
+            )
+          : _c("div", [_vm._v("Loading...")]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -33347,7 +33306,7 @@ var render = function () {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "form-row mb-4" }, [
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("div", { staticClass: "form-group col-md-10 mt-3" }, [
             _c("input", {
               directives: [
                 {
@@ -33371,7 +33330,7 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("div", { staticClass: "form-group col-md-10 mt-3" }, [
             _c("input", {
               directives: [
                 {
@@ -33395,7 +33354,7 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("div", { staticClass: "form-group col-md-10 mt-3" }, [
             _c("input", {
               directives: [
                 {
@@ -33419,7 +33378,7 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          _c("div", { staticClass: "form-group col-md-10 mt-3" }, [
             _c("input", {
               directives: [
                 {
@@ -33455,7 +33414,7 @@ var render = function () {
         _c(
           "button",
           {
-            staticClass: "btn btn-secondary btn-block mb-4",
+            staticClass: "btn col-md-10 btn-secondary btn-block mb-4",
             on: { click: _vm.search },
           },
           [_vm._v("Szukaj")]

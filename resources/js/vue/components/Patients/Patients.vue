@@ -1,34 +1,40 @@
 <template>
     <div>
-        <div class="col-md-8">
-            <search @searchingResults="onSearchingResultsChanged"></search>
-            <button @click="reset" class="btn btn-secondary btn-block mb-4">Wyzeruj filtrowanie</button>
-            <hr>
-            <select @click="sortData" v-model="sortSelect">
-                <option disabled value="">--Posortuj dane--</option>
-                <option value="nameAsc">Imiona od A do Z</option>
-                <option value="nameDesc">Imiona od Z do A</option>
-                <option value="lastnameAsc">Nazwiska od A do Z</option>
-                <option value="lastnameDesc">Nazwiska od Z do A</option>
-                <option value="birthdayAsc">Data urodzenia rosnaco</option>
-                <option value="birthdayDesc">Data urodzenia malejaco</option>
-            </select>
-            <p v-if="info" class="text-info">Brak dopasowań.</p>
-        </div>
-        <hr>
-        <div v-if='user.role==="admin" || user.role==="doctor"'>
-            <router-link :to="{ name: 'patient-create'}">
-                <div class="card-title">
-                    <button  class="btn btn-light btn-block mb-4">Dodaj pacjenta</button>
+        <div class="row">
+            <div class="col-md-4">
+                <div>
+                    <search @searchingResults="onSearchingResultsChanged"></search>
+                    <button @click="reset" class="btn btn-secondary col-md-10 btn-block mb-4">Wyzeruj filtrowanie</button>
+                    
+                    <select @click="sortData" v-model="sortSelect" class="col-md-10 text-center">
+                        <option disabled value="">--Posortuj dane--</option>
+                        <option value="nameAsc">Imiona od A do Z</option>
+                        <option value="nameDesc">Imiona od Z do A</option>
+                        <option value="lastnameAsc">Nazwiska od A do Z</option>
+                        <option value="lastnameDesc">Nazwiska od Z do A</option>
+                        <option value="birthdayAsc">Data urodzenia rosnaco</option>
+                        <option value="birthdayDesc">Data urodzenia malejaco</option>
+                    </select>
+                    <p v-if="info" class="text-info">Brak dopasowań.</p>
                 </div>
-            </router-link>
-        </div>
-        <div v-if="!loading">
-            <div class="card w-50 mt-3" v-for="patient in patients" :key="patient.id">
-                <patient-list-item v-bind="patient" @id="patientDelete"></patient-list-item>
+                
+                <div v-if='user.role==="admin" || user.role==="doctor"'>
+                    <router-link :to="{ name: 'patient-create'}">
+                        <div class="card-title">
+                            <button class="btn btn-light btn-block mb-4 mt-4 col-md-10">Dodaj pacjenta</button>
+                        </div>
+                    </router-link>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div v-if="!loading">
+                    <div class="card mt-3" v-for="patient in patients" :key="patient.id">
+                        <patient-list-item v-bind="patient" @id="patientDelete"></patient-list-item>
+                    </div>
+                </div>
+                <div v-else>Loading...</div>
             </div>
         </div>
-        <div v-else>Loading...</div>
     </div>
 </template>
 <script>

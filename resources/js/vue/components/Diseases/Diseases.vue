@@ -8,7 +8,14 @@
             </router-link>
         </div>
         <div v-if="!loading">
-            <div class="card w-50 mt-3" v-for="disease in diseases" :key="disease.id">
+            <!-- <div class="col-sm-5">
+                <Select2 v-model="optionSelected" 
+                    :options="myOptions"  
+                    @change="myChangeEvent($event)" @select="mySelectEvent($event)" />
+                    <p>Value: {{ optionSelected }}</p>
+            </div> -->
+        </div>
+            <!-- <div class="card mt-3" v-for="disease in diseases" :key="disease.id">
                 <div>
                     <disease-list-item v-bind="disease"></disease-list-item>
 
@@ -22,25 +29,29 @@
                         </router-link>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-        </div>
         <div v-else>Loading...</div>
     </div>
 </template>
 <script>
-import DiseaseListItem from './DiseaseListItem.vue';
+// import DiseaseListItem from './DiseaseListItem.vue';
 import {mapState} from "vuex";
+// import Select2 from "../Select/Select2";
 
 
 export default {
     components: {
-        DiseaseListItem,
+        // Select2,
+        // DiseaseListItem,
     },
     data() {
         return {
             diseases: [],
             loading: false,
+            myValue: '',
+            myOptions: ['op1', 'op2', 'op3'],
+            optionSelected: null
         };
     },
     computed: {
@@ -58,6 +69,12 @@ export default {
                 }).catch(error=>{
                     console.log(error)
                 })
+        }, 
+        myChangeEvent(val){
+            console.log(val);
+        },
+        mySelectEvent({id, text}){
+            console.log({id, text})
         }
     },
     created() {
@@ -71,3 +88,5 @@ export default {
     props: {},
 };
 </script>
+<style scoped>
+</style>

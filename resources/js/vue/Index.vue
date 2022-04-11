@@ -1,8 +1,7 @@
 <template>
-    <div class="container">
-
+    <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <router-link class="navbar-brand mr-auto" :to="{ name: 'patients' }"><h1>Etermed</h1></router-link>
+            <router-link class="navbar-brand pr-3" :to="{ name: 'patients' }"><h1>Etermed</h1></router-link>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ">
                     <li class="nav-item">
@@ -20,7 +19,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="container mt-4 mb-4 pr-4 pl-4">
+        <div class="container-md p-3 my-3">
             <router-view></router-view>
         </div>
 

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div>
             <div class="card-body">
                 <router-link class="text-decoration-none" :to="{ name: 'patient', params: { id } }">
                     <div class="card-title">
@@ -11,20 +10,20 @@
                 </router-link>
                 <div class="card-text">
                     <p>Pesel: {{ pesel }} | Data urodzenia: {{ birthday }} </p>
+                    <div class="row">
+                        <div v-if='(user.role==="admin") || (user.role==="doctor")'>
+                            <router-link :to="{ name: 'patient-edit', params: { id }}">
+                                <button class="btn btn-outline-dark mb-4 col-md-1">Edytuj</button>
+                            </router-link>
+                        </div>
                     
-                    <div v-if='(user.role==="admin") || (user.role==="doctor")'>
-                        <router-link :to="{ name: 'patient-edit', params: { id }}">
-                            <button class="btn btn-outline-dark btn-block mb-4">Edytuj</button>
-                        </router-link>
+                        <div v-if='user.role==="admin"'>
+                            <button @click="deletePatient(id)" class="btn btn-outline-dark mb-4 col-md-1">Usuń</button>
+                        </div>
                     </div>
                     
-                    <div v-if='user.role==="admin"'>
-                    <button @click="deletePatient(id)" class="btn btn-outline-dark btn-block mb-4">Usuń</button>
-                    </div>
                 </div>
             </div>
-        </div>
-
     </div>
 </template>
 <script>
