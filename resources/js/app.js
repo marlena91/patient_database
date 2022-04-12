@@ -7,6 +7,9 @@ import Index from './vue/Index';
 import router from "./routes";
 
 import storeDefinition from "./store";
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+
 
 window.Vue = require('vue').default;
 
@@ -26,6 +29,8 @@ window.axios.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+Vue.component('v-select', vSelect)
 
 const app = new Vue({
     el: '#app',
