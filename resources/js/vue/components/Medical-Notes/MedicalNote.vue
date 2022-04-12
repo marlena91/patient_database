@@ -5,18 +5,18 @@
                 <h5>{{ medicalNote.title }}</h5>
                 <div v-if='(user.role==="admin") || (user.role==="doctor")'>
                     <router-link :to="{ name: 'medical-note-edit', params: {id: medicalNote.id}}">
-                        <button class="btn btn-outline-dark btn-block m-1 btn-sm">Edytuj</button>
+                        <button class="">Edytuj</button>
                     </router-link>
                 </div>
                 <div v-if='(user.role==="admin")'>
-                    <button @click="deleteMedicalNote(medicalNote.id)" class="btn btn-outline-dark btn-block m-1 btn-sm">Usuń</button>
+                    <button @click="deleteMedicalNote(medicalNote.id)" class="">Usuń</button>
                 </div>
                 <p>{{ medicalNote.description }}</p>
             </div>
         </div>
         <div v-else>Loading...</div>
         <div v-if='(user.role==="admin") || (user.role==="doctor")'>
-            <button class="btn btn-warning btn-block mb-4" @click="showCreateMedicalNote=true">Dodaj dokumentację</button>
+            <button class="" @click="showCreateMedicalNote=true">Dodaj dokumentację</button>
         </div>
         <div>
             <create-medical-note v-if="showCreateMedicalNote" v-bind:patient_id="patient_id"></create-medical-note>

@@ -6548,6 +6548,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6570,7 +6576,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios["delete"]("/api/patients/".concat(id)).then(function (response) {
         console.log(response.data.data);
 
-        _this.$emit('id', id);
+        _this.$emit("id", id);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6752,6 +6758,45 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -32778,16 +32823,7 @@ var render = function () {
                             },
                           },
                         },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-outline-dark btn-block m-1 btn-sm",
-                            },
-                            [_vm._v("Edytuj")]
-                          ),
-                        ]
+                        [_c("button", {}, [_vm._v("Edytuj")])]
                       ),
                     ],
                     1
@@ -32799,8 +32835,6 @@ var render = function () {
                     _c(
                       "button",
                       {
-                        staticClass:
-                          "btn btn-outline-dark btn-block m-1 btn-sm",
                         on: {
                           click: function ($event) {
                             return _vm.deleteMedicalNote(medicalNote.id)
@@ -32824,7 +32858,6 @@ var render = function () {
           _c(
             "button",
             {
-              staticClass: "btn btn-warning btn-block mb-4",
               on: {
                 click: function ($event) {
                   _vm.showCreateMedicalNote = true
@@ -33256,97 +33289,107 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "card-body" },
-      [
+  return _c(
+    "div",
+    { staticClass: "card d-flex flex-row justify-content-between" },
+    [
+      _c("div", { staticClass: "card-body col-md-6" }, [
         _c(
-          "router-link",
-          {
-            staticClass: "text-decoration-none",
-            attrs: { to: { name: "patient", params: { id: _vm.id } } },
-          },
+          "div",
+          { staticClass: "card-title" },
           [
-            _c("div", { staticClass: "card-title" }, [
-              _c(
-                "h3",
-                {
-                  staticClass:
-                    "text-decoration-none text-dark font-weight-bolder mt-3",
-                },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.name) +
-                      " " +
-                      _vm._s(_vm.lastname) +
-                      "\n                    "
-                  ),
-                ]
-              ),
-            ]),
-          ]
+            _c(
+              "router-link",
+              {
+                staticClass: "text-decoration-none",
+                attrs: { to: { name: "patient", params: { id: _vm.id } } },
+              },
+              [
+                _c(
+                  "h2",
+                  {
+                    staticClass:
+                      "text-decoration-none text-dark font-weight-bolder mt-3 pr-3",
+                  },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(_vm.name) +
+                        " " +
+                        _vm._s(_vm.lastname) +
+                        "\n        "
+                    ),
+                  ]
+                ),
+              ]
+            ),
+          ],
+          1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "card-text" }, [
+        _c("div", { staticClass: "card-subtitle mb-2 text-muted" }, [
           _c("p", [
             _vm._v(
               "Pesel: " +
                 _vm._s(_vm.pesel) +
                 " | Data urodzenia: " +
-                _vm._s(_vm.birthday) +
-                " "
+                _vm._s(_vm.birthday)
             ),
           ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _vm.user.role === "admin" || _vm.user.role === "doctor"
-              ? _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: { name: "patient-edit", params: { id: _vm.id } },
-                        },
-                      },
-                      [
-                        _c(
-                          "button",
-                          { staticClass: "btn btn-outline-dark mb-4 col-md-1" },
-                          [_vm._v("Edytuj")]
-                        ),
-                      ]
-                    ),
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.user.role === "admin"
-              ? _c("div", [
+        ]),
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "card-body btn-group justify-content-center mr-2 col-md-6",
+        },
+        [
+          _vm.user.role === "admin" || _vm.user.role === "doctor"
+            ? _c(
+                "div",
+                [
                   _c(
-                    "button",
+                    "router-link",
                     {
-                      staticClass: "btn btn-outline-dark mb-4 col-md-1",
-                      on: {
-                        click: function ($event) {
-                          return _vm.deletePatient(_vm.id)
-                        },
+                      attrs: {
+                        to: { name: "patient-edit", params: { id: _vm.id } },
                       },
                     },
-                    [_vm._v("Usuń")]
+                    [
+                      _c(
+                        "button",
+                        { staticClass: "btn btn-outline-dark m-3" },
+                        [_vm._v("Edytuj")]
+                      ),
+                    ]
                   ),
-                ])
-              : _vm._e(),
-          ]),
-        ]),
-      ],
-      1
-    ),
-  ])
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.user.role === "admin"
+            ? _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-dark m-3",
+                    on: {
+                      click: function ($event) {
+                        return _vm.deletePatient(_vm.id)
+                      },
+                    },
+                  },
+                  [_vm._v("\n        Usuń\n      ")]
+                ),
+              ])
+            : _vm._e(),
+        ]
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33485,7 +33528,7 @@ var render = function () {
           : _vm._e(),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "col-md-6" }, [
         !_vm.loading
           ? _c(
               "div",
@@ -33537,97 +33580,57 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "column " }, [
-    _c("div", { staticClass: "col-md-8 " }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("h2", [
-            _vm._v(
-              _vm._s(_vm.patient.name) + " " + _vm._s(_vm.patient.lastname)
-            ),
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("article", [
-            _c("p", [_vm._v("Pesel: " + _vm._s(_vm.patient.pesel))]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v("Data urodzenia: " + _vm._s(_vm.patient.birthday)),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "pt-3" }, [
-          _vm.user.role === "admin" || _vm.user.role === "doctor"
-            ? _c(
-                "div",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        to: { name: "patient-edit", params: _vm.patient.id },
-                      },
-                    },
-                    [
-                      _c(
-                        "button",
-                        { staticClass: "btn btn-outline-dark btn-block m-4" },
-                        [_vm._v("Edytuj")]
-                      ),
-                    ]
-                  ),
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.user.role === "admin"
-            ? _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-dark btn-block m-4",
-                    on: {
-                      click: function ($event) {
-                        return _vm.deletePatient(_vm.patient.id)
-                      },
-                    },
-                  },
-                  [_vm._v("Usuń")]
-                ),
-              ])
-            : _vm._e(),
+  return _c("div", { staticClass: "container-md p-3 my-3" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 text-center" }, [
+        _c("h1", { staticClass: "display-2" }, [
+          _vm._v(_vm._s(_vm.patient.name) + " " + _vm._s(_vm.patient.lastname)),
         ]),
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-8 mt-3" }, [
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          { staticClass: "card-body" },
-          [
-            _c("h3", { staticClass: "card-title" }, [
-              _vm._v("Dokumentacja medyczna i choroby pacjenta:"),
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("h5", [_vm._v("Rozpoznane choroby:")]),
-            _vm._v(" "),
-            _vm._l(_vm.patient.diseases, function (disease) {
-              return _c("div", { key: disease.id }, [
-                _c("li", [
-                  _vm._v(_vm._s(disease.name) + "\n                        "),
-                  _vm.user.role === "admin"
-                    ? _c("div", [
-                        _c(
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-3 text-right border bg-light" },
+        [
+          _c("h3", { staticClass: "mt-3 mb-3" }, [_vm._v("Dane pacjenta:")]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Pesel:")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-muted" }, [
+            _vm._v(_vm._s(_vm.patient.pesel)),
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Data urodzenia:")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-muted" }, [
+            _vm._v(_vm._s(_vm.patient.birthday)),
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Rozpoznane choroby:")]),
+          _vm._v(" "),
+          _vm._l(_vm.patient.diseases, function (disease) {
+            return _c(
+              "div",
+              {
+                key: disease.id,
+                staticClass: "row pe-2 pb-1 bg-color-primary",
+              },
+              [
+                _c("div", { staticClass: "col-md-8" }, [
+                  _vm._v(_vm._s(disease.name)),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 d-flex justify-content-end" },
+                  [
+                    _vm.user.role === "admin"
+                      ? _c(
                           "button",
                           {
-                            staticClass:
-                              "delbtn btn btn-danger btn-block m-1 btn-sm",
+                            staticClass: "btn btn-outline-danger btn-sm",
                             on: {
                               click: function ($event) {
                                 return _vm.deleteDisease(
@@ -33637,47 +33640,35 @@ var render = function () {
                               },
                             },
                           },
-                          [_vm._v("Usuń")]
-                        ),
-                      ])
-                    : _vm._e(),
-                ]),
-              ])
-            }),
-            _vm._v(" "),
-            _vm.user.role === "admin" || _vm.user.role === "doctor"
-              ? _c("div", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info btn-block m-1 btn-sm",
-                      on: {
-                        click: function ($event) {
-                          return _vm.addDiseaseToPatient()
-                        },
+                          [_vm._v("\n              Usuń\n            ")]
+                        )
+                      : _vm._e(),
+                  ]
+                ),
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _vm.user.role === "admin" || _vm.user.role === "doctor"
+            ? _c("div", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.addDiseaseToPatient()
                       },
                     },
-                    [
-                      _vm._v(
-                        "\n                        Nowa choroba\n                    "
-                      ),
-                    ]
-                  ),
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "card-text" },
-              [_c("medical-note", { attrs: { patient_id: _vm.patient.id } })],
-              1
-            ),
-          ],
-          2
-        ),
-      ]),
+                  },
+                  [_vm._v("Nowa choroba")]
+                ),
+              ])
+            : _vm._e(),
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-9 text-center" }),
     ]),
   ])
 }

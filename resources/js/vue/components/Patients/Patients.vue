@@ -26,7 +26,7 @@
                     </router-link>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div v-if="!loading">
                     <div class="card mt-3" v-for="patient in patients" :key="patient.id">
                         <patient-list-item v-bind="patient" @id="patientDelete"></patient-list-item>
