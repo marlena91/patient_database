@@ -5319,6 +5319,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5512,6 +5514,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -5537,7 +5547,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 2;
                 return axios.post("/api/diseases", _this.disease).then(function (response) {
                   _this.$router.push({
-                    name: "diseases"
+                    name: "patients"
                   });
                 })["catch"](function (error) {
                   console.log(error);
@@ -5553,7 +5563,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    if (this.user.role !== 'admin' && this.user.role !== 'doctor') {
+    if (this.user.role !== "admin" && this.user.role !== "doctor") {
       this.$router.push({
         name: "login"
       });
@@ -5641,28 +5651,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   data: function data() {
     return {
-      diseases: [],
-      loading: false,
-      diseasesForSelect: []
+      selectedDisease: "",
+      diseases: []
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
     user: "user"
-  })), {}, {
-    test: function test() {
+  })),
+  methods: {
+    getDiseases: function getDiseases() {
       var _this = this;
 
-      this.diseases.forEach(function (element) {
-        _this.diseasesForSelect.push(element.name);
+      var request = axios.get("/api/diseases").then(function (response) {
+        _this.diseases = response.data.data;
+
+        _this.createArrayForSelect();
       });
-    }
-  }),
-  methods: {
+    },
+    loadDisease: function loadDisease() {
+      console.log(this.selectedDisease.id);
+    },
     deleteDisease: function deleteDisease(id) {
       var _this2 = this;
 
@@ -5671,19 +5710,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this2.diseases = _this2.diseases.filter(function (item) {
           return item.id !== id;
         });
+        _this2.selectedDisease = "";
       })["catch"](function (error) {
         console.log(error);
       });
     }
   },
   created: function created() {
-    var _this3 = this;
-
-    this.loading = true;
-    var request = axios.get("/api/diseases").then(function (response) {
-      _this3.diseases = response.data.data;
-      _this3.loading = false;
-    });
+    this.getDiseases();
   },
   props: {}
 });
@@ -5716,6 +5750,17 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5780,7 +5825,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context2.next = 2;
                 return axios.put("/api/diseases/".concat(_this2.$route.params.id), _this2.disease).then(function (response) {
                   _this2.$router.push({
-                    name: "diseases"
+                    name: "patients"
                   });
                 })["catch"](function (error) {
                   console.log(error);
@@ -5796,7 +5841,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    if (this.user.role !== 'admin' && this.user.role !== 'doctor') {
+    if (this.user.role !== "admin" && this.user.role !== "doctor") {
       this.$router.push({
         name: "login"
       });
@@ -6645,7 +6690,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _PatientListItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PatientListItem.vue */ "./resources/js/vue/components/Patients/PatientListItem.vue");
 /* harmony import */ var _SearchEngine_Search_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SearchEngine/Search.vue */ "./resources/js/vue/components/SearchEngine/Search.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Diseases_Diseases_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Diseases/Diseases.vue */ "./resources/js/vue/components/Diseases/Diseases.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -6691,13 +6737,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Search: _SearchEngine_Search_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    PatientListItem: _PatientListItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PatientListItem: _PatientListItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Diseases: _Diseases_Diseases_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -6705,11 +6764,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       loading: false,
       searchingArr: [],
       info: false,
-      sortSelect: ''
+      sortSelect: "",
+      sortingOptions: [{
+        label: "Imiona A-Z",
+        id: 1
+      }, {
+        label: "Imiona Z-A",
+        id: 2
+      }, {
+        label: "Nazwiska A-Z",
+        id: 3
+      }, {
+        label: "Nazwiska Z-A",
+        id: 4
+      }, {
+        label: "Data urodzenia od najstarszego",
+        id: 5
+      }, {
+        label: "Data urodzenia od najmłodszego",
+        id: 6
+      }]
     };
   },
   mounted: function mounted() {},
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
     user: "user"
   })),
   methods: {
@@ -6737,39 +6815,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return item.id !== id;
       });
     },
+    loadDisease: function loadDisease() {},
     sortData: function sortData() {
-      switch (this.sortSelect) {
-        case "nameAsc":
+      switch (this.sortSelect.id) {
+        case 1:
           return this.patients.sort(function (a, b) {
             return a.name > b.name ? 1 : -1;
           });
           break;
 
-        case "nameDesc":
+        case 2:
           return this.patients.sort(function (a, b) {
             return a.name < b.name ? 1 : -1;
           });
           break;
 
-        case "lastnameAsc":
+        case 3:
           return this.patients.sort(function (a, b) {
             return a.lastname > b.lastname ? 1 : -1;
           });
           break;
 
-        case "lastnameDesc":
+        case 4:
           return this.patients.sort(function (a, b) {
             return a.lastname < b.lastname ? 1 : -1;
           });
           break;
 
-        case "birthdayAsc":
+        case 5:
           return this.patients.sort(function (a, b) {
             return a.birthday > b.birthday ? 1 : -1;
           });
           break;
 
-        case "birthdayDesc":
+        case 6:
           return this.patients.sort(function (a, b) {
             return a.birthday < b.birthday ? 1 : -1;
           });
@@ -6964,15 +7043,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   data: function data() {
     return {
       searchingResults: [],
-      name: '',
-      lastname: '',
-      pesel: '',
-      birthday: '',
+      name: "",
+      lastname: "",
+      pesel: "",
+      birthday: "",
       errors: []
     };
   },
@@ -6992,7 +7096,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/api/search?name=".concat(_this.name, "&lastname=").concat(_this.lastname, "&pesel=").concat(_this.pesel, "&birthday=").concat(_this.birthday)).then(function (response) {
                   _this.searchingResults = response.data.data;
 
-                  _this.$emit('searchingResults', _this.searchingResults);
+                  _this.$emit("searchingResults", _this.searchingResults);
                 });
 
               case 4:
@@ -7185,10 +7289,6 @@ var routes = [{
   path: '/patients/create',
   name: 'patient-create',
   component: _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_1__["default"]
-}, {
-  path: '/diseases',
-  name: 'diseases',
-  component: _vue_components_Diseases_Diseases__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: '/medical-notes/:id/edit',
   name: 'medical-note-edit',
@@ -32205,7 +32305,7 @@ var render = function () {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "collapse navbar-collapse" }, [
-          _c("ul", { staticClass: "navbar-nav " }, [
+          _c("ul", { staticClass: "navbar-nav" }, [
             _c(
               "li",
               { staticClass: "nav-item" },
@@ -32217,22 +32317,6 @@ var render = function () {
                     attrs: { to: { name: "patients" } },
                   },
                   [_vm._v("Baza pacjentów")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: { to: { name: "diseases" } },
-                  },
-                  [_vm._v("Baza chorób")]
                 ),
               ],
               1
@@ -32422,7 +32506,7 @@ var render = function () {
     _c(
       "h5",
       { staticClass: "text-uppercase text-secondary font-weight-bolder mt-3" },
-      [_vm._v("Nowa choroba: ")]
+      [_vm._v("\n    Nowa choroba:\n  ")]
     ),
     _vm._v(" "),
     _c(
@@ -32468,7 +32552,7 @@ var render = function () {
             staticClass: "btn btn-secondary btn-block mb-4",
             attrs: { type: "submit" },
           },
-          [_vm._v("Utwórz")]
+          [_vm._v("\n      Utwórz\n    ")]
         ),
       ]
     ),
@@ -32531,37 +32615,121 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.user.role === "admin" || _vm.user.role === "doctor"
-      ? _c(
-          "div",
-          [
-            _c("router-link", { attrs: { to: { name: "disease-create" } } }, [
-              _c("div", { staticClass: "card-title" }, [
-                _c("button", { staticClass: "btn btn-light btn-block mb-4" }, [
-                  _vm._v("Dodaj chorobę"),
-                ]),
-              ]),
-            ]),
-          ],
-          1
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    !_vm.loading
-      ? _c(
-          "div",
-          [
-            _c("v-select", {
-              staticClass: "col-md-8",
-              attrs: {
-                options: _vm.diseasesForSelect,
-                placeholder: "Dostępne choroby...",
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12 mb-2" },
+        [
+          _c("v-select", {
+            attrs: {
+              options: _vm.diseases,
+              label: "name",
+              placeholder: "Dostępne choroby...",
+            },
+            on: { input: _vm.loadDisease },
+            model: {
+              value: _vm.selectedDisease,
+              callback: function ($$v) {
+                _vm.selectedDisease = $$v
               },
-            }),
-          ],
-          1
-        )
-      : _c("div", [_vm._v("Loading...")]),
+              expression: "selectedDisease",
+            },
+          }),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "mb-2" }, [
+        _vm.user.role === "admin" || _vm.user.role === "doctor"
+          ? _c(
+              "div",
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: { name: "disease-create" } } },
+                  [
+                    _c(
+                      "button",
+                      { staticClass: "btn btn-secondary btn-block col-md-12" },
+                      [
+                        _vm._v(
+                          "\n            Wprowadź nową chorobę\n          "
+                        ),
+                      ]
+                    ),
+                  ]
+                ),
+              ],
+              1
+            )
+          : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _vm.user.role === "admin" || _vm.user.role === "doctor"
+        ? _c("div", { staticClass: "col-md-10" }, [
+            _vm.selectedDisease
+              ? _c("div", [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _vm._v("Wybrano: " + _vm._s(_vm.selectedDisease.name)),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row d-flex flex-row-reverse" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-2" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "text-decoration-none text-primary",
+                            attrs: {
+                              to: {
+                                name: "disease-edit",
+                                params: { id: _vm.selectedDisease.id },
+                              },
+                            },
+                          },
+                          [_vm._v("\n              Edytuj\n            ")]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm.user.role === "admin"
+                      ? _c("div", { staticClass: "col-md-2" }, [
+                          _c(
+                            "div",
+                            {
+                              on: {
+                                click: function ($event) {
+                                  return _vm.deleteDisease(
+                                    _vm.selectedDisease.id
+                                  )
+                                },
+                              },
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "text-decoration-none text-danger",
+                                  attrs: { href: "#" },
+                                },
+                                [_vm._v(" Usuń ")]
+                              ),
+                            ]
+                          ),
+                        ])
+                      : _vm._e(),
+                  ]),
+                ])
+              : _vm._e(),
+          ])
+        : _vm._e(),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -32591,7 +32759,7 @@ var render = function () {
     _c(
       "h5",
       { staticClass: "text-uppercase text-secondary font-weight-bolder mt-3" },
-      [_vm._v("Dodaj nową chorobę: ")]
+      [_vm._v("\n    Dodaj nową chorobę:\n  ")]
     ),
     _vm._v(" "),
     _c(
@@ -32637,7 +32805,7 @@ var render = function () {
             staticClass: "btn btn-warining btn-block mb-4",
             attrs: { type: "submit" },
           },
-          [_vm._v("Zapisz")]
+          [_vm._v("\n      Zapisz\n    ")]
         ),
       ]
     ),
@@ -33564,79 +33732,73 @@ var render = function () {
       _c("div", { staticClass: "col-md-4" }, [
         _c(
           "div",
+          { staticClass: "mb-2" },
           [
             _c("search", {
               on: { searchingResults: _vm.onSearchingResultsChanged },
             }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary col-md-10 btn-block mb-4",
-                on: { click: _vm.reset },
-              },
-              [_vm._v("Wyzeruj filtrowanie")]
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.sortSelect,
-                    expression: "sortSelect",
-                  },
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "mb-2" }, [
+          _c(
+            "div",
+            {
+              staticClass: "btn btn-secondary col-md-10 btn-block",
+              on: { click: _vm.reset },
+            },
+            [_vm._v("\n          Wyzeruj filtrowanie\n        ")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mb-2" }, [
+          _vm.user.role === "admin" || _vm.user.role === "doctor"
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "patient-create" } } },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary btn-block col-md-10",
+                        },
+                        [_vm._v("\n              Dodaj pacjenta\n            ")]
+                      ),
+                    ]
+                  ),
                 ],
-                staticClass: "col-md-10 text-center",
-                on: {
-                  click: _vm.sortData,
-                  change: function ($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function (o) {
-                        return o.selected
-                      })
-                      .map(function (o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.sortSelect = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
+                1
+              )
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-10 mb-2" },
+          [
+            _c("v-select", {
+              attrs: {
+                options: _vm.sortingOptions,
+                placeholder: "Filtrowanie...",
+              },
+              on: {
+                input: _vm.sortData,
+                close: function ($event) {
+                  return _vm.console.log("test")
                 },
               },
-              [
-                _c("option", { attrs: { disabled: "", value: "" } }, [
-                  _vm._v("--Posortuj dane--"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "nameAsc" } }, [
-                  _vm._v("Imiona od A do Z"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "nameDesc" } }, [
-                  _vm._v("Imiona od Z do A"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "lastnameAsc" } }, [
-                  _vm._v("Nazwiska od A do Z"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "lastnameDesc" } }, [
-                  _vm._v("Nazwiska od Z do A"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "birthdayAsc" } }, [
-                  _vm._v("Data urodzenia rosnaco"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "birthdayDesc" } }, [
-                  _vm._v("Data urodzenia malejaco"),
-                ]),
-              ]
-            ),
+              model: {
+                value: _vm.sortSelect,
+                callback: function ($$v) {
+                  _vm.sortSelect = $$v
+                },
+                expression: "sortSelect",
+              },
+            }),
             _vm._v(" "),
             _vm.info
               ? _c("p", { staticClass: "text-info" }, [
@@ -33647,30 +33809,7 @@ var render = function () {
           1
         ),
         _vm._v(" "),
-        _vm.user.role === "admin" || _vm.user.role === "doctor"
-          ? _c(
-              "div",
-              [
-                _c(
-                  "router-link",
-                  { attrs: { to: { name: "patient-create" } } },
-                  [
-                    _c("div", { staticClass: "card-title" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-light btn-block mb-4 mt-4 col-md-10",
-                        },
-                        [_vm._v("Dodaj pacjenta")]
-                      ),
-                    ]),
-                  ]
-                ),
-              ],
-              1
-            )
-          : _vm._e(),
+        _c("div", { staticClass: "col-md-10" }, [_c("diseases")], 1),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
@@ -33887,7 +34026,7 @@ var render = function () {
             staticClass:
               "text-uppercase text-secondary font-weight-bolder mt-3",
           },
-          [_vm._v("Wyszukiwarka:")]
+          [_vm._v("\n      Wyszukiwarka:\n    ")]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "form-row mb-4" }, [
@@ -33992,17 +34131,17 @@ var render = function () {
           return _c(
             "div",
             { key: error, staticClass: "card border-danger w-50 mb-3" },
-            [_vm._v("\n            " + _vm._s(error) + "\n        ")]
+            [_vm._v("\n      " + _vm._s(error) + "\n    ")]
           )
         }),
         _vm._v(" "),
         _c(
           "button",
           {
-            staticClass: "btn col-md-10 btn-secondary btn-block mb-4",
+            staticClass: "btn col-md-10 btn-secondary btn-block",
             on: { click: _vm.search },
           },
-          [_vm._v("Szukaj")]
+          [_vm._v("\n      Szukaj\n    ")]
         ),
       ],
       2

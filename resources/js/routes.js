@@ -32,11 +32,6 @@ const routes = [
         component: CreatePatient,
     },
     {
-        path: '/diseases',
-        name: 'diseases',
-        component: Diseases,
-    },
-    {
         path: '/medical-notes/:id/edit',
         name: 'medical-note-edit',
         component: EditMedicalNote,

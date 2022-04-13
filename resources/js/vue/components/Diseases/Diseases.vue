@@ -1,77 +1,100 @@
 <template>
-    <div>
-        <div v-if='(user.role==="admin") || (user.role==="doctor")'>
-            <router-link :to="{ name: 'disease-create'}">
-                <div class="card-title">
-                    <button class="btn btn-light btn-block mb-4">Dodaj chorobę</button>
-                </div>
-            </router-link>
+  <div>
+    <div class="row">
+      <div class="col-md-12 mb-2">
+        <v-select
+          @input="loadDisease"
+          v-model="selectedDisease"
+          :options="diseases"
+          label="name"
+          placeholder="Dostępne choroby..."
+        ></v-select>
+      </div>
+      <div class="mb-2">
+        <div v-if="user.role === 'admin' || user.role === 'doctor'">
+          <router-link :to="{ name: 'disease-create' }">
+            <button class="btn btn-secondary btn-block col-md-12">
+              Wprowadź nową chorobę
+            </button>
+          </router-link>
         </div>
-        <div v-if="!loading">
-            <v-select class="col-md-8" :options="diseasesForSelect" placeholder="Dostępne choroby..."></v-select>
-            
+      </div>
 
-                    <!-- <div div v-if='(user.role==="admin")'> -->
-                    <!-- <div>
-                        <button @click="deleteDisease(disease.id)" class="btn btn-info btn-block m-1 btn-sm">Usuń</button>
-                    </div>
-                    
-                    <div>
-                    <div v-if='(user.role==="admin") || (user.role==="doctor")'>
-                        <router-link class="text-decoration-none" :to="{ name: 'disease-edit', params: { id: disease.id } }">
-                            <button class="btn btn-info btn-block m-1 btn-sm">Edytuj</button>
-                        </router-link>
-                    </div> -->
+      <div
+        class="col-md-10"
+        v-if="user.role === 'admin' || user.role === 'doctor'"
+      >
+        <div v-if="selectedDisease">
+          <div class="row">
+            <div class="col">Wybrano: {{ selectedDisease.name }}</div>
+          </div>
+          <div class="row d-flex flex-row-reverse">
+            <div class="col-md-2">
+              <router-link
+                class="text-decoration-none text-primary"
+                :to="{
+                  name: 'disease-edit',
+                  params: { id: selectedDisease.id },
+                }"
+              >
+                Edytuj
+              </router-link>
+            </div>
+
+            <div class="col-md-2" v-if="user.role === 'admin'">
+              <div @click="deleteDisease(selectedDisease.id)">
+                <a href="#" class="text-decoration-none text-danger"> Usuń </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div v-else>Loading...</div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
-import {mapState} from "vuex";
-
+import { mapState } from "vuex";
 
 export default {
-    components: {
+  components: {},
+  data() {
+    return {
+      selectedDisease: "",
+      diseases: [],
+    };
+  },
+  computed: {
+    ...mapState({
+      user: "user",
+    }),
+  },
+  methods: {
+    getDiseases() {
+      const request = axios.get("/api/diseases").then((response) => {
+        this.diseases = response.data.data;
+        this.createArrayForSelect();
+      });
     },
-    data() {
-        return {
-            diseases: [],
-            loading: false,
-            diseasesForSelect: []
-        };
+    loadDisease() {
+      console.log(this.selectedDisease.id);
     },
-    computed: {
-        ...mapState({
-            user: "user",
-        }),
-        test(){
-            this.diseases.forEach(element => {
-                this.diseasesForSelect.push(element.name)
-            });
-        }
+    deleteDisease(id) {
+      axios
+        .delete(`/api/diseases/${id}}`)
+        .then((response) => {
+          console.log(response);
+          this.diseases = this.diseases.filter((item) => item.id !== id);
+          this.selectedDisease = "";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
-    methods: {
-        deleteDisease(id) {
-            axios.delete(`/api/diseases/${id}}`)
-            .then(response=>{
-                    console.log(response);
-                    this.diseases = this.diseases.filter((item) => item.id !== id)
-
-                }).catch(error=>{
-                    console.log(error)
-                })
-        }, 
-
-    },
-    created() {
-        this.loading = true;
-        const request = axios
-            .get("/api/diseases").then(response => {
-                this.diseases = response.data.data;
-                this.loading = false;
-            });
-    },
-    props: {},
+  },
+  created() {
+    this.getDiseases();
+  },
+  props: {},
 };
 </script>
 <style scoped>
