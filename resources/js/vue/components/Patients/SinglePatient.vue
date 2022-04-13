@@ -1,12 +1,20 @@
 <template>
   <div class="container-md p-3 my-3">
+    <div class="row pb-3">
+      <router-link
+        class="text-decoration-none text-muted"
+        :to="{ name: 'patients' }"
+        >Powrót do strony głównej</router-link
+      >
+    </div>
     <div class="row">
       <div class="col-md-12 text-center">
         <h1 class="display-2">{{ patient.name }} {{ patient.lastname }}</h1>
       </div>
     </div>
+
     <div class="row">
-      <div class="col-md-3 text-right border bg-light">
+      <div class="col-md-3 text-right bg-light pb-3 rounded-2">
         <h3 class="mt-3 mb-3">Dane pacjenta:</h3>
         <h5>Pesel:</h5>
         <p class="text-muted">{{ patient.pesel }}</p>
@@ -18,8 +26,8 @@
           v-for="disease in patient.diseases"
           :key="disease.id"
         >
-          <div class="col-md-8">{{ disease.name }}</div>
-          <div class="col-md-4 d-flex justify-content-end">
+          <div class="col-md-9 border-bottom">{{ disease.name }}</div>
+          <div class="col-md-3 d-flex justify-content-end">
             <button
               @click="deleteDisease(disease.id, patient.id)"
               class="btn btn-outline-danger btn-sm"
@@ -31,66 +39,18 @@
         </div>
 
         <div v-if="user.role === 'admin' || user.role === 'doctor'">
-          <button @click="addDiseaseToPatient()" class="">Nowa choroba</button>
+          <div @click="addDiseaseToPatient()" class="text-primary">
+            <a href="#" class="text-decoration-none"> Dodaj chorobę </a>
+          </div>
         </div>
       </div>
-      <div class="col-md-9 text-center"></div>
+      <div class="col-md-8 text-center bg-light p-3 rounded-2 ms-3">
+        <div class="">
+          <medical-note v-bind:patient_id="patient.id"></medical-note>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- <div class="">
-            <div class="">
-                <div class="">
-                    <hr>
-                    <article>
-                        
-                    </article>
-                </div>
-                <div class="">:nth-child(2)ient-edit', params: patient.id}">
-                            <button class="">Edytuj</button>
-                        </router-link>
-                    </div>
-                    <div v-if='user.role==="admin"'>
-                        <button @click="deletePatient(patient.id)" class="">Usuń</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-<div v-for="disease in patient.diseases" :key="disease.id">
-                        <li>{{disease.name}}
-                            <div v-if='(user.role==="admin")'>
-                                <button @click="deleteDisease(disease.id, patient.id)" class="">Usuń</button>
-                            </div>
-                        </li>
-                    </div>
-                    <div v-if='(user.role==="admin") || (user.role==="doctor")'>
-                        <button @click="addDiseaseToPatient()" class="">
-                            Nowa choroba
-                        </button>
-                    </div>
-                    <h3 class="">Dokumentacja medyczna i choroby pacjenta:</h3>
-                    <hr>
-
-                    <h5>Rozpoznane choroby:</h5>
-                    <div v-for="disease in patient.diseases" :key="disease.id">
-                        <li>{{disease.name}}
-                            <div v-if='(user.role==="admin")'>
-                                <button @click="deleteDisease(disease.id, patient.id)" class="">Usuń</button>
-                            </div>
-                        </li>
-                    </div>
-                    <div v-if='(user.role==="admin") || (user.role==="doctor")'>
-                        <button @click="addDiseaseToPatient()" class="">
-                            Nowa choroba
-                        </button>
-                    </div>
-                    <hr>
-                    <div class="">
-                        <medical-note v-bind:patient_id="patient.id"></medical-note>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 </template>
 
 <script>
@@ -131,7 +91,7 @@ export default {
     },
     deleteDisease(disease_id, patient_id) {
       axios
-        .delete(`/api/diseasespatients/${disease_id}/${patient_id}`)
+        .delete(`/api/diseases-patients/${disease_id}/${patient_id}`)
         .then((response) => {
           this.patient.diseases = this.patient.diseases.filter((item) => {
             console.log(item.id);
