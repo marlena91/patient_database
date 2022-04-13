@@ -28,7 +28,6 @@
             placeholder="Filtrowanie..."
           >
           </v-select>
-          <p v-if="info" class="text-info">Brak dopasowań.</p>
         </div>
         <div class="col-md-10">
           <diseases></diseases>
@@ -36,6 +35,14 @@
       </div>
       <div class="col-md-6">
         <div v-if="!loading">
+          <div
+            v-if="noSearchDataInfo"
+            class="alert alert-dark mt-5"
+            role="alert"
+          >
+            Brak dopasowań. Proszę wprowadzić inne dane do wyszukiwarki.
+          </div>
+
           <div class="card mt-3" v-for="patient in patients" :key="patient.id">
             <patient-list-item
               v-bind="patient"
@@ -65,7 +72,7 @@ export default {
       patients: [],
       loading: false,
       searchingArr: [],
-      info: false,
+      noSearchDataInfo: false,
       sortSelect: "",
       sortingOptions: [
         { label: "Imiona A-Z", id: 1 },
@@ -92,9 +99,10 @@ export default {
       });
     },
     onSearchingResultsChanged(searchingResults) {
+      this.noSearchDataInfo = false;
       this.patients = searchingResults;
       if (this.patients.length === 0) {
-        this.info = true;
+        this.noSearchDataInfo = true;
       }
     },
     reset() {

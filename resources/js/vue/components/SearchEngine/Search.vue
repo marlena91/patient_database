@@ -11,6 +11,7 @@
             v-model="name"
             class="form-control form-control-sm"
             placeholder="Imię..."
+            required
           />
         </div>
         <div class="form-group col-md-10 mt-3">
@@ -31,18 +32,13 @@
         </div>
         <div class="form-group col-md-10 mt-3">
           <input
-            type="text"
+            type="date"
             v-model="birthday"
             class="form-control form-control-sm"
-            placeholder="Data urodzenia..."
           />
         </div>
       </div>
-      <div
-        class="card border-danger w-50 mb-3"
-        v-for="error in errors"
-        :key="error"
-      >
+      <div class="" v-for="error in errors" :key="error">
         {{ error }}
       </div>
       <button @click="search" class="btn col-md-10 btn-secondary btn-block">
