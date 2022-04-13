@@ -6446,6 +6446,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.prev = 0;
                 _context.next = 3;
                 return axios.post("/api/patients", _this.patient).then(function (response) {
+                  console.log(response);
+
                   _this.$router.push({
                     name: "patient",
                     params: {

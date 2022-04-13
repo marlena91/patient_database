@@ -89,6 +89,7 @@ export default {
     async create() {
       try {
         await axios.post(`/api/patients`, this.patient).then((response) => {
+          console.log(response);
           this.$router.push({
             name: "patient",
             params: { id: response.data.patient.id },

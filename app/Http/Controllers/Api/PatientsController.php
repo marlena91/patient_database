@@ -51,6 +51,11 @@ class PatientsController extends Controller
             'birthday' => 'required|date'
         ]);
 
+        // if ($request->pesel) {
+        //     dd(preg_match('/^[0-9]{11}$/', $request->pesel));
+
+
+        // } else {
         $patient = Patient::create([
             'name' => $request->input('name'),
             'lastname' => $request->input('lastname'),
@@ -62,7 +67,7 @@ class PatientsController extends Controller
             'message' => 'Patient Created Successfully!!',
             'patient' => $patient
         ]);
-
+        // }
     }
 
     /**
@@ -86,8 +91,6 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-
-
     }
 
     /**
@@ -102,9 +105,10 @@ class PatientsController extends Controller
         $request->validate([
             'name' => 'required',
             'lastname' => 'required',
-            'pesel' => 'required|unique:patients|digits:11',
+            'pesel' => 'required|digits:11',
             'birthday' => 'required|date'
         ]);
+
 
         $patient->fill($request->post())->save();
         return response()->json([
