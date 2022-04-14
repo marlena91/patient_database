@@ -12,12 +12,16 @@
       </div>
       <div class="mb-2">
         <div v-if="user.role === 'admin' || user.role === 'doctor'">
-          <router-link :to="{ name: 'disease-create' }">
-            <button class="btn btn-secondary btn-block col-md-12">
-              Wprowadź nową chorobę
-            </button>
-          </router-link>
+          <button
+            @click="showHideCreateDisease"
+            class="btn btn-secondary btn-block col-md-12"
+          >
+            Wprowadź nową chorobę
+          </button>
         </div>
+      </div>
+      <div v-if="createDisease" class="mb-2">
+        <create-disease @newDisease="newDisease"></create-disease>
       </div>
 
       <div
@@ -54,13 +58,17 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import CreateDisease from "./CreateDisease.vue";
 
 export default {
-  components: {},
+  components: {
+    CreateDisease,
+  },
   data() {
     return {
       selectedDisease: "",
       diseases: [],
+      createDisease: false,
     };
   },
   computed: {
@@ -72,11 +80,7 @@ export default {
     getDiseases() {
       const request = axios.get("/api/diseases").then((response) => {
         this.diseases = response.data.data;
-        this.createArrayForSelect();
       });
-    },
-    loadDisease() {
-      console.log(this.selectedDisease.id);
     },
     deleteDisease(id) {
       axios
@@ -89,6 +93,15 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    showHideCreateDisease() {
+      this.createDisease
+        ? (this.createDisease = false)
+        : (this.createDisease = true);
+    },
+    newDisease() {
+      this.getDiseases();
+      this.createDisease = false;
     },
   },
   created() {

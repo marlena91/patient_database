@@ -45,7 +45,7 @@ class DiseasesController extends Controller
             'name' => 'required'
         ]);
 
-        $patient = Disease::create([
+        $disease = Disease::create([
             'name' => $request->input('name')
         ]);
     }

@@ -5520,8 +5520,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -5546,9 +5544,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context.next = 2;
                 return axios.post("/api/diseases", _this.disease).then(function (response) {
-                  _this.$router.push({
-                    name: "patients"
-                  });
+                  _this.$emit("newDisease");
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -5616,7 +5612,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _CreateDisease_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateDisease.vue */ "./resources/js/vue/components/Diseases/CreateDisease.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -5677,16 +5674,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {},
+  components: {
+    CreateDisease: _CreateDisease_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       selectedDisease: "",
-      diseases: []
+      diseases: [],
+      createDisease: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
     user: "user"
   })),
   methods: {
@@ -5695,12 +5700,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var request = axios.get("/api/diseases").then(function (response) {
         _this.diseases = response.data.data;
-
-        _this.createArrayForSelect();
       });
-    },
-    loadDisease: function loadDisease() {
-      console.log(this.selectedDisease.id);
     },
     deleteDisease: function deleteDisease(id) {
       var _this2 = this;
@@ -5714,6 +5714,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    showHideCreateDisease: function showHideCreateDisease() {
+      this.createDisease ? this.createDisease = false : this.createDisease = true;
+    },
+    newDisease: function newDisease() {
+      this.getDiseases();
+      this.createDisease = false;
     }
   },
   created: function created() {
@@ -7349,10 +7356,6 @@ var routes = [{
   path: '/diseases/:id/edit',
   name: 'disease-edit',
   component: _vue_components_Diseases_EditDisease__WEBPACK_IMPORTED_MODULE_7__["default"]
-}, {
-  path: '/diseases/create',
-  name: 'disease-create',
-  component: _vue_components_Diseases_CreateDisease__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
   path: '/diseases-patients',
   name: 'disease-patient.show',
@@ -32564,6 +32567,7 @@ var render = function () {
     _c(
       "form",
       {
+        staticClass: "form-row mb-4",
         on: {
           submit: function ($event) {
             $event.preventDefault()
@@ -32572,36 +32576,34 @@ var render = function () {
         },
       },
       [
-        _c("div", { staticClass: "form-row mb-4" }, [
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.disease.name,
-                  expression: "disease.name",
-                },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Nazwa..." },
-              domProps: { value: _vm.disease.name },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.disease, "name", $event.target.value)
-                },
+        _c("div", { staticClass: "form-group col-md-12 mt-3 mb-2" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.disease.name,
+                expression: "disease.name",
               },
-            }),
-          ]),
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "text", placeholder: "Nazwa..." },
+            domProps: { value: _vm.disease.name },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.disease, "name", $event.target.value)
+              },
+            },
+          }),
         ]),
         _vm._v(" "),
         _c(
           "button",
           {
-            staticClass: "btn btn-secondary btn-block mb-4",
+            staticClass: "btn col-md-12 btn-secondary btn-block",
             attrs: { type: "submit" },
           },
           [_vm._v("\n      Utwórz\n    ")]
@@ -32693,29 +32695,27 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "mb-2" }, [
         _vm.user.role === "admin" || _vm.user.role === "doctor"
-          ? _c(
-              "div",
-              [
-                _c(
-                  "router-link",
-                  { attrs: { to: { name: "disease-create" } } },
-                  [
-                    _c(
-                      "button",
-                      { staticClass: "btn btn-secondary btn-block col-md-12" },
-                      [
-                        _vm._v(
-                          "\n            Wprowadź nową chorobę\n          "
-                        ),
-                      ]
-                    ),
-                  ]
-                ),
-              ],
-              1
-            )
+          ? _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary btn-block col-md-12",
+                  on: { click: _vm.showHideCreateDisease },
+                },
+                [_vm._v("\n          Wprowadź nową chorobę\n        ")]
+              ),
+            ])
           : _vm._e(),
       ]),
+      _vm._v(" "),
+      _vm.createDisease
+        ? _c(
+            "div",
+            { staticClass: "mb-2" },
+            [_c("create-disease", { on: { newDisease: _vm.newDisease } })],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _vm.user.role === "admin" || _vm.user.role === "doctor"
         ? _c("div", { staticClass: "col-md-10" }, [
