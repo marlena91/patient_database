@@ -6792,10 +6792,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -6855,9 +6851,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.patients.length === 0) {
         this.noSearchDataInfo = true;
       }
-    },
-    reset: function reset() {
-      this.getData();
     },
     patientDelete: function patientDelete(id) {
       this.patients = this.patients.filter(function (item) {
@@ -7113,6 +7106,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   data: function data() {
@@ -7161,6 +7161,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[1, 6]]);
       }))();
+    },
+    reset: function reset() {
+      this.name = "";
+      this.lastname = "";
+      this.pesel = "";
+      this.birthday = "";
+      this.search();
     }
   },
   created: function created() {},
@@ -33835,17 +33842,6 @@ var render = function () {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "mb-2" }, [
-          _c(
-            "div",
-            {
-              staticClass: "btn btn-secondary col-md-10 btn-block",
-              on: { click: _vm.reset },
-            },
-            [_vm._v("\n          Wyzeruj filtrowanie\n        ")]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "mb-2" }, [
           _vm.user.role === "admin" || _vm.user.role === "doctor"
             ? _c(
                 "div",
@@ -34237,14 +34233,27 @@ var render = function () {
           ])
         }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn col-md-10 btn-secondary btn-block",
-            on: { click: _vm.search },
-          },
-          [_vm._v("\n      Szukaj\n    ")]
-        ),
+        _c("div", { staticClass: "mb-2" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn col-md-10 btn-secondary btn-block",
+              on: { click: _vm.search },
+            },
+            [_vm._v("\n        Szukaj\n      ")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mb-2" }, [
+          _c(
+            "div",
+            {
+              staticClass: "btn btn-secondary col-md-10 btn-block",
+              on: { click: _vm.reset },
+            },
+            [_vm._v("\n        Wyzeruj filtrowanie\n      ")]
+          ),
+        ]),
       ],
       2
     ),

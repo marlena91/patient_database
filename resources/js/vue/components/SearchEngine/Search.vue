@@ -41,9 +41,16 @@
       <div class="" v-for="error in errors" :key="error">
         {{ error }}
       </div>
-      <button @click="search" class="btn col-md-10 btn-secondary btn-block">
-        Szukaj
-      </button>
+      <div class="mb-2">
+        <button @click="search" class="btn col-md-10 btn-secondary btn-block">
+          Szukaj
+        </button>
+      </div>
+      <div class="mb-2">
+        <div @click="reset" class="btn btn-secondary col-md-10 btn-block">
+          Wyzeruj filtrowanie
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -77,6 +84,13 @@ export default {
         this.errors = err.response.data.errors;
         console.log(this.errors);
       }
+    },
+    reset() {
+      this.name = "";
+      this.lastname = "";
+      this.pesel = "";
+      this.birthday = "";
+      this.search();
     },
   },
   created() {},

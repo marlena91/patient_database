@@ -52,9 +52,9 @@ class PatientsController extends Controller
             'birthday' => 'required|date'
         ]);
 
-        $test =  new PeselValidate;
+        $pesel =  new PeselValidate;
 
-        if ($test->validation($request)) {
+        if ($pesel->validation($request)) {
             $patient = Patient::create([
                 'name' => $request->input('name'),
                 'lastname' => $request->input('lastname'),

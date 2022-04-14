@@ -5,11 +5,7 @@
         <div class="mb-2">
           <search @searchingResults="onSearchingResultsChanged"></search>
         </div>
-        <div class="mb-2">
-          <div @click="reset" class="btn btn-secondary col-md-10 btn-block">
-            Wyzeruj filtrowanie
-          </div>
-        </div>
+
         <div class="mb-2">
           <div v-if="user.role === 'admin' || user.role === 'doctor'">
             <router-link :to="{ name: 'patient-create' }">
@@ -104,9 +100,6 @@ export default {
       if (this.patients.length === 0) {
         this.noSearchDataInfo = true;
       }
-    },
-    reset() {
-      this.getData();
     },
     patientDelete(id) {
       this.patients = this.patients.filter((item) => item.id !== id);
