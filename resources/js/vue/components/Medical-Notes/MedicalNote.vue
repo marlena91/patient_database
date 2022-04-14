@@ -61,11 +61,13 @@
       </div>
     </div>
 
-    <div>
-      <create-medical-note
-        v-if="showCreateMedicalNote"
-        v-bind:patient_id="patient_id"
-      ></create-medical-note>
+    <div class="row p-3">
+      <div class="d-flex justify-content-center align-content-center">
+        <create-medical-note
+          v-if="showCreateMedicalNote"
+          v-bind:patient_id="patient_id"
+        ></create-medical-note>
+      </div>
     </div>
   </div>
 </template>

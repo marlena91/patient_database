@@ -12,44 +12,40 @@
       </div>
       <div class="mb-2">
         <div v-if="user.role === 'admin' || user.role === 'doctor'">
+          <div class="col-md-12">
+            <div v-if="selectedDisease">
+              <div class="row"></div>
+              <div class="row d-flex flex-row-reverse mb-2">
+                <div @click="showHideEditDisease" class="col-md-5">
+                  <a href="#" class="text-decoration-none text-primary">
+                    Edytuj
+                  </a>
+                </div>
+
+                <div class="col-md-5" v-if="user.role === 'admin'">
+                  <div @click="deleteDisease(selectedDisease.id)">
+                    <a href="#" class="text-decoration-none text-danger">
+                      Usuń
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <button
             @click="showHideCreateDisease"
             class="btn btn-secondary btn-block col-md-12"
           >
             Wprowadź nową chorobę
           </button>
-        </div>
-      </div>
-      <div v-if="createDisease" class="mb-2">
-        <create-disease @newDisease="newDisease"></create-disease>
-      </div>
-
-      <div
-        class="col-md-10"
-        v-if="user.role === 'admin' || user.role === 'doctor'"
-      >
-        <div v-if="selectedDisease">
-          <div class="row">
-            <div class="col">Wybrano: {{ selectedDisease.name }}</div>
+          <div v-if="createDisease" class="mb-2">
+            <create-disease @newDisease="newDisease"></create-disease>
           </div>
-          <div class="row d-flex flex-row-reverse">
-            <div class="col-md-2">
-              <router-link
-                class="text-decoration-none text-primary"
-                :to="{
-                  name: 'disease-edit',
-                  params: { id: selectedDisease.id },
-                }"
-              >
-                Edytuj
-              </router-link>
-            </div>
-
-            <div class="col-md-2" v-if="user.role === 'admin'">
-              <div @click="deleteDisease(selectedDisease.id)">
-                <a href="#" class="text-decoration-none text-danger"> Usuń </a>
-              </div>
-            </div>
+          <div v-if="editDisease" class="mb-2">
+            <edit-disease
+              @changedDisease="changedDisease"
+              v-bind:id="selectedDisease.id"
+            ></edit-disease>
           </div>
         </div>
       </div>
@@ -59,16 +55,19 @@
 <script>
 import { mapState } from "vuex";
 import CreateDisease from "./CreateDisease.vue";
+import EditDisease from "./EditDisease.vue";
 
 export default {
   components: {
     CreateDisease,
+    EditDisease,
   },
   data() {
     return {
       selectedDisease: "",
       diseases: [],
       createDisease: false,
+      editDisease: false,
     };
   },
   computed: {
@@ -95,13 +94,27 @@ export default {
         });
     },
     showHideCreateDisease() {
+      this.selectedDisease = "";
       this.createDisease
         ? (this.createDisease = false)
         : (this.createDisease = true);
     },
-    newDisease() {
+    showHideEditDisease() {
+      this.editDisease ? (this.editDisease = false) : (this.editDisease = true);
+    },
+    newDisease(diseaseName) {
+      this.selectedDisease = diseaseName;
       this.getDiseases();
       this.createDisease = false;
+    },
+    loadDisease() {
+      this.createDisease = false;
+      this.editDisease = false;
+    },
+    changedDisease(diseaseName) {
+      this.selectedDisease = diseaseName;
+      this.getDiseases();
+      this.editDisease = false;
     },
   },
   created() {

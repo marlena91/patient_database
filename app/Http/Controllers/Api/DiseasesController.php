@@ -48,6 +48,11 @@ class DiseasesController extends Controller
         $disease = Disease::create([
             'name' => $request->input('name')
         ]);
+
+        return response()->json([
+            'message' => 'Disease Created Successfully!!',
+            'disease' => $disease
+        ]);
     }
 
     /**
@@ -83,8 +88,8 @@ class DiseasesController extends Controller
     {
         $disease->fill($request->post())->save();
         return response()->json([
-            'message' => 'Patient Updated Successfully!!',
-            'patient' => $disease
+            'message' => 'Disease Updated Successfully!!',
+            'disease' => $disease
         ]);
     }
 

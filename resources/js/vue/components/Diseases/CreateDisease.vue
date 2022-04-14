@@ -10,6 +10,7 @@
           v-model="disease.name"
           class="form-control form-control-sm"
           placeholder="Nazwa..."
+          required
         />
       </div>
       <button type="submit" class="btn col-md-12 btn-secondary btn-block">
@@ -19,8 +20,6 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
-
 export default {
   components: {},
   data() {
@@ -30,28 +29,20 @@ export default {
       },
     };
   },
-  computed: {
-    ...mapState({
-      user: "user",
-    }),
-  },
+  computed: {},
   methods: {
     async create() {
       await axios
         .post(`/api/diseases`, this.disease)
         .then((response) => {
-          this.$emit("newDisease");
+          this.$emit("newDisease", response.data.disease.name);
         })
         .catch((error) => {
           console.log(error);
         });
     },
   },
-  created() {
-    if (this.user.role !== "admin" && this.user.role !== "doctor") {
-      this.$router.push({ name: "login" });
-    }
-  },
+  created() {},
   props: {},
 };
 </script>
