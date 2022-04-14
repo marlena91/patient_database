@@ -11,21 +11,21 @@ class PeselValidate
         $reg = '/^[0-9]{11}$/';
         if (preg_match($reg, $request->pesel)) {
 
-            $arrWagi = array(1, 3, 7, 9, 1, 3, 7, 9, 1, 3); // tablica z odpowiednimi wagami
+            $arrWeight = array(1, 3, 7, 9, 1, 3, 7, 9, 1, 3); // Array with weights 
             $intSum = 0;
             for ($i = 0; $i < 10; $i++) {
-                $intSum += $arrWagi[$i] * $pesel[$i]; //mnożymy każdy ze znaków dla 10 pierwszych cyfr przez wagę i sumujemy wszystko
+                $intSum += $arrWeight[$i] * $pesel[$i]; // Multiply each digit of the pesel by the appropriate weight and sum up
             }
-            $int = 10 - $intSum % 10; //obliczamy sumę kontrolną i porównujemy ją z ostatnią cyfrą.
-            $intControlNr = ($int == 10) ? 0 : $int; //sprawdzamy czy taka sama suma kontrolna jest w ciągu
+            $int = 10 - $intSum % 10; // Calculate the check digit and compare with the last digit
+            $intControlNr = ($int == 10) ? 0 : $int; // Check if the same checksum is in the sequence
             if ($intControlNr == $pesel[10]) {
 
 
-                // Wyciągamy dzień i miesiąc
+                // Take day and month
                 $month = substr($request->pesel, 2, 2);
                 $day = substr($request->pesel, 4, 2);
 
-                // Budujemy tablicę miesięcy dozwolonych
+                // Create array with permitted months
                 $arrAddToMonth = array(80, 0, 20, 40, 60);
                 $arrMonthBase = range(1, 12);
                 foreach ($arrAddToMonth as $monthAdditional) {
@@ -34,8 +34,9 @@ class PeselValidate
                     }
                 }
 
-                // Odrzucamy nieprawidłowo podane miesiące
+                // Check month 
                 if (in_array($month, $arrMonth)) {
+
                     // Set a century
                     if (substr($month, 0, 1) == '0' || substr($month, 0, 1) == '1') $century = 1900;
                     if (substr($month, 0, 1) == '8' || substr($month, 0, 1) == '9') $century = 1800;
@@ -50,7 +51,7 @@ class PeselValidate
                     // Finally year
                     $year = $century + substr($request->pesel, 0, 2);
 
-                    // Return the result
+                    // Verification if birthday from pesel and patient birthday are equal
                     if (((substr($request->birthday, 0, 4)) == $year)
                         && ((substr($request->birthday, 5, 2)) == $month)
                         && ((substr($request->birthday, 8, 2)) == $day)
