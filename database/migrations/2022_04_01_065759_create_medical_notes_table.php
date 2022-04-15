@@ -18,6 +18,7 @@ class CreateMedicalNotesTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->timestamps();
+
             $table->integer('patients_id')->unsigned()->index();
             $table->foreign('patients_id')
                 ->references('id')

@@ -5960,6 +5960,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -5974,7 +5979,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         title: this.title,
         description: this.description,
         patients_id: this.patients_id
-      }
+      },
+      errors: []
     };
   },
   computed: {},
@@ -5988,19 +5994,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                _context.prev = 0;
+                _context.next = 3;
                 return axios.put("/api/medical-notes/".concat(id), _this.medicalNote).then(function (response) {
                   _this.$emit("hideEdit");
-                })["catch"](function (error) {
-                  console.log(error);
                 });
 
-              case 2:
+              case 3:
+                _context.next = 9;
+                break;
+
+              case 5:
+                _context.prev = 5;
+                _context.t0 = _context["catch"](0);
+                _this.errors = _context.t0.response.data.errors;
+                console.log(_context.t0);
+
+              case 9:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 5]]);
       }))();
     }
   },
@@ -6531,6 +6546,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -6611,7 +6663,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    if (this.user.role !== 'admin' && this.user.role !== 'doctor') {
+    if (this.user.role !== "admin" && this.user.role !== "doctor") {
       this.$router.push({
         name: "login"
       });
@@ -32949,107 +33001,127 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        staticClass: "row",
-        on: {
-          submit: function ($event) {
-            $event.preventDefault()
-            return _vm.update.apply(null, arguments)
+  return _c(
+    "div",
+    [
+      _c(
+        "form",
+        {
+          staticClass: "row",
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.update.apply(null, arguments)
+            },
           },
         },
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "col-md-3 border-end d-flex align-items-center" },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.medicalNote.title,
-                  expression: "medicalNote.title",
-                },
-              ],
-              staticClass: "flex-fill mt-2",
-              attrs: { type: "text", placeholder: "Tytuł dokumentacji..." },
-              domProps: { value: _vm.medicalNote.title },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.medicalNote, "title", $event.target.value)
-                },
-              },
-            }),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-7 border-end p-1 d-flex align-items-center" },
-          [
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.medicalNote.description,
-                  expression: "medicalNote.description",
-                },
-              ],
-              staticClass: "flex-fill mt-2",
-              attrs: { type: "text", autofocus: "" },
-              domProps: { value: _vm.medicalNote.description },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.medicalNote, "description", $event.target.value)
-                },
-              },
-            }),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "col-md-2 d-flex align-items-center justify-content-center",
-          },
-          [
-            _c(
-              "div",
-              {
-                on: {
-                  click: function ($event) {
-                    return _vm.update(_vm.id)
-                  },
-                },
-              },
-              [
-                _c(
-                  "a",
+        [
+          _c(
+            "div",
+            { staticClass: "col-md-3 border-end d-flex align-items-center" },
+            [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "text-decoration-none text-primary",
-                    attrs: { href: "#" },
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.medicalNote.title,
+                    expression: "medicalNote.title",
                   },
-                  [_vm._v(" Zapisz ")]
-                ),
-              ]
-            ),
-          ]
-        ),
-      ]
-    ),
-  ])
+                ],
+                staticClass: "flex-fill mt-2",
+                attrs: {
+                  type: "text",
+                  placeholder: "Tytuł dokumentacji...",
+                  required: "",
+                },
+                domProps: { value: _vm.medicalNote.title },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.medicalNote, "title", $event.target.value)
+                  },
+                },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-md-7 border-end p-1 d-flex align-items-center",
+            },
+            [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.medicalNote.description,
+                    expression: "medicalNote.description",
+                  },
+                ],
+                staticClass: "flex-fill mt-2",
+                attrs: { type: "text", required: "" },
+                domProps: { value: _vm.medicalNote.description },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.medicalNote,
+                      "description",
+                      $event.target.value
+                    )
+                  },
+                },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-md-2 d-flex align-items-center justify-content-center",
+            },
+            [
+              _c(
+                "div",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.update(_vm.id)
+                    },
+                  },
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "text-decoration-none text-primary",
+                      attrs: { href: "#" },
+                    },
+                    [_vm._v(" Zapisz ")]
+                  ),
+                ]
+              ),
+            ]
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.errors, function (error, index) {
+        return _c("div", { key: index }, [
+          _vm._v("\n    " + _vm._s(error) + "\n  "),
+        ])
+      }),
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33559,138 +33631,194 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
-      "h5",
-      { staticClass: "text-uppercase text-secondary font-weight-bolder mt-3" },
-      [_vm._v("Aktualizuj dane pacjenta: ")]
+      "div",
+      { staticClass: "row pb-3" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "text-decoration-none text-muted",
+            attrs: { to: { name: "patients" } },
+          },
+          [_vm._v("Powrót do strony głównej")]
+        ),
+      ],
+      1
     ),
     _vm._v(" "),
     _c(
-      "form",
-      {
-        on: {
-          submit: function ($event) {
-            $event.preventDefault()
-            return _vm.update.apply(null, arguments)
-          },
-        },
-      },
+      "div",
+      { staticClass: "d-flex justify-content-center align-content-center" },
       [
-        _c("div", { staticClass: "form-row mb-4" }, [
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.patient.name,
-                  expression: "patient.name",
-                },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Imię..." },
-              domProps: { value: _vm.patient.name },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.patient, "name", $event.target.value)
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "bg-light rounded-2 p-5" }, [
+            _c("h3", { staticClass: "mb-3" }, [
+              _vm._v("Aktualizuj dane pacjenta:"),
+            ]),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.update.apply(null, arguments)
+                  },
                 },
               },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.patient.lastname,
-                  expression: "patient.lastname",
-                },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label mt-1",
+                    attrs: { for: "patientName" },
+                  },
+                  [_vm._v("Imię:")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.patient.name,
+                      expression: "patient.name",
+                    },
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "text", name: "patientName", required: "" },
+                  domProps: { value: _vm.patient.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.patient, "name", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label mt-1",
+                    attrs: { for: "patientLastname" },
+                  },
+                  [_vm._v("\n            Nazwisko:")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.patient.lastname,
+                      expression: "patient.lastname",
+                    },
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: {
+                    type: "text",
+                    name: "patientLastname",
+                    required: "",
+                  },
+                  domProps: { value: _vm.patient.lastname },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.patient, "lastname", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label mt-1",
+                    attrs: { for: "patientPesel" },
+                  },
+                  [_vm._v("Pesel:")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.patient.pesel,
+                      expression: "patient.pesel",
+                    },
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "text", name: "patientPesel", required: "" },
+                  domProps: { value: _vm.patient.pesel },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.patient, "pesel", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label mt-1",
+                    attrs: { for: "patientBirthday" },
+                  },
+                  [_vm._v("Data urodzenia:")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.patient.birthday,
+                      expression: "patient.birthday",
+                    },
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: {
+                    type: "date",
+                    name: "patientBirthday",
+                    required: "",
+                  },
+                  domProps: { value: _vm.patient.birthday },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.patient, "birthday", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.errors, function (error) {
+                  return _c("div", { key: error }, [
+                    _vm._v("\n            " + _vm._s(error) + "\n          "),
+                  ])
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary btn-block col-md-12 my-3",
+                    attrs: { type: "", submit: "" },
+                  },
+                  [_vm._v("\n            Zapisz\n          ")]
+                ),
               ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Nazwisko..." },
-              domProps: { value: _vm.patient.lastname },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.patient, "lastname", $event.target.value)
-                },
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.patient.pesel,
-                  expression: "patient.pesel",
-                },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Pesel..." },
-              domProps: { value: _vm.patient.pesel },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.patient, "pesel", $event.target.value)
-                },
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.patient.birthday,
-                  expression: "patient.birthday",
-                },
-              ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", placeholder: "Data urodzenia..." },
-              domProps: { value: _vm.patient.birthday },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.patient, "birthday", $event.target.value)
-                },
-              },
-            }),
+              2
+            ),
           ]),
         ]),
-        _vm._v(" "),
-        _vm._l(_vm.errors, function (error) {
-          return _c(
-            "div",
-            { key: error, staticClass: "card border-danger w-50 mb-3" },
-            [_vm._v("\n            " + _vm._s(error) + "\n        ")]
-          )
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary btn-block mb-4",
-            attrs: { type: "submit" },
-          },
-          [_vm._v("Zapisz")]
-        ),
-      ],
-      2
+      ]
     ),
   ])
 }
@@ -34255,8 +34383,8 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._l(_vm.errors, function (error) {
-          return _c("div", { key: error }, [
+        _vm._l(_vm.errors, function (error, index) {
+          return _c("div", { key: index }, [
             _vm._v("\n      " + _vm._s(error) + "\n    "),
           ])
         }),

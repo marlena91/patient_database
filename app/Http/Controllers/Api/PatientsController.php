@@ -52,25 +52,25 @@ class PatientsController extends Controller
             'birthday' => 'required|date'
         ]);
 
-        $pesel =  new PeselValidate;
+        $pesel =  new PeselValidate($request->pesel, $request->birthday);
+        return $pesel->validate();
+        // if ($pesel->validate()) {
+        //     $patient = Patient::create([
+        //         'name' => $request->input('name'),
+        //         'lastname' => $request->input('lastname'),
+        //         'pesel' => $request->input('pesel'),
+        //         'birthday' => $request->input('birthday'),
+        //     ]);
 
-        if ($pesel->validation($request)) {
-            $patient = Patient::create([
-                'name' => $request->input('name'),
-                'lastname' => $request->input('lastname'),
-                'pesel' => $request->input('pesel'),
-                'birthday' => $request->input('birthday'),
-            ]);
-
-            return response()->json([
-                'message' => 'Patient Created Successfully!!',
-                'patient' => $patient
-            ]);
-        } else {
-            return response()->json([
-                'message' => 'Patient Not Created!!',
-            ]);
-        }
+        //     return response()->json([
+        //         'message' => 'Patient Created Successfully!!',
+        //         'patient' => $patient
+        //     ]);
+        // } else {
+        //     return response()->json([
+        //         'message' => 'Patient Not Created!!',
+        //     ]);
+        // }
     }
 
     /**

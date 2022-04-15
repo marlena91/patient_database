@@ -7,6 +7,7 @@
           v-model="medicalNote.title"
           class="flex-fill mt-2"
           placeholder="Tytuł dokumentacji..."
+          required
         />
       </div>
 
@@ -15,15 +16,19 @@
           type="text"
           v-model="medicalNote.description"
           class="flex-fill mt-2"
-          autofocus
+          required
         ></textarea>
       </div>
+
       <div class="col-md-2 d-flex align-items-center justify-content-center">
         <div @click="update(id)" class="">
           <a href="#" class="text-decoration-none text-primary"> Zapisz </a>
         </div>
       </div>
     </form>
+    <div class="" v-for="(error, index) in errors" :key="index">
+      {{ error }}
+    </div>
   </div>
 </template>
 <script>
@@ -42,20 +47,24 @@ export default {
         description: this.description,
         patients_id: this.patients_id,
       },
+      errors: [],
     };
   },
   computed: {},
   mounted() {},
   methods: {
     async update(id) {
-      await axios
-        .put(`/api/medical-notes/${id}`, this.medicalNote)
-        .then((response) => {
-          this.$emit("hideEdit");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      try {
+        await axios
+          .put(`/api/medical-notes/${id}`, this.medicalNote)
+          .then((response) => {
+            this.$emit("hideEdit");
+          });
+      } catch (err) {
+        this.errors = err.response.data.errors;
+
+        console.log(err);
+      }
     },
   },
   created() {},

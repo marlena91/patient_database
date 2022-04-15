@@ -1,81 +1,123 @@
 <template>
-    <div>
-        <h5 class="text-uppercase text-secondary font-weight-bolder mt-3">Aktualizuj dane pacjenta: </h5>
-        <form @submit.prevent="update">
-            <div class="form-row mb-4">
-                <div class="form-group col-md-6 mt-3">
-                    <input type="text" v-model="patient.name" class="form-control form-control-sm"
-                           placeholder="Imię...">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                    <input type="text" v-model="patient.lastname" class="form-control form-control-sm"
-                           placeholder="Nazwisko...">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                    <input type="text" v-model="patient.pesel" class="form-control form-control-sm"
-                           placeholder="Pesel...">
-                </div>
-                <div class="form-group col-md-6 mt-3">
-                    <input type="text" v-model="patient.birthday" class="form-control form-control-sm"
-                           placeholder="Data urodzenia...">
-                </div>
-            </div>
-            <div class="card border-danger w-50 mb-3" v-for="error in errors" :key="error">
-                {{ error }}
-            </div>
-            <button type="submit" class="btn btn-secondary btn-block mb-4">Zapisz</button>
-        </form>
-
+  <div>
+    <div class="row pb-3">
+      <router-link
+        class="text-decoration-none text-muted"
+        :to="{ name: 'patients' }"
+        >Powrót do strony głównej</router-link
+      >
     </div>
+
+    <div class="d-flex justify-content-center align-content-center">
+      <div class="row">
+        <div class="bg-light rounded-2 p-5">
+          <h3 class="mb-3">Aktualizuj dane pacjenta:</h3>
+          <form @submit.prevent="update">
+            <label for="patientName" class="form-label mt-1">Imię:</label>
+            <input
+              type="text"
+              name="patientName"
+              v-model="patient.name"
+              class="form-control mb-2"
+              required
+            />
+            <label for="patientLastname" class="form-label mt-1">
+              Nazwisko:</label
+            >
+            <input
+              type="text"
+              name="patientLastname"
+              v-model="patient.lastname"
+              class="form-control mb-2"
+              required
+            />
+            <label for="patientPesel" class="form-label mt-1">Pesel:</label>
+            <input
+              type="text"
+              name="patientPesel"
+              v-model="patient.pesel"
+              class="form-control mb-2"
+              required
+            />
+            <label for="patientBirthday" class="form-label mt-1"
+              >Data urodzenia:</label
+            >
+            <input
+              type="date"
+              name="patientBirthday"
+              v-model="patient.birthday"
+              class="form-control mb-2"
+              required
+            />
+            <div class="" v-for="error in errors" :key="error">
+              {{ error }}
+            </div>
+            <button
+              type
+              submit
+              class="btn btn-secondary btn-block col-md-12 my-3"
+            >
+              Zapisz
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-import {mapState} from "vuex";
+import { mapState } from "vuex";
 export default {
-    components: {},
-    data() {
-        return {
-            patient: {
-                name: "",
-                lastname: "",
-                pesel: "",
-                birthday: ""
-            },
-            errors: []
-        }
+  components: {},
+  data() {
+    return {
+      patient: {
+        name: "",
+        lastname: "",
+        pesel: "",
+        birthday: "",
+      },
+      errors: [],
+    };
+  },
+  mounted() {
+    this.showPatient();
+  },
+  computed: {
+    ...mapState({
+      user: "user",
+    }),
+  },
+  methods: {
+    async showPatient() {
+      await axios
+        .get(`/api/patients/${this.$route.params.id}`)
+        .then((response) => {
+          this.patient = response.data.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
-    mounted() {
-        this.showPatient();
+    async update() {
+      try {
+        await axios
+          .put(`/api/patients/${this.$route.params.id}`, this.patient)
+          .then((response) => {
+            this.$router.push({ name: "patient" });
+          });
+      } catch (err) {
+        this.errors = err.response.data.errors;
+        console.log(this.error);
+      }
     },
-    computed: {
-            ...mapState({
-                user: "user",
-            })
-    },
-    methods: {
-        async showPatient() {
-            await axios.get(`/api/patients/${this.$route.params.id}`).then(response => {
-                this.patient = response.data.data
-            }).catch(error => {
-                console.log(error)
-            })
-        },
-        async update() {
-            try {
-                await axios.put(`/api/patients/${this.$route.params.id}`, this.patient).then(response => {
-                    this.$router.push({name: "patient"})
-                })
-            } catch(err) {
-                this.errors = err.response.data.errors;
-                console.log(this.error)
-            }
-        }
-    },
-    created() {
-        if(this.user.role!=='admin' && this.user.role!=='doctor'){
-            this.$router.push({name: "login"})
-        }
-    },
-    props: {},
+  },
+  created() {
+    if (this.user.role !== "admin" && this.user.role !== "doctor") {
+      this.$router.push({ name: "login" });
+    }
+  },
+  props: {},
 };
 </script>
 

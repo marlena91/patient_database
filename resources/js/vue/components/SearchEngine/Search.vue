@@ -38,7 +38,7 @@
           />
         </div>
       </div>
-      <div class="" v-for="error in errors" :key="error">
+      <div class="" v-for="(error, index) in errors" :key="index">
         {{ error }}
       </div>
       <div class="mb-2">

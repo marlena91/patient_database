@@ -40,6 +40,5 @@ class SearchController extends Controller
             $query->orWhere('birthday', 'like', '%' . $dataBirthday . '%');
         })
             ->get());
-
     }
 }
