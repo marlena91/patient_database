@@ -35,7 +35,7 @@ export default {
       await axios
         .post(`/api/diseases`, this.disease)
         .then((response) => {
-          this.$emit("newDisease", response.data.disease.name);
+          this.$emit("newDisease", response.data.disease);
         })
         .catch((error) => {
           console.log(error);

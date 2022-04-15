@@ -66,11 +66,7 @@ export default {
         });
     },
   },
-  created() {
-    if (this.user.role !== "admin" && this.user.role !== "doctor") {
-      this.$router.push({ name: "login" });
-    }
-  },
+  created() {},
 };
 </script>
 

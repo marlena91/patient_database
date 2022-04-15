@@ -111,8 +111,8 @@ export default {
       this.createDisease = false;
       this.editDisease = false;
     },
-    changedDisease(diseaseName) {
-      this.selectedDisease = diseaseName;
+    changedDisease(newDisease) {
+      this.selectedDisease = newDisease.name;
       this.getDiseases();
       this.editDisease = false;
     },

@@ -5,48 +5,17 @@
         <h4>Dokumentacja medyczna pacjenta</h4>
       </div>
     </div>
+
     <div v-if="!loading">
       <div
         class="row border-bottom"
         v-for="medicalNote in medicalNotes"
         :key="medicalNote.id"
       >
-        <div class="col-md-3 border-end">
-          <div
-            class="d-flex align-items-center justify-content-center h-100 w-100"
-          >
-            <h6>{{ medicalNote.title }}</h6>
-          </div>
-        </div>
-        <div class="col-md-8 border-end p-1">
-          <div class="d-flex align-items-center h-100 w-100">
-            <p class="justify">{{ medicalNote.description }}</p>
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="d-flex align-items-center h-100 w-100">
-            <div>
-              <div v-if="user.role === 'admin' || user.role === 'doctor'">
-                <router-link
-                  class="text-decoration-none"
-                  :to="{
-                    name: 'medical-note-edit',
-                    params: { id: medicalNote.id },
-                  }"
-                >
-                  Edytuj
-                </router-link>
-              </div>
-              <div v-if="user.role === 'admin'">
-                <div @click="deleteMedicalNote(medicalNote.id)" class="">
-                  <a href="#" class="text-decoration-none text-danger">
-                    Usuń
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <medical-note-list-item
+          v-bind="medicalNote"
+          @id="deleteMedicalNote"
+        ></medical-note-list-item>
       </div>
     </div>
     <div v-else>Loading...</div>
@@ -73,11 +42,15 @@
 </template>
 <script>
 import CreateMedicalNote from "./CreateMedicalNote.vue";
+import EditMedicalNote from "./EditMedicalNote.vue";
 import { mapState } from "vuex";
+import MedicalNoteListItem from "./MedicalNoteListItem.vue";
 
 export default {
   components: {
     CreateMedicalNote,
+    EditMedicalNote,
+    MedicalNoteListItem,
   },
   props: ["patient_id"],
   data() {
@@ -94,17 +67,7 @@ export default {
   },
   methods: {
     deleteMedicalNote(id) {
-      axios
-        .delete(`/api/medical-notes/${id}`)
-        .then((response) => {
-          console.log(response);
-          this.medicalNotes = this.medicalNotes.filter(
-            (item) => item.id !== id
-          );
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.medicalNotes = this.medicalNotes.filter((item) => item.id !== id);
     },
   },
   created() {

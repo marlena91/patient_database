@@ -5535,7 +5535,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios.post("/api/diseases", _this.disease).then(function (response) {
-                  _this.$emit("newDisease", response.data.disease.name);
+                  _this.$emit("newDisease", response.data.disease);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -5716,8 +5716,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.createDisease = false;
       this.editDisease = false;
     },
-    changedDisease: function changedDisease(diseaseName) {
-      this.selectedDisease = diseaseName;
+    changedDisease: function changedDisease(newDisease) {
+      this.selectedDisease = newDisease.name;
       this.getDiseases();
       this.editDisease = false;
     }
@@ -5939,13 +5939,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     }
   },
-  created: function created() {
-    if (this.user.role !== "admin" && this.user.role !== "doctor") {
-      this.$router.push({
-        name: "login"
-      });
-    }
-  }
+  created: function created() {}
 });
 
 /***/ }),
@@ -5976,6 +5970,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6066,7 +6072,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    if (this.user.role !== 'admin' && this.user.role !== 'doctor') {
+    if (this.user.role !== "admin" && this.user.role !== "doctor") {
       this.$router.push({
         name: "login"
       });
@@ -6089,7 +6095,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _CreateMedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateMedicalNote.vue */ "./resources/js/vue/components/Medical-Notes/CreateMedicalNote.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _EditMedicalNote_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditMedicalNote.vue */ "./resources/js/vue/components/Medical-Notes/EditMedicalNote.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _MedicalNoteListItem_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MedicalNoteListItem.vue */ "./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -6138,42 +6146,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    CreateMedicalNote: _CreateMedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    CreateMedicalNote: _CreateMedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    EditMedicalNote: _EditMedicalNote_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    MedicalNoteListItem: _MedicalNoteListItem_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: ["patient_id"],
   data: function data() {
@@ -6183,7 +6164,95 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showCreateMedicalNote: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
+    user: "user"
+  })),
+  methods: {
+    deleteMedicalNote: function deleteMedicalNote(id) {
+      this.medicalNotes = this.medicalNotes.filter(function (item) {
+        return item.id !== id;
+      });
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    this.loading = true;
+    axios.get("/api/medical-note-patient/".concat(this.$route.params.id)).then(function (response) {
+      _this.medicalNotes = response.data.data;
+      _this.loading = false;
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    id: Number,
+    title: String,
+    description: String,
+    patients_id: Number
+  },
+  data: function data() {
+    return {};
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
     user: "user"
   })),
   methods: {
@@ -6192,22 +6261,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios["delete"]("/api/medical-notes/".concat(id)).then(function (response) {
         console.log(response);
-        _this.medicalNotes = _this.medicalNotes.filter(function (item) {
-          return item.id !== id;
-        });
+
+        _this.$emit("id", id);
       })["catch"](function (error) {
         console.log(error);
       });
     }
-  },
-  created: function created() {
-    var _this2 = this;
-
-    this.loading = true;
-    axios.get("/api/medical-note-patient/".concat(this.$route.params.id)).then(function (response) {
-      _this2.medicalNotes = response.data.data;
-      _this2.loading = false;
-    });
   }
 });
 
@@ -31505,6 +31564,45 @@ component.options.__file = "resources/js/vue/components/Medical-Notes/MedicalNot
 
 /***/ }),
 
+/***/ "./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _MedicalNoteListItem_vue_vue_type_template_id_d9ec3050___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MedicalNoteListItem.vue?vue&type=template&id=d9ec3050& */ "./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=template&id=d9ec3050&");
+/* harmony import */ var _MedicalNoteListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MedicalNoteListItem.vue?vue&type=script&lang=js& */ "./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MedicalNoteListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MedicalNoteListItem_vue_vue_type_template_id_d9ec3050___WEBPACK_IMPORTED_MODULE_0__.render,
+  _MedicalNoteListItem_vue_vue_type_template_id_d9ec3050___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/vue/components/Patient-Disease/AddDiseaseToPatient.vue":
 /*!*****************************************************************************!*\
   !*** ./resources/js/vue/components/Patient-Disease/AddDiseaseToPatient.vue ***!
@@ -31922,6 +32020,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNoteListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MedicalNoteListItem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNoteListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/vue/components/Patient-Disease/AddDiseaseToPatient.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************!*\
   !*** ./resources/js/vue/components/Patient-Disease/AddDiseaseToPatient.vue?vue&type=script&lang=js& ***!
@@ -32196,6 +32310,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNote_vue_vue_type_template_id_aef2fb32_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNote_vue_vue_type_template_id_aef2fb32_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MedicalNote.vue?vue&type=template&id=aef2fb32&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Medical-Notes/MedicalNote.vue?vue&type=template&id=aef2fb32&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=template&id=d9ec3050&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=template&id=d9ec3050& ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNoteListItem_vue_vue_type_template_id_d9ec3050___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNoteListItem_vue_vue_type_template_id_d9ec3050___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MedicalNoteListItem_vue_vue_type_template_id_d9ec3050___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MedicalNoteListItem.vue?vue&type=template&id=d9ec3050& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=template&id=d9ec3050&");
 
 
 /***/ }),
@@ -32996,11 +33127,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "h5",
-      { staticClass: "text-uppercase text-secondary font-weight-bolder mt-3" },
-      [_vm._v("Aktualizuj dokumentację medyczną: ")]
-    ),
+    _c("h5", {}, [_vm._v("Aktualizuj dokumentację medyczną:")]),
     _vm._v(" "),
     _c(
       "form",
@@ -33069,7 +33196,7 @@ var render = function () {
             staticClass: "btn btn-warining btn-block mb-4",
             attrs: { type: "submit" },
           },
-          [_vm._v("Zapisz")]
+          [_vm._v("\n      Zapisz\n    ")]
         ),
       ]
     ),
@@ -33109,97 +33236,17 @@ var render = function () {
               "div",
               { key: medicalNote.id, staticClass: "row border-bottom" },
               [
-                _c("div", { staticClass: "col-md-3 border-end" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "d-flex align-items-center justify-content-center h-100 w-100",
-                    },
-                    [_c("h6", [_vm._v(_vm._s(medicalNote.title))])]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8 border-end p-1" }, [
-                  _c(
-                    "div",
-                    { staticClass: "d-flex align-items-center h-100 w-100" },
-                    [
-                      _c("p", { staticClass: "justify" }, [
-                        _vm._v(_vm._s(medicalNote.description)),
-                      ]),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-1" }, [
-                  _c(
-                    "div",
-                    { staticClass: "d-flex align-items-center h-100 w-100" },
-                    [
-                      _c("div", [
-                        _vm.user.role === "admin" || _vm.user.role === "doctor"
-                          ? _c(
-                              "div",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "text-decoration-none",
-                                    attrs: {
-                                      to: {
-                                        name: "medical-note-edit",
-                                        params: { id: medicalNote.id },
-                                      },
-                                    },
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                Edytuj\n              "
-                                    ),
-                                  ]
-                                ),
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.user.role === "admin"
-                          ? _c("div", [
-                              _c(
-                                "div",
-                                {
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.deleteMedicalNote(
-                                        medicalNote.id
-                                      )
-                                    },
-                                  },
-                                },
-                                [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "text-decoration-none text-danger",
-                                      attrs: { href: "#" },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Usuń\n                "
-                                      ),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]
-                  ),
-                ]),
-              ]
+                _c(
+                  "medical-note-list-item",
+                  _vm._b(
+                    { on: { id: _vm.deleteMedicalNote } },
+                    "medical-note-list-item",
+                    medicalNote,
+                    false
+                  )
+                ),
+              ],
+              1
             )
           }),
           0
@@ -33253,6 +33300,101 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=template&id=d9ec3050&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Medical-Notes/MedicalNoteListItem.vue?vue&type=template&id=d9ec3050& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-3 border-end" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "d-flex align-items-center justify-content-center h-100 w-100",
+        },
+        [_c("h6", [_vm._v(_vm._s(_vm.title))])]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-8 border-end p-1" }, [
+      _c("div", { staticClass: "d-flex align-items-center h-100 w-100" }, [
+        _c("p", { staticClass: "justify" }, [_vm._v(_vm._s(_vm.description))]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-1" }, [
+      _c("div", { staticClass: "d-flex align-items-center h-100 w-100" }, [
+        _c("div", [
+          _vm.user.role === "admin" || _vm.user.role === "doctor"
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "text-decoration-none",
+                      attrs: {
+                        to: {
+                          name: "medical-note-edit",
+                          params: { id: _vm.id },
+                        },
+                      },
+                    },
+                    [_vm._v("\n            Edytuj\n          ")]
+                  ),
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.user.role === "admin"
+            ? _c("div", [
+                _c(
+                  "div",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.deleteMedicalNote(_vm.id)
+                      },
+                    },
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-decoration-none text-danger",
+                        attrs: { href: "#" },
+                      },
+                      [_vm._v(" Usuń ")]
+                    ),
+                  ]
+                ),
+              ])
+            : _vm._e(),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
