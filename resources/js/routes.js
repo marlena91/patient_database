@@ -27,24 +27,9 @@ const routes = [
         component: EditPatient,
     },
     {
-        path: '/patients/create',
+        path: '/patient/create',
         name: 'patient-create',
         component: CreatePatient,
-    },
-    {
-        path: '/diseases/:id/edit',
-        name: 'disease-edit',
-        component: EditDisease,
-    },
-    {
-        path: '/diseases-patients',
-        name: 'disease-patient.show',
-        component: AddDiseaseToPatient,
-    },
-    {
-        path: '/diseases-patients/:id_disease/:id_patient/',
-        name: 'disease-patient.create',
-        component: AddDiseaseToPatient,
     },
     {
         path: '/auth/login',

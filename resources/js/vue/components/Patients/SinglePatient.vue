@@ -39,9 +39,18 @@
         </div>
 
         <div v-if="user.role === 'admin' || user.role === 'doctor'">
-          <div @click="addDiseaseToPatient()" class="text-primary">
+          <div
+            v-if="!showAddDisease"
+            @click="addDiseaseToPatient()"
+            class="text-primary"
+          >
             <a href="#" class="text-decoration-none"> Dodaj chorobę </a>
           </div>
+          <add-disease-to-patient
+            v-if="showAddDisease"
+            v-bind:patient_id="patient.id"
+            @newDisease="newDisease"
+          ></add-disease-to-patient>
         </div>
       </div>
       <div class="col-md-8 text-center bg-light p-3 rounded-2 ms-3">
@@ -55,15 +64,18 @@
 
 <script>
 import MedicalNote from "../Medical-Notes/MedicalNote.vue";
+import AddDiseaseToPatient from "../Patient-Disease/AddDiseaseToPatient.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
     MedicalNote,
+    AddDiseaseToPatient,
   },
   data() {
     return {
       patient: [],
+      showAddDisease: false,
     };
   },
   computed: {
@@ -103,10 +115,11 @@ export default {
         });
     },
     addDiseaseToPatient() {
-      this.$router.push({
-        name: "disease-patient.show",
-        params: { patient_id: this.patient.id },
-      });
+      this.showAddDisease = true;
+    },
+    newDisease(selectedDisease) {
+      this.patient.diseases.push(selectedDisease);
+      this.showAddDisease = false;
     },
   },
 };

@@ -1,66 +1,62 @@
 <template>
-    <div>
-        <div v-if="!loading">
-
-            <div class="card w-50 mt-3" v-for="disease in diseases" :key="disease.id">
-                <disease-list-item v-bind="disease"></disease-list-item>
-                <button @click="diseasePatientCreate(disease.id, test)" class="btn btn-outline-dark btn-block m-4">Dodaj
-                    pacjentowi
-                </button>
-            </div>
-        </div>
-        <div v-else>Loading...</div>
+  <div>
+    <div class="row">
+      <div class="col-md-12 mb-2">
+        <v-select
+          :options="diseases"
+          label="name"
+          v-model="selectedDisease"
+          placeholder="Dostępne choroby..."
+        ></v-select>
+      </div>
     </div>
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <button
+          @click="diseasePatientCreate"
+          class="btn btn-primary col-md-12 mb-2"
+        >
+          Dodaj
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import DiseaseListItem from '../Diseases/DiseaseListItem';
-import {mapState} from "vuex";
-
-
 export default {
-    name: "AddDiseaseToPatient",
-    components: {
-        DiseaseListItem
-    },
-    data() {
-        return {
-            diseases: [],
-            loading: false,
-            test: this.$route.params.patient_id,
-        }
-    },
-    computed: {
-            ...mapState({
-                user: "user",
-            })
-    },
-    mounted() {
-    },
-    created() {
-        if(this.user.role!=='admin' && this.user.role!=='doctor'){
-            this.$router.push({name: "login"})
-        } else {
-            this.loading = true;
-            axios.get("/api/diseases").then(response => {
-            this.diseases = response.data.data;
-            this.loading = false;
+  components: {},
+  props: ["patient_id"],
+
+  data() {
+    return {
+      diseases: [],
+      selectedDisease: "",
+    };
+  },
+  computed: {},
+  mounted() {},
+  created() {
+    axios.get("/api/diseases").then((response) => {
+      this.diseases = response.data.data;
+    });
+  },
+  methods: {
+    async diseasePatientCreate() {
+      await axios
+        .post(
+          `/api/diseases-patients/${this.selectedDisease.id}/${this.patient_id}`
+        )
+        .then((response) => {
+          this.$emit("newDisease", this.selectedDisease);
+        })
+        .catch((error) => {
+          console.log(error);
         });
-        }
-       
     },
-    methods: {
-        async diseasePatientCreate(disease_id, patient_id) {
-            await axios.post(`/api/diseases-patients/${disease_id}/${patient_id}`).then(response => {
-                this.$router.push({name: "patient", params: {id: patient_id}})
-            }).catch(error => {
-                console.log(error)
-            })
-        }
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

@@ -5555,37 +5555,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    id: Number,
-    name: String
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/Diseases.vue?vue&type=script&lang=js& ***!
@@ -6266,20 +6235,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Diseases_DiseaseListItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Diseases/DiseaseListItem */ "./resources/js/vue/components/Diseases/DiseaseListItem.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -6295,41 +6256,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AddDiseaseToPatient",
-  components: {
-    DiseaseListItem: _Diseases_DiseaseListItem__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
+  components: {},
+  props: ["patient_id"],
   data: function data() {
     return {
       diseases: [],
-      loading: false,
-      test: this.$route.params.patient_id
+      selectedDisease: ""
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
-    user: "user"
-  })),
+  computed: {},
   mounted: function mounted() {},
   created: function created() {
     var _this = this;
 
-    if (this.user.role !== 'admin' && this.user.role !== 'doctor') {
-      this.$router.push({
-        name: "login"
-      });
-    } else {
-      this.loading = true;
-      axios.get("/api/diseases").then(function (response) {
-        _this.diseases = response.data.data;
-        _this.loading = false;
-      });
-    }
+    axios.get("/api/diseases").then(function (response) {
+      _this.diseases = response.data.data;
+    });
   },
   methods: {
-    diseasePatientCreate: function diseasePatientCreate(disease_id, patient_id) {
+    diseasePatientCreate: function diseasePatientCreate() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -6338,13 +6294,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post("/api/diseases-patients/".concat(disease_id, "/").concat(patient_id)).then(function (response) {
-                  _this2.$router.push({
-                    name: "patient",
-                    params: {
-                      id: patient_id
-                    }
-                  });
+                return axios.post("/api/diseases-patients/".concat(_this2.selectedDisease.id, "/").concat(_this2.patient_id)).then(function (response) {
+                  _this2.$emit("newDisease", _this2.selectedDisease);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -6955,7 +6906,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Medical_Notes_MedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Medical-Notes/MedicalNote.vue */ "./resources/js/vue/components/Medical-Notes/MedicalNote.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Patient_Disease_AddDiseaseToPatient_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Patient-Disease/AddDiseaseToPatient.vue */ "./resources/js/vue/components/Patient-Disease/AddDiseaseToPatient.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -7017,18 +6969,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    MedicalNote: _Medical_Notes_MedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    MedicalNote: _Medical_Notes_MedicalNote_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    AddDiseaseToPatient: _Patient_Disease_AddDiseaseToPatient_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      patient: []
+      patient: [],
+      showAddDisease: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
     user: "user"
   })),
   mounted: function mounted() {},
@@ -7063,12 +7027,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     addDiseaseToPatient: function addDiseaseToPatient() {
-      this.$router.push({
-        name: "disease-patient.show",
-        params: {
-          patient_id: this.patient.id
-        }
-      });
+      this.showAddDisease = true;
+    },
+    newDisease: function newDisease(selectedDisease) {
+      this.patient.diseases.push(selectedDisease);
+      this.showAddDisease = false;
     }
   }
 });
@@ -7375,21 +7338,9 @@ var routes = [{
   name: 'patient-edit',
   component: _vue_components_Patients_EditPatient__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  path: '/patients/create',
+  path: '/patient/create',
   name: 'patient-create',
   component: _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_1__["default"]
-}, {
-  path: '/diseases/:id/edit',
-  name: 'disease-edit',
-  component: _vue_components_Diseases_EditDisease__WEBPACK_IMPORTED_MODULE_7__["default"]
-}, {
-  path: '/diseases-patients',
-  name: 'disease-patient.show',
-  component: _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_8__["default"]
-}, {
-  path: '/diseases-patients/:id_disease/:id_patient/',
-  name: 'disease-patient.create',
-  component: _vue_components_Patient_Disease_AddDiseaseToPatient__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
   path: '/auth/login',
   name: 'login',
@@ -31305,45 +31256,6 @@ component.options.__file = "resources/js/vue/components/Diseases/CreateDisease.v
 
 /***/ }),
 
-/***/ "./resources/js/vue/components/Diseases/DiseaseListItem.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/vue/components/Diseases/DiseaseListItem.vue ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _DiseaseListItem_vue_vue_type_template_id_02819317___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DiseaseListItem.vue?vue&type=template&id=02819317& */ "./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317&");
-/* harmony import */ var _DiseaseListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DiseaseListItem.vue?vue&type=script&lang=js& */ "./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _DiseaseListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _DiseaseListItem_vue_vue_type_template_id_02819317___WEBPACK_IMPORTED_MODULE_0__.render,
-  _DiseaseListItem_vue_vue_type_template_id_02819317___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/vue/components/Diseases/DiseaseListItem.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/vue/components/Diseases/Diseases.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/vue/components/Diseases/Diseases.vue ***!
@@ -31901,22 +31813,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DiseaseListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DiseaseListItem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DiseaseListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/vue/components/Diseases/Diseases.vue?vue&type=script&lang=js&":
 /*!************************************************************************************!*\
   !*** ./resources/js/vue/components/Diseases/Diseases.vue?vue&type=script&lang=js& ***!
@@ -32185,23 +32081,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDisease_vue_vue_type_template_id_2134f88a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateDisease.vue?vue&type=template&id=2134f88a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/CreateDisease.vue?vue&type=template&id=2134f88a&");
-
-
-/***/ }),
-
-/***/ "./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317& ***!
-  \*************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DiseaseListItem_vue_vue_type_template_id_02819317___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DiseaseListItem_vue_vue_type_template_id_02819317___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DiseaseListItem_vue_vue_type_template_id_02819317___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DiseaseListItem.vue?vue&type=template&id=02819317& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317&");
 
 
 /***/ }),
@@ -32708,39 +32587,6 @@ var render = function () {
         ),
       ]
     ),
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317&":
-/*!****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/vue/components/Diseases/DiseaseListItem.vue?vue&type=template&id=02819317& ***!
-  \****************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "card-title" }, [
-          _c("p", [_vm._v(_vm._s(_vm.id) + ". " + _vm._s(_vm.name) + " ")]),
-        ]),
-      ]),
-    ]),
   ])
 }
 var staticRenderFns = []
@@ -33434,38 +33280,42 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    !_vm.loading
-      ? _c(
-          "div",
-          _vm._l(_vm.diseases, function (disease) {
-            return _c(
-              "div",
-              { key: disease.id, staticClass: "card w-50 mt-3" },
-              [
-                _c(
-                  "disease-list-item",
-                  _vm._b({}, "disease-list-item", disease, false)
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-dark btn-block m-4",
-                    on: {
-                      click: function ($event) {
-                        return _vm.diseasePatientCreate(disease.id, _vm.test)
-                      },
-                    },
-                  },
-                  [_vm._v("Dodaj\n                pacjentowi\n            ")]
-                ),
-              ],
-              1
-            )
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12 mb-2" },
+        [
+          _c("v-select", {
+            attrs: {
+              options: _vm.diseases,
+              label: "name",
+              placeholder: "Dostępne choroby...",
+            },
+            model: {
+              value: _vm.selectedDisease,
+              callback: function ($$v) {
+                _vm.selectedDisease = $$v
+              },
+              expression: "selectedDisease",
+            },
           }),
-          0
-        )
-      : _c("div", [_vm._v("Loading...")]),
+        ],
+        1
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "d-flex justify-content-center" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary col-md-12 mb-2",
+            on: { click: _vm.diseasePatientCreate },
+          },
+          [_vm._v("\n        Dodaj\n      ")]
+        ),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -34215,29 +34065,42 @@ var render = function () {
           }),
           _vm._v(" "),
           _vm.user.role === "admin" || _vm.user.role === "doctor"
-            ? _c("div", [
-                _c(
-                  "div",
-                  {
-                    staticClass: "text-primary",
-                    on: {
-                      click: function ($event) {
-                        return _vm.addDiseaseToPatient()
-                      },
-                    },
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "text-decoration-none",
-                        attrs: { href: "#" },
-                      },
-                      [_vm._v(" Dodaj chorobę ")]
-                    ),
-                  ]
-                ),
-              ])
+            ? _c(
+                "div",
+                [
+                  !_vm.showAddDisease
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "text-primary",
+                          on: {
+                            click: function ($event) {
+                              return _vm.addDiseaseToPatient()
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "text-decoration-none",
+                              attrs: { href: "#" },
+                            },
+                            [_vm._v(" Dodaj chorobę ")]
+                          ),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.showAddDisease
+                    ? _c("add-disease-to-patient", {
+                        attrs: { patient_id: _vm.patient.id },
+                        on: { newDisease: _vm.newDisease },
+                      })
+                    : _vm._e(),
+                ],
+                1
+              )
             : _vm._e(),
         ],
         2
