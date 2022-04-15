@@ -5957,19 +5957,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -5998,28 +5991,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
+  props: {
+    id: Number,
+    title: String,
+    description: String,
+    patients_id: Number
+  },
   data: function data() {
     return {
       medicalNote: {
-        title: "",
-        description: "",
-        patients_id: ""
+        title: this.title,
+        description: this.description,
+        patients_id: this.patients_id
       }
     };
   },
-  mounted: function mounted() {
-    this.showMedicalNote();
-  },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
-    user: "user"
-  })),
+  computed: {},
+  mounted: function mounted() {},
   methods: {
-    showMedicalNote: function showMedicalNote() {
+    update: function update(id) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -6028,8 +6020,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/medical-notes/".concat(_this.$route.params.id)).then(function (response) {
-                  _this.medicalNote = response.data.data;
+                return axios.put("/api/medical-notes/".concat(id), _this.medicalNote).then(function (response) {
+                  _this.$emit("hideEdit");
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -6041,44 +6033,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
-    },
-    update: function update() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return axios.put("/api/medical-notes/".concat(_this2.$route.params.id), _this2.medicalNote).then(function (response) {
-                  _this2.$router.push({
-                    name: "patient",
-                    params: {
-                      id: _this2.medicalNote.patients_id
-                    }
-                  });
-                })["catch"](function (error) {
-                  console.log(error);
-                });
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
     }
   },
-  created: function created() {
-    if (this.user.role !== "admin" && this.user.role !== "doctor") {
-      this.$router.push({
-        name: "login"
-      });
-    }
-  },
-  props: []
+  created: function created() {}
 });
 
 /***/ }),
@@ -6146,6 +6103,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6161,27 +6127,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       loading: false,
       medicalNotes: [],
-      showCreateMedicalNote: false
+      showCreateMedicalNote: false,
+      showEditMedicalNote: false
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
     user: "user"
   })),
   methods: {
+    getData: function getData() {
+      var _this = this;
+
+      this.loading = true;
+      axios.get("/api/medical-note-patient/".concat(this.$route.params.id)).then(function (response) {
+        _this.medicalNotes = response.data.data;
+        _this.loading = false;
+      });
+    },
     deleteMedicalNote: function deleteMedicalNote(id) {
       this.medicalNotes = this.medicalNotes.filter(function (item) {
         return item.id !== id;
       });
+    },
+    editMedicalNote: function editMedicalNote(id) {
+      this.medicalNotes = this.medicalNotes.filter(function (item) {
+        return item.id === id;
+      });
+      this.showEditMedicalNote = true;
+    },
+    hideEdit: function hideEdit() {
+      this.showEditMedicalNote = false;
+      this.getData();
     }
   },
   created: function created() {
-    var _this = this;
-
-    this.loading = true;
-    axios.get("/api/medical-note-patient/".concat(this.$route.params.id)).then(function (response) {
-      _this.medicalNotes = response.data.data;
-      _this.loading = false;
-    });
+    this.getData();
   }
 });
 
@@ -6205,8 +6185,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -6266,6 +6244,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    showEditMedicalNote: function showEditMedicalNote() {
+      this.$emit("showEdit", this.id);
     }
   }
 });
@@ -7397,10 +7378,6 @@ var routes = [{
   path: '/patients/create',
   name: 'patient-create',
   component: _vue_components_Patients_CreatePatient__WEBPACK_IMPORTED_MODULE_1__["default"]
-}, {
-  path: '/medical-notes/:id/edit',
-  name: 'medical-note-edit',
-  component: _vue_components_Medical_Notes_EditMedicalNote__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/diseases/:id/edit',
   name: 'disease-edit',
@@ -33127,11 +33104,10 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h5", {}, [_vm._v("Aktualizuj dokumentację medyczną:")]),
-    _vm._v(" "),
     _c(
       "form",
       {
+        staticClass: "row",
         on: {
           submit: function ($event) {
             $event.preventDefault()
@@ -33140,8 +33116,10 @@ var render = function () {
         },
       },
       [
-        _c("div", { staticClass: "form-row mb-4" }, [
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-3 border-end d-flex align-items-center" },
+          [
             _c("input", {
               directives: [
                 {
@@ -33151,7 +33129,7 @@ var render = function () {
                   expression: "medicalNote.title",
                 },
               ],
-              staticClass: "form-control form-control-sm",
+              staticClass: "flex-fill mt-2",
               attrs: { type: "text", placeholder: "Tytuł dokumentacji..." },
               domProps: { value: _vm.medicalNote.title },
               on: {
@@ -33163,9 +33141,13 @@ var render = function () {
                 },
               },
             }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-md-6 mt-3" }, [
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-7 border-end p-1 d-flex align-items-center" },
+          [
             _c("textarea", {
               directives: [
                 {
@@ -33175,8 +33157,8 @@ var render = function () {
                   expression: "medicalNote.description",
                 },
               ],
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text", rows: "5", cols: "33", autofocus: "" },
+              staticClass: "flex-fill mt-2",
+              attrs: { type: "text", autofocus: "" },
               domProps: { value: _vm.medicalNote.description },
               on: {
                 input: function ($event) {
@@ -33187,16 +33169,37 @@ var render = function () {
                 },
               },
             }),
-          ]),
-        ]),
+          ]
+        ),
         _vm._v(" "),
         _c(
-          "button",
+          "div",
           {
-            staticClass: "btn btn-warining btn-block mb-4",
-            attrs: { type: "submit" },
+            staticClass:
+              "col-md-2 d-flex align-items-center justify-content-center",
           },
-          [_vm._v("\n      Zapisz\n    ")]
+          [
+            _c(
+              "div",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.update(_vm.id)
+                  },
+                },
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-decoration-none text-primary",
+                    attrs: { href: "#" },
+                  },
+                  [_vm._v(" Zapisz ")]
+                ),
+              ]
+            ),
+          ]
         ),
       ]
     ),
@@ -33236,15 +33239,34 @@ var render = function () {
               "div",
               { key: medicalNote.id, staticClass: "row border-bottom" },
               [
-                _c(
-                  "medical-note-list-item",
-                  _vm._b(
-                    { on: { id: _vm.deleteMedicalNote } },
-                    "medical-note-list-item",
-                    medicalNote,
-                    false
-                  )
-                ),
+                !_vm.showEditMedicalNote
+                  ? _c(
+                      "medical-note-list-item",
+                      _vm._b(
+                        {
+                          on: {
+                            deleteId: _vm.deleteMedicalNote,
+                            showEdit: _vm.editMedicalNote,
+                          },
+                        },
+                        "medical-note-list-item",
+                        medicalNote,
+                        false
+                      )
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.showEditMedicalNote
+                  ? _c(
+                      "edit-medical-note",
+                      _vm._b(
+                        { on: { hideEdit: _vm.hideEdit } },
+                        "edit-medical-note",
+                        medicalNote,
+                        false
+                      )
+                    )
+                  : _vm._e(),
               ],
               1
             )
@@ -33256,18 +33278,20 @@ var render = function () {
     _c("div", { staticClass: "row p-3" }, [
       _vm.user.role === "admin" || _vm.user.role === "doctor"
         ? _c("div", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-block",
-                on: {
-                  click: function ($event) {
-                    _vm.showCreateMedicalNote = true
+            !_vm.showEditMedicalNote
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-block",
+                    on: {
+                      click: function ($event) {
+                        _vm.showCreateMedicalNote = true
+                      },
+                    },
                   },
-                },
-              },
-              [_vm._v("\n        Dodaj nową dokumentację\n      ")]
-            ),
+                  [_vm._v("\n        Dodaj nową dokumentację\n      ")]
+                )
+              : _vm._e(),
           ])
         : _vm._e(),
     ]),
@@ -33344,25 +33368,17 @@ var render = function () {
       _c("div", { staticClass: "d-flex align-items-center h-100 w-100" }, [
         _c("div", [
           _vm.user.role === "admin" || _vm.user.role === "doctor"
-            ? _c(
-                "div",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "text-decoration-none",
-                      attrs: {
-                        to: {
-                          name: "medical-note-edit",
-                          params: { id: _vm.id },
-                        },
-                      },
-                    },
-                    [_vm._v("\n            Edytuj\n          ")]
-                  ),
-                ],
-                1
-              )
+            ? _c("div", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-decoration-none text-primary",
+                    attrs: { href: "#" },
+                    on: { click: _vm.showEditMedicalNote },
+                  },
+                  [_vm._v("\n            Edytuj\n          ")]
+                ),
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.user.role === "admin"

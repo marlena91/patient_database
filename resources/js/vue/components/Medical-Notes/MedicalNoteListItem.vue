@@ -14,15 +14,13 @@
       <div class="d-flex align-items-center h-100 w-100">
         <div>
           <div v-if="user.role === 'admin' || user.role === 'doctor'">
-            <router-link
-              class="text-decoration-none"
-              :to="{
-                name: 'medical-note-edit',
-                params: { id: id },
-              }"
+            <a
+              @click="showEditMedicalNote"
+              href="#"
+              class="text-decoration-none text-primary"
             >
               Edytuj
-            </router-link>
+            </a>
           </div>
           <div v-if="user.role === 'admin'">
             <div @click="deleteMedicalNote(id)" class="">
@@ -63,6 +61,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    showEditMedicalNote() {
+      this.$emit("showEdit", this.id);
     },
   },
 };

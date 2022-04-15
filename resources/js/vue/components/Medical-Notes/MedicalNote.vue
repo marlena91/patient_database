@@ -13,15 +13,24 @@
         :key="medicalNote.id"
       >
         <medical-note-list-item
+          v-if="!showEditMedicalNote"
           v-bind="medicalNote"
-          @id="deleteMedicalNote"
+          @deleteId="deleteMedicalNote"
+          @showEdit="editMedicalNote"
         ></medical-note-list-item>
+        <edit-medical-note
+          v-bind="medicalNote"
+          v-if="showEditMedicalNote"
+          @hideEdit="hideEdit"
+        >
+        </edit-medical-note>
       </div>
     </div>
     <div v-else>Loading...</div>
     <div class="row p-3">
       <div v-if="user.role === 'admin' || user.role === 'doctor'">
         <button
+          v-if="!showEditMedicalNote"
           class="btn btn-primary btn-block"
           @click="showCreateMedicalNote = true"
         >
@@ -58,6 +67,7 @@ export default {
       loading: false,
       medicalNotes: [],
       showCreateMedicalNote: false,
+      showEditMedicalNote: false,
     };
   },
   computed: {
@@ -66,18 +76,31 @@ export default {
     }),
   },
   methods: {
+    getData() {
+      this.loading = true;
+
+      axios
+        .get(`/api/medical-note-patient/${this.$route.params.id}`)
+        .then((response) => {
+          this.medicalNotes = response.data.data;
+          this.loading = false;
+        });
+    },
     deleteMedicalNote(id) {
       this.medicalNotes = this.medicalNotes.filter((item) => item.id !== id);
     },
+    editMedicalNote(id) {
+      this.medicalNotes = this.medicalNotes.filter((item) => item.id === id);
+
+      this.showEditMedicalNote = true;
+    },
+    hideEdit() {
+      this.showEditMedicalNote = false;
+      this.getData();
+    },
   },
   created() {
-    this.loading = true;
-    axios
-      .get(`/api/medical-note-patient/${this.$route.params.id}`)
-      .then((response) => {
-        this.medicalNotes = response.data.data;
-        this.loading = false;
-      });
+    this.getData();
   },
 };
 </script>
