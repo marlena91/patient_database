@@ -84,10 +84,14 @@ class MedicalNotesController extends Controller
      */
     public function update(Request $request, MedicalNote $medicalNote)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
         $medicalNote->fill($request->post())->save();
         return response()->json([
-            'message'=>'Medical Note Updated Successfully!!',
-            'medicalNote'=>$medicalNote
+            'message' => 'Medical Note Updated Successfully!!',
+            'medicalNote' => $medicalNote
         ]);
     }
 
@@ -101,7 +105,7 @@ class MedicalNotesController extends Controller
     {
         $medicalNote->delete();
         return response()->json([
-            'message'=>'Category Deleted Successfully!!'
+            'message' => 'Category Deleted Successfully!!'
         ]);
     }
 }

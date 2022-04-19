@@ -15,7 +15,7 @@
         <medical-note-list-item
           v-if="!showEditMedicalNote"
           v-bind="medicalNote"
-          @deleteId="deleteMedicalNote"
+          @id="deleteMedicalNote"
           @showEdit="editMedicalNote"
         ></medical-note-list-item>
         <edit-medical-note

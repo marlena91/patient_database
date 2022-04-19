@@ -38,8 +38,14 @@
           />
         </div>
       </div>
-      <div class="" v-for="(error, index) in errors" :key="index">
-        {{ error }}
+      <div class="row mb-2" v-for="(error, index) in errors" :key="index">
+        <div
+          class="d-flex col-md-10 justify-content-center mb-2 text-danger"
+          v-for="(err, index) in error"
+          :key="index"
+        >
+          {{ err }}
+        </div>
       </div>
       <div class="mb-2">
         <button @click="search" class="btn col-md-10 btn-secondary btn-block">

@@ -5965,6 +5965,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -5980,7 +5982,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         description: this.description,
         patients_id: this.patients_id
       },
-      errors: []
+      error: ""
     };
   },
   computed: {},
@@ -6007,8 +6009,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 _context.prev = 5;
                 _context.t0 = _context["catch"](0);
-                _this.errors = _context.t0.response.data.errors;
-                console.log(_context.t0);
+                _this.error = _context.t0.response.data.message;
+                console.log(_this.error);
 
               case 9:
               case "end":
@@ -6420,6 +6422,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -6431,7 +6437,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         pesel: "",
         birthday: ""
       },
-      errors: []
+      error: ""
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
@@ -6460,16 +6466,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
 
               case 3:
-                _context.next = 9;
+                _context.next = 8;
                 break;
 
               case 5:
                 _context.prev = 5;
                 _context.t0 = _context["catch"](0);
-                _this.errors = _context.t0.response.data.errors;
-                console.log(_this.errors);
+                _this.error = _context.t0.response.data.message;
 
-              case 9:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -7071,7 +7076,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios["delete"]("/api/diseases-patients/".concat(disease_id, "/").concat(patient_id)).then(function (response) {
         _this2.patient.diseases = _this2.patient.diseases.filter(function (item) {
-          console.log(item.id);
           return item.id !== disease_id;
         });
       })["catch"](function (error) {
@@ -7109,6 +7113,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -33001,127 +33011,122 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "form",
-        {
-          staticClass: "row",
-          on: {
-            submit: function ($event) {
-              $event.preventDefault()
-              return _vm.update.apply(null, arguments)
-            },
+  return _c("div", [
+    _c(
+      "form",
+      {
+        staticClass: "row",
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.update.apply(null, arguments)
           },
         },
-        [
-          _c(
-            "div",
-            { staticClass: "col-md-3 border-end d-flex align-items-center" },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.medicalNote.title,
-                    expression: "medicalNote.title",
-                  },
-                ],
-                staticClass: "flex-fill mt-2",
-                attrs: {
-                  type: "text",
-                  placeholder: "Tytuł dokumentacji...",
-                  required: "",
-                },
-                domProps: { value: _vm.medicalNote.title },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.medicalNote, "title", $event.target.value)
-                  },
-                },
-              }),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-md-7 border-end p-1 d-flex align-items-center",
-            },
-            [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.medicalNote.description,
-                    expression: "medicalNote.description",
-                  },
-                ],
-                staticClass: "flex-fill mt-2",
-                attrs: { type: "text", required: "" },
-                domProps: { value: _vm.medicalNote.description },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.medicalNote,
-                      "description",
-                      $event.target.value
-                    )
-                  },
-                },
-              }),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "col-md-2 d-flex align-items-center justify-content-center",
-            },
-            [
-              _c(
-                "div",
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "col-md-3 border-end d-flex align-items-center" },
+          [
+            _c("input", {
+              directives: [
                 {
-                  on: {
-                    click: function ($event) {
-                      return _vm.update(_vm.id)
-                    },
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.medicalNote.title,
+                  expression: "medicalNote.title",
+                },
+              ],
+              staticClass: "flex-fill mt-2",
+              attrs: {
+                type: "text",
+                placeholder: "Tytuł dokumentacji...",
+                required: "",
+              },
+              domProps: { value: _vm.medicalNote.title },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.medicalNote, "title", $event.target.value)
+                },
+              },
+            }),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-7 border-end p-1 d-flex align-items-center" },
+          [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.medicalNote.description,
+                  expression: "medicalNote.description",
+                },
+              ],
+              staticClass: "flex-fill mt-2",
+              attrs: { type: "text", required: "" },
+              domProps: { value: _vm.medicalNote.description },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.medicalNote, "description", $event.target.value)
+                },
+              },
+            }),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-md-2 d-flex align-items-center justify-content-center",
+          },
+          [
+            _c(
+              "div",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.update(_vm.id)
                   },
                 },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "text-decoration-none text-primary",
-                      attrs: { href: "#" },
-                    },
-                    [_vm._v(" Zapisz ")]
-                  ),
-                ]
-              ),
-            ]
-          ),
-        ]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-decoration-none text-primary",
+                    attrs: { href: "#" },
+                  },
+                  [_vm._v(" Zapisz ")]
+                ),
+              ]
+            ),
+          ]
+        ),
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-2" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "d-flex col-md-12 justify-content-center mb-2 text-danger",
+        },
+        [_vm._v("\n      " + _vm._s(_vm.error) + "\n    ")]
       ),
-      _vm._v(" "),
-      _vm._l(_vm.errors, function (error, index) {
-        return _c("div", { key: index }, [
-          _vm._v("\n    " + _vm._s(error) + "\n  "),
-        ])
-      }),
-    ],
-    2
-  )
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33163,7 +33168,7 @@ var render = function () {
                       _vm._b(
                         {
                           on: {
-                            deleteId: _vm.deleteMedicalNote,
+                            id: _vm.deleteMedicalNote,
                             showEdit: _vm.editMedicalNote,
                           },
                         },
@@ -33583,22 +33588,32 @@ var render = function () {
                   },
                 }),
                 _vm._v(" "),
-                _vm._l(_vm.errors, function (error) {
-                  return _c("div", { key: error }, [
-                    _vm._v("\n            " + _vm._s(error) + "\n          "),
-                  ])
-                }),
+                _c("div", { staticClass: "row mb-2" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex col-md-12 justify-content-center mb-2 text-danger",
+                    },
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.error) +
+                          "\n            "
+                      ),
+                    ]
+                  ),
+                ]),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-secondary btn-block col-md-12 my-3",
+                    staticClass: "btn btn-secondary btn-block col-md-12 mb-3",
                     attrs: { type: "", submit: "" },
                   },
                   [_vm._v("\n            Zapisz\n          ")]
                 ),
-              ],
-              2
+              ]
             ),
           ]),
         ]),
@@ -34384,9 +34399,22 @@ var render = function () {
         ]),
         _vm._v(" "),
         _vm._l(_vm.errors, function (error, index) {
-          return _c("div", { key: index }, [
-            _vm._v("\n      " + _vm._s(error) + "\n    "),
-          ])
+          return _c(
+            "div",
+            { key: index, staticClass: "row mb-2" },
+            _vm._l(error, function (err, index) {
+              return _c(
+                "div",
+                {
+                  key: index,
+                  staticClass:
+                    "d-flex col-md-10 justify-content-center mb-2 text-danger",
+                },
+                [_vm._v("\n        " + _vm._s(err) + "\n      ")]
+              )
+            }),
+            0
+          )
         }),
         _vm._v(" "),
         _c("div", { staticClass: "mb-2" }, [
@@ -50742,7 +50770,7 @@ var index = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","/home/marlena/Projects/patient_database_3"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/home/marlena/Projects/patient_database_3","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

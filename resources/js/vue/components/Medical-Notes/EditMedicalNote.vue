@@ -26,8 +26,10 @@
         </div>
       </div>
     </form>
-    <div class="" v-for="(error, index) in errors" :key="index">
-      {{ error }}
+    <div class="row mb-2">
+      <div class="d-flex col-md-12 justify-content-center mb-2 text-danger">
+        {{ error }}
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +49,7 @@ export default {
         description: this.description,
         patients_id: this.patients_id,
       },
-      errors: [],
+      error: "",
     };
   },
   computed: {},
@@ -61,9 +63,9 @@ export default {
             this.$emit("hideEdit");
           });
       } catch (err) {
-        this.errors = err.response.data.errors;
+        this.error = err.response.data.message;
 
-        console.log(err);
+        console.log(this.error);
       }
     },
   },

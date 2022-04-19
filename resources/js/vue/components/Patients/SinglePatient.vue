@@ -106,7 +106,6 @@ export default {
         .delete(`/api/diseases-patients/${disease_id}/${patient_id}`)
         .then((response) => {
           this.patient.diseases = this.patient.diseases.filter((item) => {
-            console.log(item.id);
             return item.id !== disease_id;
           });
         })

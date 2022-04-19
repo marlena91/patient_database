@@ -48,13 +48,17 @@
               class="form-control mb-2"
               required
             />
-            <div class="" v-for="error in errors" :key="error">
-              {{ error }}
+            <div class="row mb-2">
+              <div
+                class="d-flex col-md-12 justify-content-center mb-2 text-danger"
+              >
+                {{ error }}
+              </div>
             </div>
             <button
               type
               submit
-              class="btn btn-secondary btn-block col-md-12 my-3"
+              class="btn btn-secondary btn-block col-md-12 mb-3"
             >
               Zapisz
             </button>
@@ -77,7 +81,7 @@ export default {
         pesel: "",
         birthday: "",
       },
-      errors: [],
+      error: "",
     };
   },
   computed: {
@@ -96,8 +100,7 @@ export default {
           });
         });
       } catch (err) {
-        this.errors = err.response.data.errors;
-        console.log(this.errors);
+        this.error = err.response.data.message;
       }
     },
   },
