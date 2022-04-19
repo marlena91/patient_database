@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PatientIndexResource;
 use App\Http\Resources\PatientShowResource;
+use App\Http\Resources\PatientEditResource;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Services\PeselValidate;
@@ -41,7 +42,7 @@ class PatientsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -93,6 +94,9 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
+        $patient = Patient::findOrFail($id);
+
+        return new PatientEditResource($patient);
     }
 
     /**
@@ -107,7 +111,7 @@ class PatientsController extends Controller
         $request->validate([
             'name' => 'required',
             'lastname' => 'required',
-            'pesel' => 'required|digits:11|unique:patients',
+            'pesel' => 'required|digits:11',
             'birthday' => 'required|date'
         ]);
 

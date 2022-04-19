@@ -6,7 +6,6 @@ use App\Http\Controllers\Api\MedicalNotesController;
 use App\Http\Controllers\Api\MedicalNotesForPatientController;
 use App\Http\Controllers\Api\PatientsController;
 use App\Http\Controllers\Api\SearchController;
-use App\Http\Controllers\Api\SortController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('patients', PatientsController::class, [
-    'except' => ['create', 'edit']
+    'except' => ['create']
 ]);
 Route::resource('diseases', DiseasesController::class, [
     'except' => ['create', 'edit']
@@ -35,7 +34,7 @@ Route::resource('medical-notes', MedicalNotesController::class, [
 ]);
 
 Route::get('search', SearchController::class)->name('search');
-Route::get('medical-note-patient/{patientID}', MedicalNotesForPatientController::class)->name('search');
+Route::get('medical-note-patient/{patientID}', MedicalNotesForPatientController::class)->name('med-note-patient.search');
 
 
 Route::post('/diseases-patients/{diseaseId}/{patientID}', [DiseasesPatientsController::class, 'store'])

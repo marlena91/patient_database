@@ -6622,7 +6622,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/patients/".concat(_this.$route.params.id)).then(function (response) {
+                return axios.get("/api/patients/".concat(_this.$route.params.id, "/edit")).then(function (response) {
                   _this.patient = response.data.data;
                 })["catch"](function (error) {
                   console.log(error);
@@ -6754,8 +6754,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       axios["delete"]("/api/patients/".concat(id)).then(function (response) {
-        console.log(response.data.data);
-
         _this.$emit("id", id);
       })["catch"](function (error) {
         console.log(error);

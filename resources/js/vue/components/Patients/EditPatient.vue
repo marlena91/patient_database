@@ -95,7 +95,7 @@ export default {
   methods: {
     async showPatient() {
       await axios
-        .get(`/api/patients/${this.$route.params.id}`)
+        .get(`/api/patients/${this.$route.params.id}/edit`)
         .then((response) => {
           this.patient = response.data.data;
         })
