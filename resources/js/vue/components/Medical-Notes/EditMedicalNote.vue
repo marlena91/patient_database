@@ -22,7 +22,7 @@
 
       <div class="col-md-2 d-flex align-items-center justify-content-center">
         <div @click="update(id)" class="">
-          <a href="#" class="text-decoration-none text-primary"> Zapisz </a>
+          <button class="btn btn-outline-primary btn-sm m-3">Zapisz</button>
         </div>
       </div>
     </form>

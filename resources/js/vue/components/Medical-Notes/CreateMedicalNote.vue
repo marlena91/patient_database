@@ -23,7 +23,9 @@
           ></textarea>
         </div>
       </div>
-      <button type="submit" class="">Zapisz</button>
+      <button type="submit" class="btn btn-outline-primary btn-sm m-3">
+        Zapisz
+      </button>
     </form>
   </div>
 </template>

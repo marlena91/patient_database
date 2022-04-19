@@ -5860,6 +5860,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -6136,6 +6138,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     editMedicalNote: function editMedicalNote(id) {
+      this.showCreateMedicalNote = false;
       this.medicalNotes = this.medicalNotes.filter(function (item) {
         return item.id === id;
       });
@@ -6148,6 +6151,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     newMedicalNote: function newMedicalNote(medicalNote) {
       this.medicalNotes.push(medicalNote);
       this.showCreateMedicalNote = false;
+    },
+    showHideCreateMedicalNote: function showHideCreateMedicalNote() {
+      this.showCreateMedicalNote ? this.showCreateMedicalNote = false : this.showCreateMedicalNote = true;
     }
   },
   created: function created() {
@@ -32991,7 +32997,14 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _c("button", { attrs: { type: "submit" } }, [_vm._v("Zapisz")]),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary btn-sm m-3",
+            attrs: { type: "submit" },
+          },
+          [_vm._v("\n      Zapisz\n    ")]
+        ),
       ]
     ),
   ])
@@ -33110,12 +33123,9 @@ var render = function () {
               },
               [
                 _c(
-                  "a",
-                  {
-                    staticClass: "text-decoration-none text-primary",
-                    attrs: { href: "#" },
-                  },
-                  [_vm._v(" Zapisz ")]
+                  "button",
+                  { staticClass: "btn btn-outline-primary btn-sm m-3" },
+                  [_vm._v("Zapisz")]
                 ),
               ]
             ),
@@ -33214,11 +33224,7 @@ var render = function () {
                   "button",
                   {
                     staticClass: "btn btn-primary btn-block",
-                    on: {
-                      click: function ($event) {
-                        _vm.showCreateMedicalNote = true
-                      },
-                    },
+                    on: { click: _vm.showHideCreateMedicalNote },
                   },
                   [_vm._v("\n        Dodaj nową dokumentację\n      ")]
                 )
@@ -33290,54 +33296,48 @@ var render = function () {
       ),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-8 border-end p-1" }, [
+    _c("div", { staticClass: "col-md-7 border-end p-1" }, [
       _c("div", { staticClass: "d-flex align-items-center h-100 w-100" }, [
         _c("p", { staticClass: "justify" }, [_vm._v(_vm._s(_vm.description))]),
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-1" }, [
-      _c("div", { staticClass: "d-flex align-items-center h-100 w-100" }, [
-        _c("div", [
-          _vm.user.role === "admin" || _vm.user.role === "doctor"
-            ? _c("div", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "text-decoration-none text-primary",
-                    attrs: { href: "#" },
-                    on: { click: _vm.showEditMedicalNote },
-                  },
-                  [_vm._v("\n            Edytuj\n          ")]
-                ),
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.user.role === "admin"
-            ? _c("div", [
-                _c(
-                  "div",
-                  {
-                    on: {
-                      click: function ($event) {
-                        return _vm.deleteMedicalNote(_vm.id)
-                      },
+    _c("div", { staticClass: "col-md-2" }, [
+      _c("div", { staticClass: "row" }, [
+        _vm.user.role === "admin" || _vm.user.role === "doctor"
+          ? _c("div", { staticClass: "col-md-5" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-primary btn-sm m-3",
+                  on: { click: _vm.showEditMedicalNote },
+                },
+                [_vm._v("\n          Edytuj\n        ")]
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.user.role === "admin"
+          ? _c("div", { staticClass: "col-md-5" }, [
+              _c(
+                "div",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.deleteMedicalNote(_vm.id)
                     },
                   },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "text-decoration-none text-danger",
-                        attrs: { href: "#" },
-                      },
-                      [_vm._v(" Usuń ")]
-                    ),
-                  ]
-                ),
-              ])
-            : _vm._e(),
-        ]),
+                },
+                [
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-outline-danger btn-sm m-3" },
+                    [_vm._v("Usuń")]
+                  ),
+                ]
+              ),
+            ])
+          : _vm._e(),
       ]),
     ]),
   ])

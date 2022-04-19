@@ -32,7 +32,7 @@
         <button
           v-if="!showEditMedicalNote"
           class="btn btn-primary btn-block"
-          @click="showCreateMedicalNote = true"
+          @click="showHideCreateMedicalNote"
         >
           Dodaj nową dokumentację
         </button>
@@ -91,6 +91,7 @@ export default {
       this.medicalNotes = this.medicalNotes.filter((item) => item.id !== id);
     },
     editMedicalNote(id) {
+      this.showCreateMedicalNote = false;
       this.medicalNotes = this.medicalNotes.filter((item) => item.id === id);
 
       this.showEditMedicalNote = true;
@@ -102,6 +103,11 @@ export default {
     newMedicalNote(medicalNote) {
       this.medicalNotes.push(medicalNote);
       this.showCreateMedicalNote = false;
+    },
+    showHideCreateMedicalNote() {
+      this.showCreateMedicalNote
+        ? (this.showCreateMedicalNote = false)
+        : (this.showCreateMedicalNote = true);
     },
   },
   created() {
