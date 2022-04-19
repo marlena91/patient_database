@@ -46,7 +46,7 @@ class DiseasesController extends Controller
         ]);
 
         $disease = Disease::create([
-            'name' => $request->input('name')
+            'name' => ucfirst(strtolower($request->input('name')))
         ]);
 
         return response()->json([

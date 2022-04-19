@@ -56,8 +56,8 @@ class PatientsController extends Controller
         $pesel =  new PeselValidate($request->pesel, $request->birthday);
         if ($pesel->validate()) {
             $patient = Patient::create([
-                'name' => $request->input('name'),
-                'lastname' => $request->input('lastname'),
+                'name' => ucfirst(strtolower($request->input('name'))),
+                'lastname' => ucfirst(strtolower($request->input('lastname'))),
                 'pesel' => $request->input('pesel'),
                 'birthday' => $request->input('birthday'),
             ]);
