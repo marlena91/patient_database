@@ -6588,6 +6588,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -6599,7 +6603,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         pesel: "",
         birthday: ""
       },
-      errors: []
+      error: ""
     };
   },
   mounted: function mounted() {
@@ -6649,16 +6653,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
 
               case 3:
-                _context2.next = 9;
+                _context2.next = 8;
                 break;
 
               case 5:
                 _context2.prev = 5;
                 _context2.t0 = _context2["catch"](0);
-                _this2.errors = _context2.t0.response.data.errors;
-                console.log(_this2.error);
+                _this2.error = _context2.t0.response.data.message;
 
-              case 9:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -6836,7 +6839,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -6902,45 +6904,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return item.id !== id;
       });
     },
-    loadDisease: function loadDisease() {},
     sortData: function sortData() {
-      switch (this.sortSelect.id) {
-        case 1:
-          return this.patients.sort(function (a, b) {
-            return a.name > b.name ? 1 : -1;
-          });
-          break;
+      if (this.sortSelect) {
+        switch (this.sortSelect.id) {
+          case 1:
+            return this.patients.sort(function (a, b) {
+              return a.name > b.name ? 1 : -1;
+            });
+            break;
 
-        case 2:
-          return this.patients.sort(function (a, b) {
-            return a.name < b.name ? 1 : -1;
-          });
-          break;
+          case 2:
+            return this.patients.sort(function (a, b) {
+              return a.name < b.name ? 1 : -1;
+            });
+            break;
 
-        case 3:
-          return this.patients.sort(function (a, b) {
-            return a.lastname > b.lastname ? 1 : -1;
-          });
-          break;
+          case 3:
+            return this.patients.sort(function (a, b) {
+              return a.lastname > b.lastname ? 1 : -1;
+            });
+            break;
 
-        case 4:
-          return this.patients.sort(function (a, b) {
-            return a.lastname < b.lastname ? 1 : -1;
-          });
-          break;
+          case 4:
+            return this.patients.sort(function (a, b) {
+              return a.lastname < b.lastname ? 1 : -1;
+            });
+            break;
 
-        case 5:
-          return this.patients.sort(function (a, b) {
-            return a.birthday > b.birthday ? 1 : -1;
-          });
-          break;
+          case 5:
+            return this.patients.sort(function (a, b) {
+              return a.birthday > b.birthday ? 1 : -1;
+            });
+            break;
 
-        case 6:
-          return this.patients.sort(function (a, b) {
-            return a.birthday < b.birthday ? 1 : -1;
-          });
-          break;
-      }
+          case 6:
+            return this.patients.sort(function (a, b) {
+              return a.birthday < b.birthday ? 1 : -1;
+            });
+            break;
+
+          default:
+            break;
+        }
+      } else this.getData();
     }
   },
   created: function created() {
@@ -33814,22 +33820,32 @@ var render = function () {
                   },
                 }),
                 _vm._v(" "),
-                _vm._l(_vm.errors, function (error) {
-                  return _c("div", { key: error }, [
-                    _vm._v("\n            " + _vm._s(error) + "\n          "),
-                  ])
-                }),
+                _c("div", { staticClass: "row mb-2" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex col-md-12 justify-content-center mb-2 text-danger",
+                    },
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.error) +
+                          "\n            "
+                      ),
+                    ]
+                  ),
+                ]),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-secondary btn-block col-md-12 my-3",
+                    staticClass: "btn btn-secondary btn-block col-md-12 mb-3",
                     attrs: { type: "", submit: "" },
                   },
                   [_vm._v("\n            Zapisz\n          ")]
                 ),
-              ],
-              2
+              ]
             ),
           ]),
         ]),
@@ -34032,12 +34048,7 @@ var render = function () {
                 options: _vm.sortingOptions,
                 placeholder: "Filtrowanie...",
               },
-              on: {
-                input: _vm.sortData,
-                close: function ($event) {
-                  return _vm.console.log("test")
-                },
-              },
+              on: { input: _vm.sortData },
               model: {
                 value: _vm.sortSelect,
                 callback: function ($$v) {

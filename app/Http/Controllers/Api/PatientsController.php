@@ -107,16 +107,27 @@ class PatientsController extends Controller
         $request->validate([
             'name' => 'required',
             'lastname' => 'required',
-            'pesel' => 'required|digits:11',
+            'pesel' => 'required|digits:11|unique:patients',
             'birthday' => 'required|date'
         ]);
 
+        $pesel =  new PeselValidate($request->pesel, $request->birthday);
+        if ($pesel->validate()) {
+            $patient->fill($request->post())->save();
+            return response()->json([
+                'message' => 'Patient Updated Successfully!!',
+                'patient' => $patient
+            ]);
 
-        $patient->fill($request->post())->save();
-        return response()->json([
-            'message' => 'Patient Updated Successfully!!',
-            'patient' => $patient
-        ]);
+            return response()->json([
+                'message' => 'Patient Created Successfully!!',
+                'patient' => $patient
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'The given data was invalid.'
+            ], 422);
+        }
     }
 
     /**

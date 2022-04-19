@@ -18,7 +18,6 @@
         <div class="col-md-10 mb-2">
           <v-select
             @input="sortData"
-            @close="console.log('test')"
             v-model="sortSelect"
             :options="sortingOptions"
             placeholder="Filtrowanie..."
@@ -104,40 +103,43 @@ export default {
     patientDelete(id) {
       this.patients = this.patients.filter((item) => item.id !== id);
     },
-    loadDisease() {},
     sortData() {
-      switch (this.sortSelect.id) {
-        case 1:
-          return this.patients.sort(function (a, b) {
-            return a.name > b.name ? 1 : -1;
-          });
-          break;
-        case 2:
-          return this.patients.sort(function (a, b) {
-            return a.name < b.name ? 1 : -1;
-          });
-          break;
-        case 3:
-          return this.patients.sort(function (a, b) {
-            return a.lastname > b.lastname ? 1 : -1;
-          });
-          break;
-        case 4:
-          return this.patients.sort(function (a, b) {
-            return a.lastname < b.lastname ? 1 : -1;
-          });
-          break;
-        case 5:
-          return this.patients.sort(function (a, b) {
-            return a.birthday > b.birthday ? 1 : -1;
-          });
-          break;
-        case 6:
-          return this.patients.sort(function (a, b) {
-            return a.birthday < b.birthday ? 1 : -1;
-          });
-          break;
-      }
+      if (this.sortSelect) {
+        switch (this.sortSelect.id) {
+          case 1:
+            return this.patients.sort(function (a, b) {
+              return a.name > b.name ? 1 : -1;
+            });
+            break;
+          case 2:
+            return this.patients.sort(function (a, b) {
+              return a.name < b.name ? 1 : -1;
+            });
+            break;
+          case 3:
+            return this.patients.sort(function (a, b) {
+              return a.lastname > b.lastname ? 1 : -1;
+            });
+            break;
+          case 4:
+            return this.patients.sort(function (a, b) {
+              return a.lastname < b.lastname ? 1 : -1;
+            });
+            break;
+          case 5:
+            return this.patients.sort(function (a, b) {
+              return a.birthday > b.birthday ? 1 : -1;
+            });
+            break;
+          case 6:
+            return this.patients.sort(function (a, b) {
+              return a.birthday < b.birthday ? 1 : -1;
+            });
+            break;
+          default:
+            break;
+        }
+      } else this.getData();
     },
   },
   created() {
