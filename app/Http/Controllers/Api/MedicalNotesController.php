@@ -51,6 +51,10 @@ class MedicalNotesController extends Controller
             'description' => $request->input('description'),
             'patients_id' => $request->input('patients_id')
         ]);
+        return response()->json([
+            'message' => 'Medical Note Updated Successfully!!',
+            'medicalNote' => $medicalNote
+        ]);
     }
 
     /**

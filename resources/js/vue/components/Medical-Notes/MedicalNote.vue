@@ -44,6 +44,7 @@
         <create-medical-note
           v-if="showCreateMedicalNote"
           v-bind:patient_id="patient_id"
+          @newMedicalNote="newMedicalNote"
         ></create-medical-note>
       </div>
     </div>
@@ -97,6 +98,10 @@ export default {
     hideEdit() {
       this.showEditMedicalNote = false;
       this.getData();
+    },
+    newMedicalNote(medicalNote) {
+      this.medicalNotes.push(medicalNote);
+      this.showCreateMedicalNote = false;
     },
   },
   created() {

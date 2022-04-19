@@ -57,9 +57,7 @@ export default {
       await axios
         .post(`/api/medical-notes`, this.medicalNote)
         .then((response) => {
-          // this.patients = this.patients.filter((item) => item.id !== id);
-
-          this.$router.go();
+          this.$emit("newMedicalNote", response.data.medicalNote);
         })
         .catch((error) => {
           console.log(error);

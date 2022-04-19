@@ -5893,8 +5893,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context.next = 2;
                 return axios.post("/api/medical-notes", _this.medicalNote).then(function (response) {
-                  // this.patients = this.patients.filter((item) => item.id !== id);
-                  _this.$router.go();
+                  _this.$emit("newMedicalNote", response.data.medicalNote);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -6098,6 +6097,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -6144,6 +6144,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hideEdit: function hideEdit() {
       this.showEditMedicalNote = false;
       this.getData();
+    },
+    newMedicalNote: function newMedicalNote(medicalNote) {
+      this.medicalNotes.push(medicalNote);
+      this.showCreateMedicalNote = false;
     }
   },
   created: function created() {
@@ -33231,6 +33235,7 @@ var render = function () {
           _vm.showCreateMedicalNote
             ? _c("create-medical-note", {
                 attrs: { patient_id: _vm.patient_id },
+                on: { newMedicalNote: _vm.newMedicalNote },
               })
             : _vm._e(),
         ],
