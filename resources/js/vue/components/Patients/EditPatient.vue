@@ -105,6 +105,10 @@ export default {
     },
     async update() {
       try {
+        this.patient.name = this.capitalizeFirstLetter(this.patient.name);
+        this.patient.lastname = this.capitalizeFirstLetter(
+          this.patient.lastname
+        );
         await axios
           .put(`/api/patients/${this.$route.params.id}`, this.patient)
           .then((response) => {
@@ -113,6 +117,9 @@ export default {
       } catch (err) {
         this.error = err.response.data.message;
       }
+    },
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     },
   },
   created() {

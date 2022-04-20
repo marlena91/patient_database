@@ -44,6 +44,7 @@ export default {
         });
     },
     async update() {
+      this.disease.name = this.capitalizeFirstLetter(this.disease.name);
       await axios
         .put(`/api/diseases/${this.id}`, this.disease)
         .then((response) => {
@@ -52,6 +53,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     },
   },
   created() {},

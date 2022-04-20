@@ -5783,20 +5783,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                _this2.disease.name = _this2.capitalizeFirstLetter(_this2.disease.name);
+                _context2.next = 3;
                 return axios.put("/api/diseases/".concat(_this2.id), _this2.disease).then(function (response) {
                   _this2.$emit("changedDisease", response.data.disease.name);
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
       }))();
+    },
+    capitalizeFirstLetter: function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
   },
   created: function created() {},
@@ -6655,29 +6659,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.prev = 0;
-                _context2.next = 3;
+                _this2.patient.name = _this2.capitalizeFirstLetter(_this2.patient.name);
+                _this2.patient.lastname = _this2.capitalizeFirstLetter(_this2.patient.lastname);
+                _context2.next = 5;
                 return axios.put("/api/patients/".concat(_this2.$route.params.id), _this2.patient).then(function (response) {
                   _this2.$router.push({
                     name: "patient"
                   });
                 });
 
-              case 3:
-                _context2.next = 8;
+              case 5:
+                _context2.next = 10;
                 break;
 
-              case 5:
-                _context2.prev = 5;
+              case 7:
+                _context2.prev = 7;
                 _context2.t0 = _context2["catch"](0);
                 _this2.error = _context2.t0.response.data.message;
 
-              case 8:
+              case 10:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 5]]);
+        }, _callee2, null, [[0, 7]]);
       }))();
+    },
+    capitalizeFirstLetter: function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
   },
   created: function created() {
@@ -33303,7 +33312,7 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-2" }, [
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "row d-flex justify-content-around" }, [
         _vm.user.role === "admin" || _vm.user.role === "doctor"
           ? _c("div", { staticClass: "col-md-5" }, [
               _c(

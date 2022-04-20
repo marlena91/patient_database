@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <div class="row">
+      <div class="row d-flex justify-content-around">
         <div
           class="col-md-5"
           v-if="user.role === 'admin' || user.role === 'doctor'"
